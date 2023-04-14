@@ -1,351 +1,503 @@
 <!DOCTYPE HTML>
 <!--
-	Strongly Typed by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	TCFC-2023 by  SACFF, San Antonio, TX
+	sacff.org 
+	SACFF
 -->
 <html>
-	<head>
-		<title>House of Prayer San Antonio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="shortcut icon" type="image/png" href="/logo.png"/>
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+<head>
+    <title>TCFC-2023 by SACFF, San Antonio, TX</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
+    </noscript>
+    <style>
+        .thumbnail {
+            background-color: black;
+            width: 3em;
+            height: 4em;
+            display: inline-block; /* makes it fit in like an <img> */
+            background-size: cover; /* or contain */
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    </style>
 
-			<!-- Header -->
-				<section id="header">
-					<div class="container">
+    <script type="text/javascript">
+        async function postData(url = "", data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "no-cors", // no-cors, *cors, same-origin
+                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: "same-origin", // include, *same-origin, omit
+                headers: {
+                    "Content-Type": "text/plain",
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: "follow", // manual, *follow, error
+                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data), // body data type must match "Content-Type" header
+            });
+            return response; // parses JSON response into native JavaScript objects
+        }
+        function register() {
 
-						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">House of Prayer</a></h1>
-							<p> So Christ himself gave the apostles, the prophets, the evangelists, the pastors and teachers,  to equip his people for works of service, so that the body of Christ may be built up until we all reach unity in the faith and in the knowledge of the Son of God and become mature, attaining to the whole measure of the fullness of Christ.</p>
+            let requestObj = {name: document.getElementById("name").value,
+                street: document.getElementById("street").value,
+                apt: document.getElementById("apt").value,
+                city: document.getElementById("city").value,
+                state: document.getElementById("state").value,
+                zip: document.getElementById("zip").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value,
+                numberOfAdults: document.getElementById("numberOfAdults").value,
+                numberOfChildren: document.getElementById("numberOfChildren").value,
+                numberOfChildrenFree: document.getElementById("numberOfChildrenFree").value,
+                attendanceOnFriday: document.getElementById("attendanceOnFriday").checked,
+                attendanceOnStaturday: document.getElementById("attendanceOnStaturday").checked,
+                attendanceOnSunday: document.getElementById("attendanceOnSunday").checked,
+                attenddee1: document.getElementById("attenddee1").value,
+                attenddee2: document.getElementById("attenddee2").value,
+                attenddee3: document.getElementById("attenddee3").value,
+                attenddee4: document.getElementById("attenddee4").value,
+                attenddee5: document.getElementById("attenddee5").value,
+                attenddee6: document.getElementById("attenddee6").value,
+                attenddee7: document.getElementById("attenddee7").value,
+                attenddee8: document.getElementById("attenddee8").value,
+                attenddee9: document.getElementById("attenddee9").value,
+                attenddee10: document.getElementById("attenddee10").value,
+                whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent").checked,
+                recommendations: document.getElementById("recommendations").value
+            }
+            postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws",requestObj).then((d2) => {
+                console.log(d2); // JSON data parsed by `data.json()` call
+                alert("Registration Successful!")
+            });
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li><a class="icon fa-home" href="index.html"><span>Introduction</span></a></li>
-									<li>
-										<a href="#" class="icon fa-bar-chart-o"><span>Dropdown</span></a>
-										<ul>
-											<li><a href="#">Page 1</a></li>
-											<li><a href="#">Page 2</a></li>
-											<li><a href="#">Page 3</a></li>
-											<li>
-												<a href="#">Sub Drop down</a>
-												<ul>
-													<li><a href="#">Page 4</a></li>
-													<li><a href="#">Page 5</a></li>
-													<li><a href="#">Page 6</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Faith Statement</a></li>
-										</ul>
-									</li>
-							<!--		<li><a class="icon fa-cog" href="left-sidebar1.html"><span>Left Sidebar</span></a></li>
-									<li><a class="icon fa-retweet" href="right-sidebar1.html"><span>Right Sidebar</span></a></li>
-									<li><a class="icon fa-sitemap" href="no-sidebar1.html"><span>No Sidebar</span></a></li> -->
-								   <li><a class="icon fa-cog" href="#"><span>Left Sidebar</span></a></li>
-									<li><a class="icon fa-retweet" href="#"><span>Right Sidebar</span></a></li>
-									<li><a class="icon fa-sitemap" href="#"><span>No Sidebar</span></a></li> -->
-								</ul>
-							</nav>
+        }
+    </script>
+</head>
+<body class="is-preload">
 
-					</div>
-				</section>
+<!-- Sidebar -->
+<section id="sidebar">
+    <div class="inner">
+        <nav>
+            <ul>
+                <li><a href="#intro">TCFC-2023</a></li>
+                <li><a href="#four">Theme</a></li>
+                <li><a href="#one">Speakers</a></li>
+                <li><a href="#five">Venue</a></li>
+                <li><a href="#six">Contacts</a></li>
+                <li><a href="#two">Events</a></li>
+                <li><a href="#three">Registration</a></li>
+                sacff.org
+            </ul>
+        </nav>
+    </div>
+</section>
 
-			<!-- Features -->
-				<section id="features">
-					<div class="container">
-						<header>
-							<h2>This is <strong>House of Prayer at San Antonio</strong>!</h2>
-						</header>
-						<div class="row aln-center">
-							<div class="col-4 col-6-medium col-12-small">
+<!-- Wrapper -->
+<div id="wrapper">
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<header>
-											<h3>Okay, so what is this?</h3>
-										</header>
-										<p>This is <strong>House of Prayer at San Antonio</strong>, a church coming soon in San Antonio.
-										<strong>Brother Naresh Talathoti</strong> will pastor this church.</p>
-									</section>
+    <!-- Intro -->
+    <section id="intro" class="wrapper style1 fullscreen fade-up">
+        <div class="inner">
+            <h1>Texas Christian Family Conference 2023 </h1>
+            <h4>Dates : July 14th - July 16th (Friday - Sunday)</h4>
 
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
+            <p>organized by San Antonio Christian Family Fellowship (<a href="https://sacff.org"
+                                                                        target="_blank">SACFF</a>)<br/></p>
+            <ul class="actions">
+                <li><a href="#one" class="button scrolly">Learn more</a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- Four -->
+    <section id="four" class="wrapper style4 spotlights">
+        <section id="intro" class="wrapper style4 fullscreen fade-up">
+            <div class="inner">
+                <h1>Theme</h1>
+                <h2>Overcomers (Revelations 3:12 & 21)</h2>
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-										<header>
-											<h3>House of Prayer at San Antonio</h3>
-										</header>
-										<p>This is <strong>House of Prayer at San Antonio</strong>, a church coming soon in San Antonio.
-										Brother Naresh Talathoti will pastor this church.</p>
-									</section>
+                <p>Him that <b>overcometh</b> will I make a pillar in the temple of my God, and he shall go no more out:
+                    and I will write upon him the name of my God, and the name of the city of my God, which is new
+                    Jerusalem, which cometh down out of heaven from my God: and I will write upon him my new name.
+                    To him that overcometh will I grant to sit with me in my throne, even as I also overcame, and am set
+                    down with my Father in his throne.</p>
 
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
+                <p>To him that <b>overcometh</b> will I grant to sit with me in my throne, even as I also overcame, and
+                    am set down with my Father in his throne.</p>
+            </div>
+        </section>
+    </section>
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>What's this built with?</h3>
-										</header>
-										<p>This will be built with  <strong>Prayer</strong></p>
-									</section>
 
-							</div>
-							<div class="col-12">
-								<ul class="actions">
-									<li><a href="#" class="button icon fa-file">Tell Me More</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
+    <!-- One -->
+    <section id="one" class="wrapper style2 spotlights">
+        <h1>Speakers</h1>
+        <section>
+            <a href="#" class="image"><img src="images/Madhu_single.jpg" alt="" data-position="center center"/></a>
+            <div class="content">
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="container">
-						<p>But seek first <strong>his kingdom and his righteousness</strong>,<br />
-						and all these things will be given to you as well.</p>
-					</div>
-				</section>
+                <div class="inner">
+                    <h2>Rev. Dr. Joe Madhu Payarda</h2>
+                    <p>Co-founders and International Directors and Speakers, Calvary Love of Jesus Ministries.</p>
+                    <ul class="icons">
+                        <li><a href="http://www.calvaryloveofjesus.org" class="icon solid alt fa-home"
+                               target="_blank"><span class="label">Website</span></a></li>
+                        <li><a href="mailto:office@cljm.org" class="icon solid alt fa-envelope" target="_blank"><span
+                                class="label">Email</span></a></li>
+                        <li><a href="tel:+1 (302) 932 1340" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="https://twitter.com/cljmglobal" class="icon brands fa-twitter"
+                               target="_blank"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://www.facebook.com/cljmglobal" class="icon brands fa-facebook-f"
+                               target="_blank"><span class="label">Facebook</span></a></li>
+                        <li><a href="https://www.youtube.com/user/BroJoeAndSisJessie" class="icon brands fa-youtube"
+                               target="_blank"><span class="label">Youtube</span></a></li>
+                    </ul>
+                    <ul class="actions">
+                        <li><a href="generic.html" class="button">Learn more</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <a href="#" class="image"><img src="images/Veena_single.jpg" alt="" data-position="center center"/></a>
+            <div class="content">
 
-			<!-- Main -->
-				<section id="main">
-					<div class="container">
-						<div class="row">
+                <div class="inner">
+                    <h2>Rev. Dr. Jessie Veena Payarda</h2>
+                    <p>Co-founders and International Directors and Speakers, Calvary Love of Jesus Ministries.</p>
+                    <ul class="icons">
+                        <li><a href="http://www.calvaryloveofjesus.org" class="icon solid alt fa-home"
+                               target="_blank"><span class="label">Website</span></a></li>
+                        <li><a href="mailto:office@cljm.org" class="icon solid alt fa-envelope" target="_blank"><span
+                                class="label">Email</span></a></li>
+                        <li><a href="tel:+1 (302) 932 1340" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="https://twitter.com/cljmglobal" class="icon brands fa-twitter"
+                               target="_blank"><span class="label">Twitter</span></a></li>
+                        <li><a href="https://www.facebook.com/cljmglobal" class="icon brands fa-facebook-f"
+                               target="_blank"><span class="label">Facebook</span></a></li>
+                        <li><a href="https://www.youtube.com/user/BroJoeAndSisJessie" class="icon brands fa-youtube"
+                               target="_blank"><span class="label">Youtube</span></a></li>
+                    </ul>
+                    <ul class="actions">
+                        <li><a href="generic.html" class="button">Learn more</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- <section>
+            <a href="#" class="image"><img src="images/madhu_joe.jpg" alt="" data-position="top center" /></a>
+            <div class="content">
+                <div class="inner">
+                    <h2>Bro. Madhu Jesse</h2>
+                    <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+                    <ul class="actions">
+                        <li><a href="generic.html" class="button">Learn more</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <a href="#" class="image"><img src="images/Veena.jpg" alt="" data-position="25% 25%" /></a>
+            <div class="content">
+                <div class="inner">
+                    <h2>Sis. Veena</h2>
+                    <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+                    <ul class="actions">
+                        <li><a href="generic.html" class="button">Learn more</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section> -->
+    </section>
 
-							<!-- Content -->
-								<div id="content" class="col-8 col-12-medium">
+    <!-- Five -->
+    <section id="five" class="wrapper style5 spotlights">
+        <h1>Venue</h1>
+        <section>
+            <a href="#" class="image"><img src="images/Concordia02.jpg" alt="" data-position="center center"/></a>
+            <div class="inner">
 
-									<!-- Post -->
-										<article class="box post">
-											<header>
-												<h2><a href="#"><strong>Psalm 1</strong> <br />
-												A Psalm of David</a></h2>
-											</header>
-											<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-											<h3></h3>
-											<p> Blessed is the man that walketh not in the counsel of the ungodly, nor standeth in the way of sinners, nor sitteth in the seat of the scornful.
+                <h4> Concordia Lutheran Church<br>
+                    16801 Huebner Rd.<br>
+                    San Antonio<br>
+                    Texas - 78258</h4>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.8077338777935!2d-98.52780878487164!3d29.60927494595302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c622ae77df79d%3A0xf512a78de94a1626!2sConcordia%20Lutheran%20Church!5e0!3m2!1sen!2sus!4v1680985353077!5m2!1sen!2sus&amp;sensor=true"
+                        style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </section>
 
-2 But his delight is in the law of the Lord; and in his law doth he meditate day and night.
+    <!-- One -->
+    <section id="six" class="wrapper style6 spotlights">
+        <h2>TCFC-2023 Organizers Contacts</h2>
+        <section>
+            <div class="content">
 
-3 And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season; his leaf also shall not wither; and whatsoever he doeth shall prosper.
 
-4 The ungodly are not so: but are like the chaff which the wind driveth away.
+                <div class="inner">
 
-5 Therefore the ungodly shall not stand in the judgment, nor sinners in the congregation of the righteous.
+                    <ul class="icons">
 
-6 For the Lord knoweth the way of the righteous: but the way of the ungodly shall perish.</p>
-											<ul class="actions">
-												<li><a href="#" class="button icon fa-file">Continue Reading</a></li>
-											</ul>
-										</article>
+                        <li><img src="images/Praveen.jpeg" class="thumbnail"/></li>
+                        <li><h2>Praveen Kanapala</h2></li>
+                        <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
+                                class="label">Email</span></a></li>
+                    </ul>
+                </div>
+                <div class="inner">
 
-									<!-- Post -->
-										<article class="box post">
-											<header>
-												<h2><a href="#"><strong>Psalm 1</strong> <br />
-												A Psalm of David</a></h2>
-											</header>
-											<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-											<h3></h3>
-											<p> Blessed is the man that walketh not in the counsel of the ungodly, nor standeth in the way of sinners, nor sitteth in the seat of the scornful.
+                    <ul class="icons">
+                        <li><img src="images/rectorArya.jpg" class="thumbnail"/></li>
+                        <li><h2>Rector Arya</h2></li>
+                        <li><a href="tel:+1 (210) 668-5436" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="mailto:rectorarya@gmail.com" class="icon solid alt fa-envelope"
+                               target="_blank"><span
+                                class="label">Email</span></a></li>
+                    </ul>
 
-2 But his delight is in the law of the Lord; and in his law doth he meditate day and night.
+                </div>
+                <div class="inner">
 
-3 And he shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season; his leaf also shall not wither; and whatsoever he doeth shall prosper.
+                    <ul class="icons">
+                        <li><img src="images/RaviDuggirala.jpg" class="thumbnail"/></li>
+                        <li><h2>Ravindranath Duggirala</h2></li>
+                        <li><a href="tel:+1 (210) 326-0806" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="mailto:ravindranathduggirala@gmail.com" class="icon solid alt fa-envelope"
+                               target="_blank"><span
+                                class="label">Email</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
 
-4 The ungodly are not so: but are like the chaff which the wind driveth away.
+    <!-- Two -->
+    <section id="two" class="wrapper style3 fade-up">
+        <div class="inner">
+            <h2>Events</h2>
+            <p>TCFC-2023 will have following Events:</p>
+            <div class="features">
+                <section>
+                    <span class="icon solid major fa-question"></span>
+                    <h3>Adult Bible Quiz</h3>
+                    <p>Quiz Syllabus will be announced one before the conference date.</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-praying-hands"></span>
+                    <h3>Praise & Worship</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-trophy"></span>
+                    <h3>Talent Time</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-users"></span>
+                    <h3>Group Discussion</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-link"></span>
+                    <h3>Kids Ministry</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon major fa-gem"></span>
+                    <h3>Aliquam urna dapibus</h3>
+                    <p>More details to come ...</p>
+                </section>
+            </div>
+            <ul class="actions">
+                <li><a href="generic.html" class="button">Learn more</a></li>
+            </ul>
+        </div>
+    </section>
 
-5 Therefore the ungodly shall not stand in the judgment, nor sinners in the congregation of the righteous.
 
-6 For the Lord knoweth the way of the righteous: but the way of the ungodly shall perish.</p>
-											<ul class="actions">
-												<li><a href="#" class="button icon fa-file">Continue Reading</a></li>
-											</ul>
-										</article>
+    <!-- Three -->
+    <section id="three" class="wrapper style1 fade-up">
+        <div class="inner">
+            <h2>Registration</h2>
+            <p>Please register below</p>
+            <div class="split style1">
+                <section>
+                    <form onsubmit="register()">
+                        <div class="fields">
+                            <div class="field half">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="street">Address</label>
+                                <input type="text" name="street" id="street" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="apt">Apt</label>
+                                <input type="text" name="apt" id="apt"/>
+                            </div>
+                            <div class="field half">
+                                <label for="city">City</label>
+                                <input type="text" name="city" id="city" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="state">State</label>
+                                <input type="text" name="state" id="state" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="zip">ZIP</label>
+                                <input type="text" name="zip" id="zip" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="phone">Phone (Format: 123-456-7890)</label>
+                                <input type="text" name="phone" id="phone"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" required/>
+                            </div>
+                            <div class="field half">
+                                <label for="numberOfAdults">Number of Adults Attendees (Max 10)</label>
+                                <input type="text" name="numberOfAdults" id="numberOfAdults" pattern="[1-10]" required/>
+                            </div>
 
-							<!-- Sidebar -->
-								<div id="sidebar" class="col-4 col-12-medium">
+                            <div class="field half">
+                                <label for="numberOfChildren">Number of Child Attendees (Age range 12-17)</label>
+                                <input type="text" name="numberOfChildren" id="numberOfChildren"  pattern="[0-9]"/>
+                            </div>
+                            <div class="field half">
+                                <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No Fee)</label>
+                                <input type="text" name="numberOfChildrenFree" id="numberOfChildrenFree" pattern="[0-9]"/>
+                            </div>
+                            <div class="field">
+                                <label for="email">Attendee Names</label>
+                                <ol>
+                                    <li><input type="text" name="attenddee1" id="attenddee1" required/></li>
+                                    <li><input type="text" name="attenddee2" id="attenddee2"/></li>
+                                    <li><input type="text" name="attenddee3" id="attenddee3"/></li>
+                                    <li><input type="text" name="attenddee4" id="attenddee4"/></li>
+                                    <li><input type="text" name="attenddee5" id="attenddee5"/></li>
+                                    <li><input type="text" name="attenddee6" id="attenddee6"/></li>
+                                    <li><input type="text" name="attenddee6" id="attenddee7"/></li>
+                                    <li><input type="text" name="attenddee6" id="attenddee8"/></li>
+                                    <li><input type="text" name="attenddee6" id="attenddee9"/></li>
+                                    <li><input type="text" name="attenddee6" id="attenddee10"/></li>
+                                </ol>
 
-									<!-- Excerpts -->
-										<section>
-											<ul class="divided">
-												<li>
+                            </div>
+                            <div class="field half">
+                                <fieldset>
+                                    <legend>Please indicate day(s) planning to attend:</legend>
 
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">January 2019</span>
-																<h3><a href="#">Matthew – 18:20</a></h3>
-															</header>
-															<p>For where two or three gather in my name, there am I with them.</p>
-														</article>
+                                    <div>
+                                        <input type="checkbox" id="attendanceOnFriday" name="attendanceOnFriday">
+                                        <label for="attendanceOnFriday">Friday</label>
+                                    </div>
 
-												</li>
-												<li>
+                                    <div>
+                                        <input type="checkbox" id="attendanceOnStaturday" name="attendanceOnStaturday">
+                                        <label for="attendanceOnStaturday">Saturday</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="attendanceOnSunday" name="attendanceOnSunday">
+                                        <label for="attendanceOnSunday">Sunday</label>
+                                    </div>
+                                </fieldset>
+                            </div>
 
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">February 2019</span>
-																<h3><a href="#">Romans – 10:17</a></h3>
-															</header>
-															<p>Consequently, faith comes from hearing the message, and the message is heard through the word about Christ.</p>
-														</article>
+                            <div class="field">
+                                <fieldset>
+                                    <legend>I give consent to add my phone number to CFC-2023 Whatsapp group:</legend>
 
-												</li>
-												<li>
+                                    <div>
+                                        <input type="checkbox" id="whatsAppGroupConsent" name="whatsAppGroupConsent">
+                                        <label for="whatsAppGroupConsent">Yes</label>
+                                    </div>
+                                </fieldset>
+                            </div>
 
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">March 2019</span>
-																<h3><a href="#">Colossians – 3:16</a></h3>
-															</header>
-															<p>Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.</p>
-														</article>
+                            <div>
+                                <p>
+                                    Registration fee: $30 per person &amp; $120 max per family. Children 12 and under
+                                    &amp; Senior
+                                    citizens 65 &amp; over free. Additional donations are accepted.
+                                </p>
+                            </div>
 
-												</li>
-											</ul>
-										</section>
+                            <div class="field">
+                                <label for="recommendations">Recommendations</label>
+                                <textarea name="recommendations" id="recommendations" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <ul class="actions">
+                            <li><button class="button" type="button" onclick="register()" >Submit</button></li>
+                        </ul>
+                    </form>
+                </section>
+                <section>
+                    <ul class="contact">
+                        <li>
+                            <h3 class="icon solid alt fa-home">  Address</h3>
+                            <span>SACFF </br>
+                                11518 Camp Real Ln<br/>
+												San Antonio, TX<br/>
+												78253</span>
+                        </li>
+                        <li>
+                            <h3 class="icon solid alt fa-envelope">  Email</h3>
+                            <a href="mailto:rectorarya@gmail.com">rectorarya@gmail.com</a>
+                        </li>
+                        <li>
+                            <h3 class="icon solid alt fa-phone">  Phone</h3>
+                            <span><a href="tel:+1 (210) 668-5436">(210) 668-5436</a></span>
+                        </li>
+                        <li>
+                            <h3>  Social</h3>
+                            <ul class="icons">
+                                <li><a href="https://www.facebook.com/sacffellowship/" target="_blank"
+                                       class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
 
-									<!-- Highlights -->
-										<section>
-											<ul class="divided">
-												<li>
+</div>
 
-													<!-- Highlight -->
-														<article class="box highlight">
-															<header>
-																<h3><a href="#">Matthew – 28: 19-20</a></h3>
-															</header>
-															<a href="#" class="image left"><img src="images/pic06.jpg" alt="" /></a>
-															<p>19 Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, 
-20 and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age.
-</p>
-															<ul class="actions">
-																<li><a href="#" class="button icon fa-file">Learn More</a></li>
-															</ul>
-														</article>
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; SACFF. All rights reserved.</li>
+            <li>Design: <a href="https://sacff.org">SACFF</a></li>
+        </ul>
+    </div>
+</footer>
 
-												</li>
-												<li>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
-													<!-- Highlight -->
-														<article class="box highlight">
-															<header>
-																<h3><a href="#">2 Timothy – 4:2</a></h3>
-															</header>
-															<a href="#" class="image left"><img src="images/pic07.jpg" alt="" /></a>
-															<p>Preach the word; be prepared in season and out of season; correct, rebuke and encourage—with great patience and careful instruction.</p>
-															<ul class="actions">
-																<li><a href="#" class="button icon fa-file">Learn More</a></li>
-															</ul>
-														</article>
-
-												</li>
-											</ul>
-										</section>
-
-								</div>
-
-						</div>
-					</div>
-				</section>
-
-			<!-- Footer -->
-				<section id="footer">
-					<div class="container">
-						<header>
-							<h2>Questions or comments? <strong>Get in touch:</strong></h2>
-						</header>
-						<div class="row">
-							<div class="col-6 col-12-medium">
-								<section>
-									<form method="post" action="#">
-										<div class="row gtr-50">
-											<div class="col-6 col-12-small">
-												<input name="name" placeholder="Name" type="text" />
-											</div>
-											<div class="col-6 col-12-small">
-												<input name="email" placeholder="Email" type="text" />
-											</div>
-											<div class="col-12">
-												<textarea name="message" placeholder="Message"></textarea>
-											</div>
-											<div class="col-12">
-												<a href="#" class="form-button-submit button icon fa-envelope">Send Message</a>
-											</div>
-										</div>
-									</form>
-								</section>
-							</div>
-							<div class="col-6 col-12-medium">
-								<section>
-									<p>We will provide more details soon.</p>
-									<div class="row">
-										<div class="col-6 col-12-small">
-											<ul class="icons">
-												<li class="icon fa-home">
-													<br />
-													San Antonio, TX 78240<br />
-													USA
-												</li>
-												<li class="icon fa-phone">
-													(210) 000-0000
-												</li>
-												<li class="icon fa-envelope">
-													<a href="#">ntalathoti@gmail.com</a>
-												</li>
-											</ul>
-										</div>
-										<div class="col-6 col-12-small">
-											<ul class="icons">
-												<li class="icon fa-twitter">
-													<a href="#">@untitled</a>
-												</li>
-												<li class="icon fa-instagram">
-													<a href="#">instagram.com/untitled</a>
-												</li>
-												<li class="icon fa-dribbble">
-													<a href="#">dribbble.com/untitled</a>
-												</li>
-												<li class="icon fa-facebook">
-													<a href="#">facebook.com/untitled</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div>
-					<div id="copyright" class="container">
-						<ul class="links">
-							<li>&copy; HoPSA. All rights reserved.</li><li>Design: <a href="http://houseofprayersa.org/">HoPSA</a></li>
-						</ul>
-					</div>
-				</section>
-
-		</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
