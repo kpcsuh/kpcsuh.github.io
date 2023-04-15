@@ -3955,3 +3955,7 @@ input, select, textarea {
 			}
 
 		}
+
+input[required] {
+	background-color: rgba(103, 103, 102, 0.3);
+}

@@ -41,11 +41,18 @@
                 referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
                 body: JSON.stringify(data), // body data type must match "Content-Type" header
             });
+
             return response; // parses JSON response into native JavaScript objects
         }
-        function register() {
 
-            let requestObj = {name: document.getElementById("name").value,
+        function register() {
+            if (!$('#cfcForm')[0].checkValidity()) {
+                alert("Please fill all required form fields before submitting your registration.")
+                return;
+            }
+            document.getElementById("submitButton").innerHTML="Processing ... ";
+            let requestObj = {
+                name: document.getElementById("name").value,
                 street: document.getElementById("street").value,
                 apt: document.getElementById("apt").value,
                 city: document.getElementById("city").value,
@@ -72,9 +79,11 @@
                 whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent").checked,
                 recommendations: document.getElementById("recommendations").value
             }
-            postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws",requestObj).then((d2) => {
+            postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
                 console.log(d2); // JSON data parsed by `data.json()` call
+                document.getElementById("submitButton").innerHTML="Registration successful!";
                 alert("Registration Successful!")
+                document.getElementById("cfcForm").reset();
             });
 
         }
@@ -112,7 +121,7 @@
             <p>organized by San Antonio Christian Family Fellowship (<a href="https://sacff.org"
                                                                         target="_blank">SACFF</a>)<br/></p>
             <ul class="actions">
-                <li><a href="#one" class="button scrolly">Learn more</a></li>
+                <li><a href="#three" class="button scrolly">Register</a></li>
             </ul>
         </div>
     </section>
@@ -333,55 +342,58 @@
     <section id="three" class="wrapper style1 fade-up">
         <div class="inner">
             <h2>Registration</h2>
-            <p>Please register below</p>
+            <p>Note: Fields with light red color are required fields.</p>
             <div class="split style1">
                 <section>
-                    <form onsubmit="register()">
+                    <form id="cfcForm" name="cfcForm" onsubmit="register()">
                         <div class="fields">
-                            <div class="field half">
-                                <label for="name">Name</label>
+                            <div class="field">
+                                <label for="name">Full Name</label>
                                 <input type="text" name="name" id="name" required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="street">Address</label>
                                 <input type="text" name="street" id="street" required/>
                             </div>
-                            <div class="field half">
-                                <label for="apt">Apt</label>
+                            <div class="field">
+                                <label for="apt">Apt (Optional)</label>
                                 <input type="text" name="apt" id="apt"/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="city">City</label>
                                 <input type="text" name="city" id="city" required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="state">State</label>
                                 <input type="text" name="state" id="state" required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="zip">ZIP</label>
                                 <input type="text" name="zip" id="zip" required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="phone">Phone (Format: 123-456-7890)</label>
-                                <input type="text" name="phone" id="phone"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
+                                <input type="text" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                       required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email" required/>
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <label for="numberOfAdults">Number of Adults Attendees (Max 10)</label>
                                 <input type="text" name="numberOfAdults" id="numberOfAdults" pattern="[1-10]" required/>
                             </div>
 
-                            <div class="field half">
-                                <label for="numberOfChildren">Number of Child Attendees (Age range 12-17)</label>
-                                <input type="text" name="numberOfChildren" id="numberOfChildren"  pattern="[0-9]"/>
+                            <div class="field">
+                                <label for="numberOfChildren">Number of Child Attendees (Age range 12-17) (Optional)</label>
+                                <input type="text" name="numberOfChildren" id="numberOfChildren" pattern="[0-9]"/>
                             </div>
-                            <div class="field half">
-                                <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No Fee)</label>
-                                <input type="text" name="numberOfChildrenFree" id="numberOfChildrenFree" pattern="[0-9]"/>
+                            <div class="field">
+                                <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No
+                                    Fee) (Optional)</label>
+                                <input type="text" name="numberOfChildrenFree" id="numberOfChildrenFree"
+                                       pattern="[0-9]"/>
                             </div>
                             <div class="field">
                                 <label for="email">Attendee Names</label>
@@ -399,7 +411,7 @@
                                 </ol>
 
                             </div>
-                            <div class="field half">
+                            <div class="field">
                                 <fieldset>
                                     <legend>Please indicate day(s) planning to attend:</legend>
 
@@ -439,34 +451,36 @@
                             </div>
 
                             <div class="field">
-                                <label for="recommendations">Recommendations</label>
+                                <label for="recommendations">Recommendations (Optional)</label>
                                 <textarea name="recommendations" id="recommendations" rows="5"></textarea>
                             </div>
                         </div>
                         <ul class="actions">
-                            <li><button class="button" type="button" onclick="register()" >Submit</button></li>
+                            <li>
+                                <button class="button" type="button" id="submitButton" name = "submitButton" onclick="register()">Submit</button>
+                            </li>
                         </ul>
                     </form>
                 </section>
                 <section>
                     <ul class="contact">
                         <li>
-                            <h3 class="icon solid alt fa-home">  Address</h3>
+                            <h3 class="icon solid alt fa-home"> Address</h3>
                             <span>SACFF </br>
                                 11518 Camp Real Ln<br/>
 												San Antonio, TX<br/>
 												78253</span>
                         </li>
                         <li>
-                            <h3 class="icon solid alt fa-envelope">  Email</h3>
+                            <h3 class="icon solid alt fa-envelope"> Email</h3>
                             <a href="mailto:rectorarya@gmail.com">rectorarya@gmail.com</a>
                         </li>
                         <li>
-                            <h3 class="icon solid alt fa-phone">  Phone</h3>
+                            <h3 class="icon solid alt fa-phone"> Phone</h3>
                             <span><a href="tel:+1 (210) 668-5436">(210) 668-5436</a></span>
                         </li>
                         <li>
-                            <h3>  Social</h3>
+                            <h3> Social</h3>
                             <ul class="icons">
                                 <li><a href="https://www.facebook.com/sacffellowship/" target="_blank"
                                        class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
