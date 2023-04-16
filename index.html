@@ -46,7 +46,7 @@
         }
 
         function register() {
-            if (!$('#cfcForm')[0].checkValidity()) {
+            if (!document.getElementById("cfcForm").reportValidity()) {
                 alert("Please fill all required form fields before submitting your registration.")
                 return;
             }
@@ -149,7 +149,7 @@
     <section id="one" class="wrapper style2 spotlights">
         <h1>Speakers</h1>
         <section>
-            <a href="#" class="image"><img src="images/Madhu_single.jpg" alt="" data-position="center center"/></a>
+            <a href="#" class="image"><img src="images/Madhu_1.jpeg" alt="" data-position="center center"/></a>
             <div class="content">
 
                 <div class="inner">
@@ -176,7 +176,7 @@
             </div>
         </section>
         <section>
-            <a href="#" class="image"><img src="images/Veena_single.jpg" alt="" data-position="center center"/></a>
+            <a href="#" class="image"><img src="images/Veena_1.jpeg" alt="" data-position="center center"/></a>
             <div class="content">
 
                 <div class="inner">
@@ -253,23 +253,13 @@
             <div class="content">
 
 
+
                 <div class="inner">
 
                     <ul class="icons">
-
-                        <li><img src="images/Praveen.jpeg" class="thumbnail"/></li>
-                        <li><h2>Praveen Kanapala</h2></li>
-                        <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
-                                class="label">Phone</span></a></li>
-                        <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
-                                class="label">Email</span></a></li>
-                    </ul>
-                </div>
-                <div class="inner">
-
-                    <ul class="icons">
-                        <li><img src="images/rectorArya.jpg" class="thumbnail"/></li>
+                        <li><img src="images/rectorArya_1.png"/></li>
                         <li><h2>Rector Arya</h2></li>
+                        <li><label>|</label></label></li>
                         <li><a href="tel:+1 (210) 668-5436" class="icon solid alt fa-phone" target="_blank"><span
                                 class="label">Phone</span></a></li>
                         <li><a href="mailto:rectorarya@gmail.com" class="icon solid alt fa-envelope"
@@ -283,10 +273,24 @@
                     <ul class="icons">
                         <li><img src="images/RaviDuggirala.jpg" class="thumbnail"/></li>
                         <li><h2>Ravindranath Duggirala</h2></li>
+                        <li><label>|</label></label></li>
                         <li><a href="tel:+1 (210) 326-0806" class="icon solid alt fa-phone" target="_blank"><span
                                 class="label">Phone</span></a></li>
                         <li><a href="mailto:ravindranathduggirala@gmail.com" class="icon solid alt fa-envelope"
                                target="_blank"><span
+                                class="label">Email</span></a></li>
+                    </ul>
+                </div>
+                <div class="inner">
+
+                    <ul class="icons">
+
+                        <li><img src="images/Praveen.jpeg" class="thumbnail"/></li>
+                        <li><h2>Praveen Kanapala</h2></li>
+                        <li><label>|</label></label></li>
+                        <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
+                                class="label">Phone</span></a></li>
+                        <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
                                 class="label">Email</span></a></li>
                     </ul>
                 </div>
@@ -382,23 +386,22 @@
                             </div>
                             <div class="field">
                                 <label for="numberOfAdults">Number of Adults Attendees (Max 10)</label>
-                                <input type="text" name="numberOfAdults" id="numberOfAdults" pattern="[1-10]" required/>
+                                <input type="number" name="numberOfAdults" id="numberOfAdults" min="1" max="10" required/>
                             </div>
 
                             <div class="field">
                                 <label for="numberOfChildren">Number of Child Attendees (Age range 12-17) (Optional)</label>
-                                <input type="text" name="numberOfChildren" id="numberOfChildren" pattern="[0-9]"/>
+                                <input type="number" name="numberOfChildren" id="numberOfChildren" min="0" max="10"  value="0" required/>
                             </div>
                             <div class="field">
                                 <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No
                                     Fee) (Optional)</label>
-                                <input type="text" name="numberOfChildrenFree" id="numberOfChildrenFree"
-                                       pattern="[0-9]"/>
+                                <input type="number" name="numberOfChildrenFree" id="numberOfChildrenFree" min="0" max="10"  value="0" required/>
                             </div>
                             <div class="field">
                                 <label for="email">Attendee Names</label>
                                 <ol>
-                                    <li><input type="text" name="attenddee1" id="attenddee1" required/></li>
+                                    <li><input type="text" name="attenddee1" id="attenddee1"required/></li>
                                     <li><input type="text" name="attenddee2" id="attenddee2"/></li>
                                     <li><input type="text" name="attenddee3" id="attenddee3"/></li>
                                     <li><input type="text" name="attenddee4" id="attenddee4"/></li>
