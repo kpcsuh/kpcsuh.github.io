@@ -2536,15 +2536,15 @@ input, select, textarea {
 			}
 
 				.wrapper.style1 .icon.major:before {
-					color: #5525d0;
+					color: #3a0ca3;
 				}
 
 				.wrapper.style1-alt .icon.major:before {
-					color: #493382;
+					color: #1a759f;
 				}
 
 				.wrapper.style2 .icon.major:before {
-					color: #b55050;
+					color: #560bad;
 				}
 
 				.wrapper.style2-alt .icon.major:before {
@@ -2552,21 +2552,21 @@ input, select, textarea {
 				}
 
 				.wrapper.style3 .icon.major:before {
-					color: #b74e91;
+					color: #4cc9f0;
 				}
 
 				.wrapper.style3-alt .icon.major:before {
 					color: #953d75;
 				}
 				.wrapper.style4 .icon.major:before {
-					color: #775d10;
+					color: #4361ee;
 				}
 
 				.wrapper.style4-alt .icon.major:before {
 					color: #3c3fa7;
 				}
 				.wrapper.style5 .icon.major:before {
-					color: #63ad39;
+					color: #52b69a;
 				}
 
 				.wrapper.style5-alt .icon.major:before {
@@ -2574,7 +2574,7 @@ input, select, textarea {
 				}
 
 				.wrapper.style6 .icon.major:before {
-					color: #3587b3;
+					color: #f72585;
 				}
 
 				.wrapper.style6-alt .icon.major:before {
@@ -3272,15 +3272,15 @@ input, select, textarea {
 		}
 
 		.wrapper.style1 {
-			background-color: #5525d0;
+			background-color: #3a0ca3;
 		}
 
 		.wrapper.style1-alt {
-			background-color: #493382;
+			background-color: #1a759f;
 		}
 
 		.wrapper.style2 {
-			background-color: #b55050;
+			background-color: #560bad;
 		}
 
 		.wrapper.style2-alt {
@@ -3288,7 +3288,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style3 {
-			background-color: #b74e91;
+			background-color: #4cc9f0;
 		}
 
 		.wrapper.style3-alt {
@@ -3296,7 +3296,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style4 {
-			background-color: #775d10;
+			background-color: #4361ee;
 		}
 
 		.wrapper.style4-alt {
@@ -3304,7 +3304,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style5 {
-			background-color: #9eb04d;
+			background-color: #52b69a;
 		}
 
 		.wrapper.style5-alt {
@@ -3312,7 +3312,7 @@ input, select, textarea {
 		}
 
 		.wrapper.style6 {
-			background-color: #44afb3;
+			background-color: #f72585;
 		}
 
 		.wrapper.style6-alt {

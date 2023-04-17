@@ -14,18 +14,42 @@
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
     <style>
-        .thumbnail {
-            background-color: black;
-            width: 3em;
-            height: 4em;
-            display: inline-block; /* makes it fit in like an <img> */
-            background-size: cover; /* or contain */
-            background-position: center center;
-            background-repeat: no-repeat;
+        #spinner:not([hidden]) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        #spinner::after {
+            content: "";
+            width: 80px;
+            height: 80px;
+            border: 2px solid #f3f3f3;
+            border-top: 3px solid #f25a41;
+            border-radius: 100%;
+            will-change: transform;
+            animation: spin 1s infinite linear
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
     </style>
 
     <script type="text/javascript">
+
+        document.getElementById("cfcFromSuccessDiv").innerHTML="";
         async function postData(url = "", data = {}) {
             // Default options are marked with *
             const response = await fetch(url, {
@@ -46,10 +70,13 @@
         }
 
         function register() {
+            const spinner = document.getElementById("spinner");
             if (!document.getElementById("cfcForm").reportValidity()) {
                 alert("Please fill all required form fields before submitting your registration.")
                 return;
             }
+
+            spinner.style.display="block";
             document.getElementById("submitButton").innerHTML="Processing ... ";
             let requestObj = {
                 name: document.getElementById("name").value,
@@ -82,8 +109,10 @@
             postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
                 console.log(d2); // JSON data parsed by `data.json()` call
                 document.getElementById("submitButton").innerHTML="Registration successful!";
-                alert("Registration Successful!")
+                spinner.style.display="none";
                 document.getElementById("cfcForm").reset();
+                document.getElementById("cfcForm").style.display="none";
+                document.getElementById("cfcFromSuccessDiv").innerHTML="<h2>Your Texas Christian Family Conference (CFC) 2023 registration is successful. You will receive confirmation email.</h2>";
             });
 
         }
@@ -247,7 +276,7 @@
     </section>
 
     <!-- One -->
-    <section id="six" class="wrapper style6 spotlights">
+    <section id="six" class="wrapper style3 spotlights">
         <h2>TCFC-2023 Organizers Contacts</h2>
         <section>
             <div class="content">
@@ -299,7 +328,7 @@
     </section>
 
     <!-- Two -->
-    <section id="two" class="wrapper style3 fade-up">
+    <section id="two" class="wrapper style6 fade-up">
         <div class="inner">
             <h2>Events</h2>
             <p>TCFC-2023 will have following Events:</p>
@@ -461,9 +490,11 @@
                         <ul class="actions">
                             <li>
                                 <button class="button" type="button" id="submitButton" name = "submitButton" onclick="register()">Submit</button>
+                                <div style="display: none;" id="spinner"></div>
                             </li>
                         </ul>
                     </form>
+                    <div id="cfcFromSuccessDiv" name = "cfcFromSuccessDiv"></div>
                 </section>
                 <section>
                     <ul class="contact">
