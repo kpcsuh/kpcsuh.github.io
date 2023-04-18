@@ -47,76 +47,7 @@
 
     </style>
 
-    <script type="text/javascript">
 
-        document.getElementById("cfcFromSuccessDiv").innerHTML="";
-        async function postData(url = "", data = {}) {
-            // Default options are marked with *
-            const response = await fetch(url, {
-                method: "POST", // *GET, POST, PUT, DELETE, etc.
-                mode: "no-cors", // no-cors, *cors, same-origin
-                cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-                credentials: "same-origin", // include, *same-origin, omit
-                headers: {
-                    "Content-Type": "text/plain",
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                redirect: "follow", // manual, *follow, error
-                referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                body: JSON.stringify(data), // body data type must match "Content-Type" header
-            });
-
-            return response; // parses JSON response into native JavaScript objects
-        }
-
-        function register() {
-            const spinner = document.getElementById("spinner");
-            if (!document.getElementById("cfcForm").reportValidity()) {
-                alert("Please fill all required form fields before submitting your registration.")
-                return;
-            }
-
-            spinner.style.display="block";
-            document.getElementById("submitButton").innerHTML="Processing ... ";
-            let requestObj = {
-                name: document.getElementById("name").value,
-                street: document.getElementById("street").value,
-                apt: document.getElementById("apt").value,
-                city: document.getElementById("city").value,
-                state: document.getElementById("state").value,
-                zip: document.getElementById("zip").value,
-                phone: document.getElementById("phone").value,
-                email: document.getElementById("email").value,
-                numberOfAdults: document.getElementById("numberOfAdults").value,
-                numberOfChildren: document.getElementById("numberOfChildren").value,
-                numberOfChildrenFree: document.getElementById("numberOfChildrenFree").value,
-                attendanceOnFriday: document.getElementById("attendanceOnFriday").checked,
-                attendanceOnStaturday: document.getElementById("attendanceOnStaturday").checked,
-                attendanceOnSunday: document.getElementById("attendanceOnSunday").checked,
-                attenddee1: document.getElementById("attenddee1").value,
-                attenddee2: document.getElementById("attenddee2").value,
-                attenddee3: document.getElementById("attenddee3").value,
-                attenddee4: document.getElementById("attenddee4").value,
-                attenddee5: document.getElementById("attenddee5").value,
-                attenddee6: document.getElementById("attenddee6").value,
-                attenddee7: document.getElementById("attenddee7").value,
-                attenddee8: document.getElementById("attenddee8").value,
-                attenddee9: document.getElementById("attenddee9").value,
-                attenddee10: document.getElementById("attenddee10").value,
-                whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent").checked,
-                recommendations: document.getElementById("recommendations").value
-            }
-            postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
-                console.log(d2); // JSON data parsed by `data.json()` call
-                document.getElementById("submitButton").innerHTML="Registration successful!";
-                spinner.style.display="none";
-                document.getElementById("cfcForm").reset();
-                document.getElementById("cfcForm").style.display="none";
-                document.getElementById("cfcFromSuccessDiv").innerHTML="<h2>Your Texas Christian Family Conference (CFC) 2023 registration is successful. You will receive confirmation email.</h2>";
-            });
-
-        }
-    </script>
 </head>
 <body class="is-preload">
 
@@ -132,6 +63,7 @@
                 <li><a href="#six">Contacts</a></li>
                 <li><a href="#two">Events</a></li>
                 <li><a href="#three">Registration</a></li>
+                <li><a href="#seven">Hotels</a></li>
                 sacff.org
             </ul>
         </nav>
@@ -144,11 +76,15 @@
     <!-- Intro -->
     <section id="intro" class="wrapper style1 fullscreen fade-up">
         <div class="inner">
-            <h1>Texas Christian Family Conference 2023 </h1>
+            <h1>Texas Christian Family Conference - 2023 </h1>
             <h4>Dates : July 14th - July 16th (Friday - Sunday)</h4>
+            <h4 id="numOfDaysToGo" name="numOfDaysToGo"></h4>
+
 
             <p>organized by San Antonio Christian Family Fellowship (<a href="https://sacff.org"
                                                                         target="_blank">SACFF</a>)<br/></p>
+
+
             <ul class="actions">
                 <li><a href="#three" class="button scrolly">Register</a></li>
             </ul>
@@ -262,6 +198,7 @@
         <h1>Venue</h1>
         <section>
             <a href="#" class="image"><img src="images/Concordia02.jpg" alt="" data-position="center center"/></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <div class="inner">
 
                 <h4> Concordia Lutheran Church<br>
@@ -277,51 +214,65 @@
 
     <!-- One -->
     <section id="six" class="wrapper style3 spotlights">
-        <h2>TCFC-2023 Organizers Contacts</h2>
+
         <section>
             <div class="content">
-
-
-
                 <div class="inner">
-
-                    <ul class="icons">
-                        <li><img src="images/rectorArya_1.png"/></li>
-                        <li><h2>Rector Arya</h2></li>
-                        <li><label>|</label></label></li>
-                        <li><a href="tel:+1 (210) 668-5436" class="icon solid alt fa-phone" target="_blank"><span
-                                class="label">Phone</span></a></li>
-                        <li><a href="mailto:rectorarya@gmail.com" class="icon solid alt fa-envelope"
-                               target="_blank"><span
-                                class="label">Email</span></a></li>
-                    </ul>
-
+                    <header>  <h2>TCFC-2023 Organizers</h2></header>
                 </div>
-                <div class="inner">
 
-                    <ul class="icons">
-                        <li><img src="images/RaviDuggirala.jpg" class="thumbnail"/></li>
-                        <li><h2>Ravindranath Duggirala</h2></li>
-                        <li><label>|</label></label></li>
-                        <li><a href="tel:+1 (210) 326-0806" class="icon solid alt fa-phone" target="_blank"><span
-                                class="label">Phone</span></a></li>
-                        <li><a href="mailto:ravindranathduggirala@gmail.com" class="icon solid alt fa-envelope"
-                               target="_blank"><span
-                                class="label">Email</span></a></li>
-                    </ul>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <img src="images/rectorArya_1.png"/>
+                            <h3>Rector Arya</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (210) 668-5436" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                    <li><a href="mailto:rectorarya@gmail.com" class="icon solid alt fa-envelope"
+                                           target="_blank"><span
+                                            class="label">Email</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
                 </div>
+
+
                 <div class="inner">
+                    <article>
+                        <header>
+                            <img src="images/RaviDuggirala_1.png"/>
+                            <h3>Ravindranath Duggirala</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (210) 326-0806" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                    <li><a href="mailto:ravindranathduggirala@gmail.com" class="icon solid alt fa-envelope"
+                                           target="_blank"><span
+                                            class="label">Email</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
 
-                    <ul class="icons">
-
-                        <li><img src="images/Praveen.jpeg" class="thumbnail"/></li>
-                        <li><h2>Praveen Kanapala</h2></li>
-                        <li><label>|</label></label></li>
-                        <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
-                                class="label">Phone</span></a></li>
-                        <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
-                                class="label">Email</span></a></li>
-                    </ul>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <img src="images/Praveen_1.png" class="thumbnail"/>
+                                <h3>  Praveen Kanapala   </h3>
+                                <div>
+                                <ul class="icons">
+                                <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
+                                        class="label">Phone</span></a></li>
+                                <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
+                                        class="label">Email</span></a></li>
+                                </ul>
+                                </div>
+                        </header>
+                    </article>
                 </div>
             </div>
         </section>
@@ -415,22 +366,26 @@
                             </div>
                             <div class="field">
                                 <label for="numberOfAdults">Number of Adults Attendees (Max 10)</label>
-                                <input type="number" name="numberOfAdults" id="numberOfAdults" min="1" max="10" required/>
+                                <input type="number" name="numberOfAdults" id="numberOfAdults" min="1" max="10"
+                                       required/>
                             </div>
 
                             <div class="field">
-                                <label for="numberOfChildren">Number of Child Attendees (Age range 12-17) (Optional)</label>
-                                <input type="number" name="numberOfChildren" id="numberOfChildren" min="0" max="10"  value="0" required/>
+                                <label for="numberOfChildren">Number of Child Attendees (Age range 12-17)
+                                    (Optional)</label>
+                                <input type="number" name="numberOfChildren" id="numberOfChildren" min="0" max="10"
+                                       value="0" required/>
                             </div>
                             <div class="field">
                                 <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No
                                     Fee) (Optional)</label>
-                                <input type="number" name="numberOfChildrenFree" id="numberOfChildrenFree" min="0" max="10"  value="0" required/>
+                                <input type="number" name="numberOfChildrenFree" id="numberOfChildrenFree" min="0"
+                                       max="10" value="0" required/>
                             </div>
                             <div class="field">
                                 <label for="email">Attendee Names</label>
                                 <ol>
-                                    <li><input type="text" name="attenddee1" id="attenddee1"required/></li>
+                                    <li><input type="text" name="attenddee1" id="attenddee1" required/></li>
                                     <li><input type="text" name="attenddee2" id="attenddee2"/></li>
                                     <li><input type="text" name="attenddee3" id="attenddee3"/></li>
                                     <li><input type="text" name="attenddee4" id="attenddee4"/></li>
@@ -489,12 +444,14 @@
                         </div>
                         <ul class="actions">
                             <li>
-                                <button class="button" type="button" id="submitButton" name = "submitButton" onclick="register()">Submit</button>
+                                <button class="button" type="button" id="submitButton" name="submitButton"
+                                        onclick="register()">Submit
+                                </button>
                                 <div style="display: none;" id="spinner"></div>
                             </li>
                         </ul>
                     </form>
-                    <div id="cfcFromSuccessDiv" name = "cfcFromSuccessDiv"></div>
+                    <div id="cfcFromSuccessDiv" name="cfcFromSuccessDiv"></div>
                 </section>
                 <section>
                     <ul class="contact">
@@ -526,6 +483,51 @@
         </div>
     </section>
 
+    <section id="seven" class="wrapper style7 fade-up">
+        <div class="inner">
+            <h2>Hotels</h2>
+            <p>TCFC-2023 recommended hotels</p>
+            <div class="features">
+                <section>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Homewood Suites by Hilton, San Antonio - North</h3>
+                    <p>125 N Loop 1604 E, San Antonio, TX 78232<br/>
+                        210-497-8200<br/>
+                        Coordinator: Ms. Shelley<br/>
+                        2.4 miles from TCLC</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-praying-hands"></span>
+                    <h3>Praise & Worship</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-trophy"></span>
+                    <h3>Talent Time</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-users"></span>
+                    <h3>Group Discussion</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon solid major fa-link"></span>
+                    <h3>Kids Ministry</h3>
+                    <p>More details to come ...</p>
+                </section>
+                <section>
+                    <span class="icon major fa-gem"></span>
+                    <h3>And More ...</h3>
+                    <p>More details to come ...</p>
+                </section>
+            </div>
+            <ul class="actions">
+                <li><a href="generic.html" class="button">Learn more</a></li>
+            </ul>
+        </div>
+    </section>
+
 </div>
 
 <!-- Footer -->
@@ -546,6 +548,89 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script type="text/javascript">
+
+    document.getElementById("cfcFromSuccessDiv").innerHTML = "";
+
+    async function postData(url = "", data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            mode: "no-cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: "same-origin", // include, *same-origin, omit
+            headers: {
+                "Content-Type": "text/plain",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: "follow", // manual, *follow, error
+            referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data), // body data type must match "Content-Type" header
+        });
+
+        return response; // parses JSON response into native JavaScript objects
+    }
+
+    function register() {
+        const spinner = document.getElementById("spinner");
+        if (!document.getElementById("cfcForm").reportValidity()) {
+            alert("Please fill all required form fields before submitting your registration.")
+            return;
+        }
+
+        spinner.style.display = "block";
+        document.getElementById("submitButton").innerHTML = "Processing ... ";
+        let requestObj = {
+            name: document.getElementById("name").value,
+            street: document.getElementById("street").value,
+            apt: document.getElementById("apt").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            zip: document.getElementById("zip").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            numberOfAdults: document.getElementById("numberOfAdults").value,
+            numberOfChildren: document.getElementById("numberOfChildren").value,
+            numberOfChildrenFree: document.getElementById("numberOfChildrenFree").value,
+            attendanceOnFriday: document.getElementById("attendanceOnFriday").checked,
+            attendanceOnStaturday: document.getElementById("attendanceOnStaturday").checked,
+            attendanceOnSunday: document.getElementById("attendanceOnSunday").checked,
+            attenddee1: document.getElementById("attenddee1").value,
+            attenddee2: document.getElementById("attenddee2").value,
+            attenddee3: document.getElementById("attenddee3").value,
+            attenddee4: document.getElementById("attenddee4").value,
+            attenddee5: document.getElementById("attenddee5").value,
+            attenddee6: document.getElementById("attenddee6").value,
+            attenddee7: document.getElementById("attenddee7").value,
+            attenddee8: document.getElementById("attenddee8").value,
+            attenddee9: document.getElementById("attenddee9").value,
+            attenddee10: document.getElementById("attenddee10").value,
+            whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent").checked,
+            recommendations: document.getElementById("recommendations").value
+        }
+        postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
+            console.log(d2); // JSON data parsed by `data.json()` call
+            document.getElementById("submitButton").innerHTML = "Registration successful!";
+            spinner.style.display = "none";
+            document.getElementById("cfcForm").reset();
+            document.getElementById("cfcForm").style.display = "none";
+            document.getElementById("cfcFromSuccessDiv").innerHTML = " <img src=\"images/congratulations.png\" alt=\"\" data-position=\"center center\"/><h2>Your Texas Christian Family Conference (CFC) 2023 registration is successful. You will receive confirmation email.</h2>";
+        });
+
+    }
+
+    function calcDays() {
+        const futureDateObj = new Date("2023-07-14");
+        const today = new Date();
+        const differenceMs = futureDateObj.getTime() - today.getTime();
+        const differenceDays = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
+        if (differenceDays > 0) {
+            document.getElementById("numOfDaysToGo").innerHTML = "" + differenceDays + " days until conference.";
+        }
+    }
+
+    calcDays();
+</script>
 
 </body>
 </html>
