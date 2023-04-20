@@ -3973,5 +3973,10 @@ input, select, textarea {
 		}
 
 input[required] {
-	background-color: rgba(245, 133, 153, 0.3);
+	background-color: rgb(217, 236, 246);
+	color: #f72585;
+}
+
+.userFontMsg{
+	background-color: rgb(217, 236, 246);
 }

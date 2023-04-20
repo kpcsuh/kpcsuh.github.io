@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <!--
 	TCFC-2023 by  SACFF, San Antonio, TX
-	sacff.org 
+	sacff.org
 	SACFF
 -->
 <html>
@@ -81,7 +81,7 @@
             <h4 id="numOfDaysToGo" name="numOfDaysToGo"></h4>
 
 
-            <p>organized by San Antonio Christian Family Fellowship (<a href="https://sacff.org"
+            <p>Organized by San Antonio Christian Family Fellowship (<a href="https://sacff.org"
                                                                         target="_blank">SACFF</a>)<br/></p>
 
 
@@ -135,7 +135,7 @@
                                target="_blank"><span class="label">Youtube</span></a></li>
                     </ul>
                     <ul class="actions">
-                        <li><a href="generic.html" class="button">Learn more</a></li>
+                        <li><a href="#" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                                target="_blank"><span class="label">Youtube</span></a></li>
                     </ul>
                     <ul class="actions">
-                        <li><a href="generic.html" class="button">Learn more</a></li>
+                        <li><a href="#" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                     <h2>Bro. Madhu Jesse</h2>
                     <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
                     <ul class="actions">
-                        <li><a href="generic.html" class="button">Learn more</a></li>
+                        <li><a href="#" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>
@@ -186,7 +186,7 @@
                     <h2>Sis. Veena</h2>
                     <p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
                     <ul class="actions">
-                        <li><a href="generic.html" class="button">Learn more</a></li>
+                        <li><a href="#" class="button">Learn more</a></li>
                     </ul>
                 </div>
             </div>
@@ -218,7 +218,7 @@
         <section>
             <div class="content">
                 <div class="inner">
-                    <header>  <h2>TCFC-2023 Organizers</h2></header>
+                    <header><h2>TCFC-2023 Organizers</h2></header>
                 </div>
 
                 <div class="inner">
@@ -249,7 +249,8 @@
                                 <ul class="icons">
                                     <li><a href="tel:+1 (210) 326-0806" class="icon solid alt fa-phone" target="_blank"><span
                                             class="label">Phone</span></a></li>
-                                    <li><a href="mailto:ravindranathduggirala@gmail.com" class="icon solid alt fa-envelope"
+                                    <li><a href="mailto:ravindranathduggirala@gmail.com"
+                                           class="icon solid alt fa-envelope"
                                            target="_blank"><span
                                             class="label">Email</span></a></li>
                                 </ul>
@@ -262,15 +263,16 @@
                     <article>
                         <header>
                             <img src="images/Praveen_1.png" class="thumbnail"/>
-                                <h3>  Praveen Kanapala   </h3>
-                                <div>
+                            <h3> Praveen Kanapala </h3>
+                            <div>
                                 <ul class="icons">
-                                <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
-                                        class="label">Phone</span></a></li>
-                                <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope" target="_blank"><span
-                                        class="label">Email</span></a></li>
+                                    <li><a href="tel:+1 (859) 619-2726" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                    <li><a href="mailto:kanapala@yahoo.com" class="icon solid alt fa-envelope"
+                                           target="_blank"><span
+                                            class="label">Email</span></a></li>
                                 </ul>
-                                </div>
+                            </div>
                         </header>
                     </article>
                 </div>
@@ -316,7 +318,7 @@
                 </section>
             </div>
             <ul class="actions">
-                <li><a href="generic.html" class="button">Learn more</a></li>
+                <li><a href="#" class="button">Learn more</a></li>
             </ul>
         </div>
     </section>
@@ -326,10 +328,11 @@
     <section id="three" class="wrapper style1 fade-up">
         <div class="inner">
             <h2>Registration</h2>
-            <p>Note: Fields with light red color are required fields.</p>
+
             <div class="split style1">
                 <section>
                     <form id="cfcForm" name="cfcForm" onsubmit="register()">
+                        <p>Note: Fields with light blue background color are required fields.</p>
                         <div class="fields">
                             <div class="field">
                                 <label for="name">Full Name</label>
@@ -367,14 +370,14 @@
                             <div class="field">
                                 <label for="numberOfAdults">Number of Adults Attendees (Max 10)</label>
                                 <input type="number" name="numberOfAdults" id="numberOfAdults" min="1" max="10"
-                                       required/>
+                                      onchange="calculateFee()"  required/>
                             </div>
 
                             <div class="field">
                                 <label for="numberOfChildren">Number of Child Attendees (Age range 12-17)
                                     (Optional)</label>
                                 <input type="number" name="numberOfChildren" id="numberOfChildren" min="0" max="10"
-                                       value="0" required/>
+                                       value="0" onchange="calculateFee()"  required/>
                             </div>
                             <div class="field">
                                 <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No
@@ -403,16 +406,16 @@
                                     <legend>Please indicate day(s) planning to attend:</legend>
 
                                     <div>
-                                        <input type="checkbox" id="attendanceOnFriday" name="attendanceOnFriday">
+                                        <input type="checkbox" id="attendanceOnFriday" name="attendance" required>
                                         <label for="attendanceOnFriday">Friday</label>
                                     </div>
 
                                     <div>
-                                        <input type="checkbox" id="attendanceOnStaturday" name="attendanceOnStaturday">
-                                        <label for="attendanceOnStaturday">Saturday</label>
+                                        <input type="checkbox" id="attendanceOnSaturday" name="attendance">
+                                        <label for="attendanceOnSaturday">Saturday</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" id="attendanceOnSunday" name="attendanceOnSunday">
+                                        <input type="checkbox" id="attendanceOnSunday" name="attendance">
                                         <label for="attendanceOnSunday">Sunday</label>
                                     </div>
                                 </fieldset>
@@ -421,10 +424,14 @@
                             <div class="field">
                                 <fieldset>
                                     <legend>I give consent to add my phone number to CFC-2023 Whatsapp group:</legend>
-
-                                    <div>
-                                        <input type="checkbox" id="whatsAppGroupConsent" name="whatsAppGroupConsent">
-                                        <label for="whatsAppGroupConsent">Yes</label>
+                                    <div class="col-4 col-12-small">
+                                        <input type="radio" id="whatsAppGroupConsent-yes" name="whatsAppGroupConsent"
+                                               required>
+                                        <label for="whatsAppGroupConsent-yes">Yes</label>
+                                    </div>
+                                    <div class="col-4 col-12-small">
+                                        <input type="radio" id="whatsAppGroupConsent-no" name="whatsAppGroupConsent">
+                                        <label for="whatsAppGroupConsent-no">No</label>
                                     </div>
                                 </fieldset>
                             </div>
@@ -432,9 +439,38 @@
                             <div>
                                 <p>
                                     Registration fee: $30 per person &amp; $120 max per family. Children 12 and under
-                                    &amp; Senior
-                                    citizens 65 &amp; over free. Additional donations are accepted.
+                                    &amp; Senior citizens 65 &amp; over free. Additional donations are accepted.
                                 </p>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <h3>Registration Fee</h3>
+                                <table class="alt">
+                                    <title>Registration Fee</title>
+                                    <thead>
+                                    <tr>
+                                        <th>Attendee Type</th>
+                                        <th>Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td id="adultsFeeCount" name="adultsFeeCount"></td>
+                                        <td id="adultsFeeTotal" name="adultsFeeTotal"></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="childrenFeeCount" name="childrenFeeCount"></td>
+                                        <td id="childrenFeeTotal" name="childrenFeeTotal"></td>
+                                    </tr>
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td id="TotalFeeCount" name="TotalFeeCount"></td>
+                                        <td id="TotalFeeTotal" name="TotalFeeTotal"></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
                             </div>
 
                             <div class="field">
@@ -485,6 +521,7 @@
 
     <section id="seven" class="wrapper style7 fade-up">
         <div class="inner">
+
             <h2>Hotels</h2>
             <p>TCFC-2023 recommended hotels</p>
             <div class="features">
@@ -492,38 +529,70 @@
                     <span class="icon solid major fa-bed"></span>
                     <h3>Homewood Suites by Hilton, San Antonio - North</h3>
                     <p>125 N Loop 1604 E, San Antonio, TX 78232<br/>
-                        210-497-8200<br/>
+                        <a href="tel:+1 210-497-8200">210-497-8200</a><br/>
                         Coordinator: Ms. Shelley<br/>
                         2.4 miles from TCLC</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3591.078889835995!2d-98.49778422586424!3d29.61085031118256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c61f8071bebf1%3A0x28fcb87b5089367f!2s125%20N%20Loop%201604%20E%2C%20San%20Antonio%2C%20TX%2078232!5e0!3m2!1sen!2sus!4v1682024658727!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </section>
                 <section>
-                    <span class="icon solid major fa-praying-hands"></span>
-                    <h3>Praise & Worship</h3>
-                    <p>More details to come ...</p>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Drury Inn and Suites - San Antonio - North</h3>
+                    <p>801 N Loop 1604 E, San Antonio, TX 78232 <br/>
+                        <a href="tel:+1 210-404-1600">210-404-1600</a><br/>
+                        Coordinator: Ms. Sarah Martinez, <a href="tel:+1 210-220-2990">210-220-2990</a><br/>
+                        2.8 miles from TCLC<br/>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.741425542736!2d-98.48454922412603!3d29.61120213896705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c89ff97828841%3A0x43041e7db1c85137!2s801%20N%20Loop%201604%20E%2C%20San%20Antonio%2C%20TX%2078258!5e0!3m2!1sen!2sus!4v1682025423879!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </p>
                 </section>
                 <section>
-                    <span class="icon solid major fa-trophy"></span>
-                    <h3>Talent Time</h3>
-                    <p>More details to come ...</p>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Drury Plaza Hotel, San Antonio - North Stone Oak </h3>
+                    <p>823 N Loop 1604 E, San Antonio, TX 78232<br/>
+                        <a href="tel:+1 210-494-2420">210-494-2420</a><br/>
+                        Coordinator: Ms. Sarah Martinez <a href="tel:+1 210-220-2990">210-220-2990</a><br/>
+                        2.9 miles from TCLC</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.732083811112!2d-98.483820424126!3d29.61147363895439!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c89ff0c7f6c91%3A0x13404b4e181fc727!2s823%20N%20Loop%201604%20E%2C%20San%20Antonio%2C%20TX%2078232!5e0!3m2!1sen!2sus!4v1682025853910!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </section>
                 <section>
-                    <span class="icon solid major fa-users"></span>
-                    <h3>Group Discussion</h3>
-                    <p>More details to come ...</p>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>LaQuinta Inn & Suites by Wyndham - San Antonio - North Stone Oak</h3>
+                    <p>1017 N Loop 1604 E, San Antonio, TX 78232<br/>
+                        <a href="tel:+1 210-497-0506">210-497-0506</a><br/>
+                        Contact: ATTN - Mr. Jay Patel - <a href="mailto:lq0883@gmail.com">lq0883@gmail.com</a><br/>
+                        2 Adults/2 Queen, Group Code: SNT, Rate $119 + Tax<br/>
+                        3.1 miles from TCLC</p>
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.7225575367734!2d-98.48010398255616!3d29.611750500000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c89f8b88bfd1d%3A0xf700e39e438dbf65!2s1017%20N%20Loop%201604%20E%2C%20San%20Antonio%2C%20TX%2078258!5e0!3m2!1sen!2sus!4v1682026450429!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </section>
                 <section>
-                    <span class="icon solid major fa-link"></span>
-                    <h3>Kids Ministry</h3>
-                    <p>More details to come ...</p>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Fairfield Inn & Suites by Marriott, San Antonio - North Stone Oak </h3>
+                    <p>80 Trailcrest St., San Antonio, TX 78232<br/>
+                        <a href="tel:+1 210-491-9595">210-491-9595</a><br/>
+                        Initial contact: Mr. Cesar<br/>
+                        4.0 miles from TCLC</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.7997863767455!2d-98.47734712412608!3d29.609505939046446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c8a0295b0b647%3A0x1c07fc238e64144!2s80%20Trailcrest%20St%2C%20San%20Antonio%2C%20TX%2078232!5e0!3m2!1sen!2sus!4v1682026548977!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </section>
                 <section>
-                    <span class="icon major fa-gem"></span>
-                    <h3>And More ...</h3>
-                    <p>More details to come ...</p>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Staybridge Suites - Stone Oak - an IHG Hotel </h3>
+                    <p>808 N Loop 1604E, San Antonio, TX 78232<br/>
+                        <a href="tel:+1 210-497-0100">210-497-0100</a><br/>
+                        4.3 miles from TCLC</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3468.812719485758!2d-98.48268022412606!3d29.609130039063814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c8a01ea2957c5%3A0x629aba7204756ddf!2s808%20N%20Loop%201604%20E%2C%20San%20Antonio%2C%20TX%2078232!5e0!3m2!1sen!2sus!4v1682026639626!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </section>
+                <section>
+                    <span class="icon solid major fa-bed"></span>
+                    <h3>Tru by Hilton, San Antonio - North</h3>
+                    <p>2214 TPC Pky, San Antonio, TX 78259<br/>
+                        <a href="tel:+1 210-497-3400">210-497-3400</a><br/>
+                        Coordinator: Mr. Adrian Otero - <a href="mailto:Adrian.otero@hilton.com">Adrian.otero@hilton.com</a><br/>
+                        6.7 miles from TCLC</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3467.502370006909!2d-98.45163092412493!3d29.647193237282547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c89af8450da6d%3A0xcf7481c60cae6e9c!2s2214%20TPC%20Pkwy%2C%20San%20Antonio%2C%20TX%2078258!5e0!3m2!1sen!2sus!4v1682026722437!5m2!1sen!2sus" width="200" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </section>
             </div>
             <ul class="actions">
-                <li><a href="generic.html" class="button">Learn more</a></li>
+                <li><a href="#" class="button">Learn more</a></li>
             </ul>
         </div>
     </section>
@@ -572,13 +641,13 @@
     }
 
     function register() {
-        const spinner = document.getElementById("spinner");
+        //const spinner = document.getElementById("spinner");
         if (!document.getElementById("cfcForm").reportValidity()) {
             alert("Please fill all required form fields before submitting your registration.")
             return;
         }
 
-        spinner.style.display = "block";
+        //spinner.style.display = "block";
         document.getElementById("submitButton").innerHTML = "Processing ... ";
         let requestObj = {
             name: document.getElementById("name").value,
@@ -593,7 +662,7 @@
             numberOfChildren: document.getElementById("numberOfChildren").value,
             numberOfChildrenFree: document.getElementById("numberOfChildrenFree").value,
             attendanceOnFriday: document.getElementById("attendanceOnFriday").checked,
-            attendanceOnStaturday: document.getElementById("attendanceOnStaturday").checked,
+            attendanceOnSaturday: document.getElementById("attendanceOnSaturday").checked,
             attendanceOnSunday: document.getElementById("attendanceOnSunday").checked,
             attenddee1: document.getElementById("attenddee1").value,
             attenddee2: document.getElementById("attenddee2").value,
@@ -605,16 +674,21 @@
             attenddee8: document.getElementById("attenddee8").value,
             attenddee9: document.getElementById("attenddee9").value,
             attenddee10: document.getElementById("attenddee10").value,
-            whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent").checked,
+            whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent-yes").checked,
             recommendations: document.getElementById("recommendations").value
         }
         postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
             console.log(d2); // JSON data parsed by `data.json()` call
             document.getElementById("submitButton").innerHTML = "Registration successful!";
-            spinner.style.display = "none";
+            document.getElementById("cfcFromSuccessDiv").focus();
+            //spinner.style.display = "none";
             document.getElementById("cfcForm").reset();
             document.getElementById("cfcForm").style.display = "none";
+            location.href = "#three";
             document.getElementById("cfcFromSuccessDiv").innerHTML = " <img src=\"images/congratulations.png\" alt=\"\" data-position=\"center center\"/><h2>Your Texas Christian Family Conference (CFC) 2023 registration is successful. You will receive confirmation email.</h2>";
+
+
+            alert("Congratulations! Your registration is successful!")
         });
 
     }
@@ -630,6 +704,33 @@
     }
 
     calcDays();
+
+    function calculateFee() {
+
+        let adultsFee = document.getElementById("numberOfAdults").value;
+        let childrenFee = document.getElementById("numberOfChildren").value;
+        if (isNaN(parseFloat(adultsFee))) {
+            return;
+        }
+
+        if (isNaN(parseFloat(childrenFee))) {
+            return;
+        }
+
+        let tAmt = (parseFloat(adultsFee) + parseFloat(childrenFee)) * 30;
+        if (tAmt > 120) {
+            tAmt = 120;
+        }
+        document.getElementById("adultsFeeCount").innerHTML = "<label>" + adultsFee + " Adults <\label>";
+        document.getElementById("adultsFeeTotal").innerHTML = "<label>$" + (parseFloat(adultsFee) * 30) + "<\label>";
+        document.getElementById("childrenFeeCount").innerHTML = "<label>" + childrenFee + " Children<\label>";
+        document.getElementById("childrenFeeTotal").innerHTML = "<label>$" + (parseFloat(childrenFee) * 30) + "<\label>";
+        document.getElementById("TotalFeeCount").innerHTML = "<label>" + (parseInt(adultsFee) + parseInt(childrenFee)) + " Attendees<\label>";
+        document.getElementById("TotalFeeTotal").innerHTML = "<label>$" + (tAmt) + "<\label>";
+    }
+
+
+
 </script>
 
 </body>
