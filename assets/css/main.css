@@ -3977,6 +3977,10 @@ input[required] {
 	color: #f72585;
 }
 
+.optionalInput {
+	color: #f72585;
+}
+
 .userFontMsg{
 	background-color: rgb(217, 236, 246);
 }

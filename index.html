@@ -13,39 +13,6 @@
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
-    <style>
-        #spinner:not([hidden]) {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #spinner::after {
-            content: "";
-            width: 80px;
-            height: 80px;
-            border: 2px solid #f3f3f3;
-            border-top: 3px solid #f25a41;
-            border-radius: 100%;
-            will-change: transform;
-            animation: spin 1s infinite linear
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-    </style>
 
 
 </head>
@@ -221,7 +188,8 @@
                     <header><h2>TCFC-2023 Organizers</h2></header>
                 </div>
 
-                <div class="inner">
+                <div class="inner split">
+                    <section>
                     <article>
                         <header>
                             <img src="images/rectorArya_1.png"/>
@@ -237,7 +205,7 @@
                             </div>
                         </header>
                     </article>
-                </div>
+
 
 
                 <div class="inner">
@@ -275,6 +243,81 @@
                             </div>
                         </header>
                     </article>
+                </div>
+                    </section>
+                    <section>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <div class="icon solid fa-user">
+                            <h3>Sudheer Kadigari</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (956) 463-7122" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
+
+                <div class="inner">
+                    <article>
+                        <header>
+                            <div class="icon solid fa-user">
+                            <h3>Ratnakar Dudala</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (479) 899-7856" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <div class="icon solid fa-user">
+                            <h3>Venkat Udatha</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (832) 729-0883" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <div class="icon solid fa-user">
+                            <h3>Prasanna Athyala</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (432) 230-6717" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
+                <div class="inner">
+                    <article>
+                        <header>
+                            <div class="icon solid fa-user">
+                            <h3>Grace Ann</h3>
+                            <div>
+                                <ul class="icons">
+                                    <li><a href="tel:+1 (210) 269-2662" class="icon solid alt fa-phone" target="_blank"><span
+                                            class="label">Phone</span></a></li>
+                                </ul>
+                            </div>
+                        </header>
+                    </article>
+                </div>
+        </section>
                 </div>
             </div>
         </section>
@@ -336,13 +379,13 @@
                         <div class="fields">
                             <div class="field">
                                 <label for="name">Full Name</label>
-                                <input type="text" name="name" id="name" required/>
+                                <input type="text" name="name" id="name" onchange="addNameToAttendee()" required/>
                             </div>
                             <div class="field">
                                 <label for="street">Address</label>
                                 <input type="text" name="street" id="street" required/>
                             </div>
-                            <div class="field">
+                            <div class="field optionalInput">
                                 <label for="apt">Apt (Optional)</label>
                                 <input type="text" name="apt" id="apt"/>
                             </div>
@@ -359,9 +402,8 @@
                                 <input type="text" name="zip" id="zip" required/>
                             </div>
                             <div class="field">
-                                <label for="phone">Phone (Format: 123-456-7890)</label>
-                                <input type="text" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                       required/>
+                                <label for="phone">Phone</label>
+                                <input type="text" name="phone" id="phone" required/>
                             </div>
                             <div class="field">
                                 <label for="email">Email</label>
@@ -385,20 +427,20 @@
                                 <input type="number" name="numberOfChildrenFree" id="numberOfChildrenFree" min="0"
                                        max="10" value="0" required/>
                             </div>
-                            <div class="field">
+                            <div class="field optionalInput">
                                 <label for="email">Attendee Names</label>
-                                <ol>
-                                    <li><input type="text" name="attenddee1" id="attenddee1" required/></li>
-                                    <li><input type="text" name="attenddee2" id="attenddee2"/></li>
-                                    <li><input type="text" name="attenddee3" id="attenddee3"/></li>
-                                    <li><input type="text" name="attenddee4" id="attenddee4"/></li>
-                                    <li><input type="text" name="attenddee5" id="attenddee5"/></li>
-                                    <li><input type="text" name="attenddee6" id="attenddee6"/></li>
-                                    <li><input type="text" name="attenddee6" id="attenddee7"/></li>
-                                    <li><input type="text" name="attenddee6" id="attenddee8"/></li>
-                                    <li><input type="text" name="attenddee6" id="attenddee9"/></li>
-                                    <li><input type="text" name="attenddee6" id="attenddee10"/></li>
-                                </ol>
+                                <dl>
+                                    <dt><input type="text" name="attenddee1" id="attenddee1" placeholder="First Attendee Name" required/></dt>
+                                    <dt><input type="text" name="attenddee2" id="attenddee2" placeholder="Second Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee3" id="attenddee3" placeholder="Third Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee4" id="attenddee4" placeholder="Forth Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee5" id="attenddee5" placeholder="Fifth Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee6" id="attenddee6" placeholder="Sixth Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee6" id="attenddee7" placeholder="Seventh Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee6" id="attenddee8" placeholder="Eighth Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee6" id="attenddee9" placeholder="Ninth Attendee Name" /></dt>
+                                    <dt><input type="text" name="attenddee6" id="attenddee10" placeholder="Tenth Attendee Name" /></dt>
+                                </dl>
 
                             </div>
                             <div class="field">
@@ -438,40 +480,11 @@
 
                             <div>
                                 <p>
-                                    Registration fee: $30 per person &amp; $120 max per family. Children 12 and under
+                                    Registration fee: $40 per person &amp; $150 max per family. Children 12 and under
                                     &amp; Senior citizens 65 &amp; over free. Additional donations are accepted.
                                 </p>
                             </div>
-
-                            <div class="table-wrapper">
-                                <h3>Registration Fee</h3>
-                                <table class="alt">
-                                    <title>Registration Fee</title>
-                                    <thead>
-                                    <tr>
-                                        <th>Attendee Type</th>
-                                        <th>Price</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td id="adultsFeeCount" name="adultsFeeCount"></td>
-                                        <td id="adultsFeeTotal" name="adultsFeeTotal"></td>
-                                    </tr>
-                                    <tr>
-                                        <td id="childrenFeeCount" name="childrenFeeCount"></td>
-                                        <td id="childrenFeeTotal" name="childrenFeeTotal"></td>
-                                    </tr>
-
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <td id="TotalFeeCount" name="TotalFeeCount"></td>
-                                        <td id="TotalFeeTotal" name="TotalFeeTotal"></td>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                            <div id ="totalRegFeeDiv" name = "totalRegFeeDiv"></div>
 
                             <div class="field">
                                 <label for="recommendations">Recommendations (Optional)</label>
@@ -641,13 +654,11 @@
     }
 
     function register() {
-        //const spinner = document.getElementById("spinner");
         if (!document.getElementById("cfcForm").reportValidity()) {
             alert("Please fill all required form fields before submitting your registration.")
             return;
         }
 
-        //spinner.style.display = "block";
         document.getElementById("submitButton").innerHTML = "Processing ... ";
         let requestObj = {
             name: document.getElementById("name").value,
@@ -681,7 +692,6 @@
             console.log(d2); // JSON data parsed by `data.json()` call
             document.getElementById("submitButton").innerHTML = "Registration successful!";
             document.getElementById("cfcFromSuccessDiv").focus();
-            //spinner.style.display = "none";
             document.getElementById("cfcForm").reset();
             document.getElementById("cfcForm").style.display = "none";
             location.href = "#three";
@@ -717,16 +727,16 @@
             return;
         }
 
-        let tAmt = (parseFloat(adultsFee) + parseFloat(childrenFee)) * 30;
-        if (tAmt > 120) {
-            tAmt = 120;
+        let tAmt = (parseFloat(adultsFee) + parseFloat(childrenFee)) * 40;
+        if (tAmt > 150) {
+            tAmt = 150;
         }
-        document.getElementById("adultsFeeCount").innerHTML = "<label>" + adultsFee + " Adults <\label>";
-        document.getElementById("adultsFeeTotal").innerHTML = "<label>$" + (parseFloat(adultsFee) * 30) + "<\label>";
-        document.getElementById("childrenFeeCount").innerHTML = "<label>" + childrenFee + " Children<\label>";
-        document.getElementById("childrenFeeTotal").innerHTML = "<label>$" + (parseFloat(childrenFee) * 30) + "<\label>";
-        document.getElementById("TotalFeeCount").innerHTML = "<label>" + (parseInt(adultsFee) + parseInt(childrenFee)) + " Attendees<\label>";
-        document.getElementById("TotalFeeTotal").innerHTML = "<label>$" + (tAmt) + "<\label>";
+
+        document.getElementById("totalRegFeeDiv").innerHTML="<h4> Your Total Registration Fee is $ "+ (tAmt) + "</h4> <p>Calculation : (" + adultsFee + " * 40) + (" +childrenFee + " * 40 ) = "+ (tAmt) +". Family maximum fee $150"+"</p>";
+    }
+
+    function addNameToAttendee() {
+        document.getElementById("attenddee1").value = document.getElementById("name").value;
     }
 
 
