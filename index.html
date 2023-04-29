@@ -562,9 +562,9 @@
 
                         <dt>Group Rates</dt>
                         <dd><ul>
-                            <li> Room Type/Charge: King Studio Suite; $129 + Tax</li>
+                            <li>Room Type/Charge: King Studio Suite; $129 + Tax</li>
                             <li>Group rates offer cut-off date: 6-14-2023</li>
-                            <li> Group Code or Name: TFC or C-TFC or Texas Family Christian </li>
+                            <li>Group Code or Name: TFC or C-TFC or Texas Family Christian </li>
                             <li>Distance: 2.4 miles from TCLC</li>
                         </ul>
                            </dd>
@@ -587,7 +587,7 @@
                         <dd><a href="https://www.druryhotels.com/locations/san-antonio-tx/drury-plaza-hotel-san-antonio-north-stone-oak" target="_blank">https://www.druryhotels.com</a></dd>
                         <dt>Group Rates</dt>
                         <dd><ul>
-                            <li> Room Type/Charge:  2 Queen Beds Deluxe; $170 (Note: Each additional adult adds $10, and range is $170-$190) + Tax </li>
+                            <li>Room Type/Charge:  2 Queen Beds Deluxe; $170 (Note: Each additional adult adds $10, and range is $170-$190) + Tax </li>
                             <li>Group rates offer cut-off date: 6-16-2023</li>
                             <li>Group Name: San Antonio Christian Family Fellowship Room Block</li>
                             <li>Distance: 2.9 miles from TCLC</li>
@@ -695,7 +695,7 @@
                             <li>Room Type/Charge: Studio Suite 2 Double Beds or One Bedroom King Suite $159 + Tax</li>
                             <li>Group rates offer cut-off date: 6-16-2023</li>
                             <li>Group Name: Texas Christian Family Conference OR TCF</li>
-                            <li>4.2 miles from TCLC</li>
+                            <li>Distance: 4.2 miles from TCLC</li>
                             <li>Our Conference Participants can book three (3) ways:
                                 <ol>
                                     <li>Call hotel direct <a href="tel:+1 210-497-0100">210-497-0100</a> ask for the Texas Christian Family Conference Group</li>
@@ -754,7 +754,7 @@
                             <li>Group rates offer cut-off date: 6-23-2023</li>
                             <li>Group Name: Texas Christian Family Conference</li>
                             <li>Phone reservation: You may call at <a href="tel:+1 (888) 236-2427">(888) 236-2427</a> and mention the group name.</li>
-                            <li>4.4 miles from TCLC</li>
+                            <li>Distance: 4.4 miles from TCLC</li>
                         </ul>
                         </dd>
                     </dl>
@@ -840,6 +840,7 @@
 <script src="assets/js/main.js"></script>
 <script type="text/javascript">
 
+    let finalRegFee = 0;
     document.getElementById("cfcFromSuccessDiv").innerHTML = "";
 
     async function postData(url = "", data = {}) {
@@ -894,7 +895,8 @@
             attenddee9: document.getElementById("attenddee9").value,
             attenddee10: document.getElementById("attenddee10").value,
             whatsAppGroupConsent: document.getElementById("whatsAppGroupConsent-yes").checked,
-            recommendations: document.getElementById("recommendations").value
+            recommendations: document.getElementById("recommendations").value,
+            finalRegFee:finalRegFee
         }
         postData("https://27zocnxdc2jlkn6vndtd3k6wsy0xyvfa.lambda-url.us-west-2.on.aws", requestObj).then((d2) => {
             console.log(d2); // JSON data parsed by `data.json()` call
@@ -972,6 +974,7 @@
         for (let i = totalAttendeeCount +1; i<= 10; i++) {
             document.getElementById("attenddee"+i).required=false;
         }
+        finalRegFee = tAmt;
     }
 
     function addNameToAttendee() {
