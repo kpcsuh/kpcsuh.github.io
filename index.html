@@ -425,22 +425,31 @@
                                 <label for="numberOfChildrenFree">Number of Child Attendees (Age Under 12 - No
                                     Fee) (Optional)</label>
                                 <input type="number" name="numberOfChildrenFree" id="numberOfChildrenFree" min="0"
-                                       max="10" value="0" required/>
+                                       max="10" value="0" onchange="calculateFee()" required/>
                             </div>
                             <div class="field optionalInput">
                                 <label for="email">Attendee Names</label>
                                 <dl>
-                                    <dt><input type="text" name="attenddee1" id="attenddee1" placeholder="First Attendee Name" required/></dt>
-                                    <dt><input type="text" name="attenddee2" id="attenddee2" placeholder="Second Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee3" id="attenddee3" placeholder="Third Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee4" id="attenddee4" placeholder="Forth Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee5" id="attenddee5" placeholder="Fifth Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee6" id="attenddee6" placeholder="Sixth Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee6" id="attenddee7" placeholder="Seventh Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee6" id="attenddee8" placeholder="Eighth Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee6" id="attenddee9" placeholder="Ninth Attendee Name" /></dt>
-                                    <dt><input type="text" name="attenddee6" id="attenddee10" placeholder="Tenth Attendee Name" /></dt>
-                                </dl>
+                                    <dt><input type="text" name="attenddee1" id="attenddee1" placeholder="First Attendee Name" required/></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee2" id="attenddee2" placeholder="Second Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee3" id="attenddee3" placeholder="Third Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee4" id="attenddee4" placeholder="Forth Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee5" id="attenddee5" placeholder="Fifth Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee6" id="attenddee6" placeholder="Sixth Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee6" id="attenddee7" placeholder="Seventh Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee6" id="attenddee8" placeholder="Eighth Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee6" id="attenddee9" placeholder="Ninth Attendee Name" /></dt> </dl>
+                                <dl><dt></dt></dl>
+                                    <dt><input type="text" name="attenddee6" id="attenddee10" placeholder="Tenth Attendee Name" /></dt> </dl>
+                               </dl>
 
                             </div>
                             <div class="field">
@@ -897,14 +906,27 @@
 
     function calculateFee() {
 
+        let adultCount = document.getElementById("numberOfAdults").value;
+        let childCount = document.getElementById("numberOfChildren").value;
+        let childrenFeeCount = document.getElementById("numberOfChildrenFree").value;
         let adultsFee = document.getElementById("numberOfAdults").value;
         let childrenFee = document.getElementById("numberOfChildren").value;
+
+
         if (isNaN(parseFloat(adultsFee))) {
             return;
         }
 
         if (isNaN(parseFloat(childrenFee))) {
             return;
+        }
+        if (isNaN(parseFloat(childrenFeeCount))) {
+            return;
+        }
+
+        let totalAttendeeCount = parseInt(adultCount) + parseInt(childCount) + parseInt(childrenFeeCount);
+        if (totalAttendeeCount > 10) {
+            totalAttendeeCount = 10;
         }
 
         let tAmt = (parseFloat(adultsFee) + parseFloat(childrenFee)) * 40;
@@ -913,6 +935,14 @@
         }
 
         document.getElementById("totalRegFeeDiv").innerHTML="<h4> Your Total Registration Fee is $ "+ (tAmt) + "</h4> <p>Calculation : (" + adultsFee + " * 40) + (" +childrenFee + " * 40 ) = "+ (tAmt) +". Family maximum fee $150"+"</p>";
+
+        console.log("totalAttendeeCount :" + totalAttendeeCount);
+        for (let i = 1; i<= totalAttendeeCount; i++) {
+            document.getElementById("attenddee"+i).required=true;
+        }
+        for (let i = totalAttendeeCount +1; i<= 10; i++) {
+            document.getElementById("attenddee"+i).required=false;
+        }
     }
 
     function addNameToAttendee() {
