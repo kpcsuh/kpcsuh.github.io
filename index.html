@@ -13,6 +13,7 @@
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
+    <script src="https://www.paypal.com/sdk/js?client-id=AbuNoLI_hfMSs4--9BQOUAnlo5CfqgsiwiKm1gxm-4eQE6kmGDr7euGcX0Q2KG6u6fEBWIRR42TrWqTL&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>
 
 
 </head>
@@ -474,7 +475,7 @@
 
                             <div class="field">
                                 <fieldset>
-                                    <legend>I give consent to add my phone number to CFC-2023 Whatsapp group:</legend>
+                                    <legend>I give consent to add my phone number to TCFC-2023 Whatsapp group:</legend>
                                     <div class="col-4 col-12-small">
                                         <input type="radio" id="whatsAppGroupConsent-yes" name="whatsAppGroupConsent"
                                                required>
@@ -494,12 +495,65 @@
                                 </p>
                             </div>
                             <div id ="totalRegFeeDiv" name = "totalRegFeeDiv"></div>
+                            <div><h4><dl><dt>Zelle Payment Details</dt><dd>Pay To Zelle Phone Number: 210 668-5436</dd></dl></h4></div>
 
                             <div class="field">
                                 <label for="recommendations">Recommendations (Optional)</label>
                                 <textarea name="recommendations" id="recommendations" rows="5"></textarea>
                             </div>
                         </div>
+                        <!-- Replace "test" with your own sandbox Business account app client ID -->
+
+                        <!-- Set up a container element for the button -->
+<!--                        <div id="paypal-button-container"></div>-->
+                        <script>
+                            paypal.Buttons({
+                                // Order is created on the server and the order id is returned
+                                createOrder() {
+                                    return fetch("http://localhost:8080/createOrder", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        // use the "body" param to optionally pass additional order information
+                                        // like product skus and quantities
+                                        body: JSON.stringify({
+                                            cart: [
+                                                {
+                                                    sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
+                                                    quantity: "YOUR_PRODUCT_QUANTITY",
+                                                },
+                                            ],
+                                        }),
+                                    })
+                                        .then((response) => response.json())
+                                        .then((order) => order.id);
+                                },
+                                // Finalize the transaction on the server after payer approval
+                                onApprove(data) {
+                                    return fetch("http://localhost:8080/createOrder", {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            orderID: data.orderID
+                                        })
+                                    })
+                                        .then((response) => response.json())
+                                        .then((orderData) => {
+                                            // Successful capture! For dev/demo purposes:
+                                            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                                            const transaction = orderData.purchase_units[0].payments.captures[0];
+                                            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                                            // When ready to go live, remove the alert and show a success message within this page. For example:
+                                            // const element = document.getElementById('paypal-button-container');
+                                            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                                            // Or go to another URL:  window.location.href = 'thank_you.html';
+                                        });
+                                }
+                            }).render('#paypal-button-container');
+                        </script>
                         <ul class="actions">
                             <li>
                                 <button class="button primary" type="button" id="submitButton" name="submitButton"
@@ -907,7 +961,7 @@
             document.getElementById("cfcForm").reset();
             document.getElementById("cfcForm").style.display = "none";
             location.href = "#three";
-            document.getElementById("cfcFromSuccessDiv").innerHTML = " <div class=\"icon solid major fa-handshake\"></div><br><h2>Your Texas Christian Family Conference (CFC) 2023 registration is successful. You will receive confirmation email.</h2>";
+            document.getElementById("cfcFromSuccessDiv").innerHTML = " <div class=\"icon solid major fa-handshake\"></div><br><h2>Your Texas Christian Family Conference (TCFC) 2023 registration is successful. You will receive confirmation email.</h2>";
 
 
             alert("Congratulations! Your registration is successful!")
@@ -982,7 +1036,6 @@
     function addNameToAttendee() {
         document.getElementById("attenddee1").value = document.getElementById("name").value;
     }
-
 
 
 </script>
