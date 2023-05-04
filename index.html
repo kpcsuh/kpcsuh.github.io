@@ -15,7 +15,7 @@
     </noscript>
     <!--    <script src="https://www.paypal.com/sdk/js?client-id=AbuNoLI_hfMSs4&#45;&#45;9BQOUAnlo5CfqgsiwiKm1gxm-4eQE6kmGDr7euGcX0Q2KG6u6fEBWIRR42TrWqTL&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>-->
 
-
+    <script src="https://www.paypal.com/sdk/js?client-id=AUyMT9V09ADxRrDnhj4X1_0ZK78guY8LfQPa-PaWnZRoi3F2ULvY9zaDvjov4BHVH4jA6gk5a2vN1wZ9&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>
 </head>
 <body class="is-preload">
 
@@ -609,7 +609,14 @@
 												San Antonio, TX<br/>
 												78253</span></dd>
                                     <dt><h3>Paypal</h3></dt>
-                                    <dd>Coming soon ...</dd>
+                                    <dd>
+                                        <div id="paypal-button-container"></div>
+
+                                        <!-- Include the PayPal JavaScript SDK -->
+
+
+
+                                    </dd>
                                     <dt><h3>Onsite</h3></dt>
                                     <dd>You can pay registration fee at registration desk on conference days.</dd>
                                 </dl>
@@ -1298,6 +1305,8 @@
         }
         finalRegFee = tAmt;
         document.getElementById("totalRegFeeDiv").innerHTML = "<h4> Your Total Registration Fee is $" + (tAmt) + "</h4> <p>Calculation : (" + adultsFee + " * 40) + (" + childrenFee + " * 40 ) + Donation= " + donationAmt + ") = " + (tAmt) + ". Family maximum registration fee is $150 (excluding donation amount if any)." + "</p>";
+        document.getElementById("paypal-button-container").innerHTML = "";
+        renderPayPal(tAmt);
         return finalRegFee;
     }
 
@@ -1305,6 +1314,30 @@
         document.getElementById("attenddee1").value = document.getElementById("name").value;
     }
 
+
+    function renderPayPal(amount=150) {
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Set up the transaction
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                // Capture the funds from the transaction
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+            }
+        }).render('#paypal-button-container');
+    }
+
+    renderPayPal();
 
 </script>
 
