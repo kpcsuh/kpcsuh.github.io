@@ -15,7 +15,7 @@
     </noscript>
     <!--    <script src="https://www.paypal.com/sdk/js?client-id=AbuNoLI_hfMSs4&#45;&#45;9BQOUAnlo5CfqgsiwiKm1gxm-4eQE6kmGDr7euGcX0Q2KG6u6fEBWIRR42TrWqTL&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>-->
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AUyMT9V09ADxRrDnhj4X1_0ZK78guY8LfQPa-PaWnZRoi3F2ULvY9zaDvjov4BHVH4jA6gk5a2vN1wZ9&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AUyMT9V09ADxRrDnhj4X1_0ZK78guY8LfQPa-PaWnZRoi3F2ULvY9zaDvjov4BHVH4jA6gk5a2vN1wZ9&currency=USD&components=buttons&disable-funding=venmo"></script>
 </head>
 <body class="is-preload">
 
@@ -31,6 +31,7 @@
                 <li><a href="#six">Contacts</a></li>
                 <li><a href="#two">Events</a></li>
                 <li><a href="#three">Registration</a></li>
+                <li><a href="#payment">Payment</a></li>
                 <li><a href="#seven">Hotels</a></li>
                 sacff.org
             </ul>
@@ -582,8 +583,8 @@
                                 <legend>I would like to donate towards TCFC-2023 conferences expenses (Optional)
                                 </legend>
                                 <div class="col-4 col-12-small">
-                                    </label><input type="text" id="donation" name="donation" min="0" max="1000000"
-                                                   placeholder="$" onchange="calculateFee()">
+                                    </label><input type="number" id="donation" name="donation" min="0" max="1000000"
+                                                   value="0" onchange="calculateFee()">
                                 </div>
                             </div>
 
@@ -602,21 +603,14 @@
                                     <dt><img src="images/Zelle.png" width="10%" height="10%"></dt>
                                     <dd>TCFC-2023 (Recipient) Phone Number: <b>210 668-5436</b></dd>
                                     <dd>Recipient Type : <b>Business</b></dd>
-                                    <dt><h4>Send Cheque <img src="images/cheque.jpg"></h4></dt>
+                                    <dt><h4>Send Cheque</h4></dt>
                                     <dd><h3 class="icon solid alt fa-home"> Mail your cheque to following address</h3>
                                         <span>SACFF </br>
                                             11518 Camp Real Ln<br/>
 												San Antonio, TX<br/>
 												78253</span></dd>
                                     <dt><h3>Paypal</h3></dt>
-                                    <dd>
-                                        <div id="paypal-button-container"></div>
-
-                                        <!-- Include the PayPal JavaScript SDK -->
-
-
-
-                                    </dd>
+                                    <dd>Once registration is completed, you can pay using PayPal or Credit Card or Debit Card.</dd>
                                     <dt><h3>Onsite</h3></dt>
                                     <dd>You can pay registration fee at registration desk on conference days.</dd>
                                 </dl>
@@ -624,58 +618,6 @@
 
 
                         </div>
-                        <!-- Replace "test" with your own sandbox Business account app client ID -->
-
-                        <!-- Set up a container element for the button -->
-                        <!--                        <div id="paypal-button-container"></div>-->
-                        <!--                        <script>-->
-                        <!--                            paypal.Buttons({-->
-                        <!--                                // Order is created on the server and the order id is returned-->
-                        <!--                                createOrder() {-->
-                        <!--                                    return fetch("http://localhost:8080/createOrder", {-->
-                        <!--                                        method: "POST",-->
-                        <!--                                        headers: {-->
-                        <!--                                            "Content-Type": "application/json",-->
-                        <!--                                        },-->
-                        <!--                                        // use the "body" param to optionally pass additional order information-->
-                        <!--                                        // like product skus and quantities-->
-                        <!--                                        body: JSON.stringify({-->
-                        <!--                                            cart: [-->
-                        <!--                                                {-->
-                        <!--                                                    sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",-->
-                        <!--                                                    quantity: "YOUR_PRODUCT_QUANTITY",-->
-                        <!--                                                },-->
-                        <!--                                            ],-->
-                        <!--                                        }),-->
-                        <!--                                    })-->
-                        <!--                                        .then((response) => response.json())-->
-                        <!--                                        .then((order) => order.id);-->
-                        <!--                                },-->
-                        <!--                                // Finalize the transaction on the server after payer approval-->
-                        <!--                                onApprove(data) {-->
-                        <!--                                    return fetch("http://localhost:8080/createOrder", {-->
-                        <!--                                        method: "POST",-->
-                        <!--                                        headers: {-->
-                        <!--                                            "Content-Type": "application/json",-->
-                        <!--                                        },-->
-                        <!--                                        body: JSON.stringify({-->
-                        <!--                                            orderID: data.orderID-->
-                        <!--                                        })-->
-                        <!--                                    })-->
-                        <!--                                        .then((response) => response.json())-->
-                        <!--                                        .then((orderData) => {-->
-                        <!--                                            // Successful capture! For dev/demo purposes:-->
-                        <!--                                            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));-->
-                        <!--                                            const transaction = orderData.purchase_units[0].payments.captures[0];-->
-                        <!--                                            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);-->
-                        <!--                                            // When ready to go live, remove the alert and show a success message within this page. For example:-->
-                        <!--                                            // const element = document.getElementById('paypal-button-container');-->
-                        <!--                                            // element.innerHTML = '<h3>Thank you for your payment!</h3>';-->
-                        <!--                                            // Or go to another URL:  window.location.href = 'thank_you.html';-->
-                        <!--                                        });-->
-                        <!--                                }-->
-                        <!--                            }).render('#paypal-button-container');-->
-                        <!--                        </script>-->
                         <ul class="actions">
                             <li>
                                 <button class="button primary" type="button" id="submitButton" name="submitButton"
@@ -713,6 +655,77 @@
                         </li>
                     </ul>
                 </section>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="payment" class="wrapper payment fade-up">
+        <div class="inner">
+            <h2>Payment</h2>
+
+            <div class="payment">
+                <section>
+
+                            <div id="paymentDivSecond" name="paymentDivSecond">
+
+                                <table>
+                                    <title>Your Registration Payment details</title>
+                                    <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Price ($)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Registration Fee</td>
+                                        <td><div id="justRegistrationPrice" name = "justRegistrationPrice"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Free will Donation</td>
+                                        <td><div id="justDonationPrice" name = "justDonationPrice"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Price (Cheque or Cash or Zelle)</td>
+                                        <th><div id="justTotalPrice" name = "justTotalPrice"></div></th>
+                                    </tr>
+                                    <tr>
+                                        <td>Total Price with Credit Card transaction fee</td>
+                                        <th><div id="justTotalPlusTnxsPrice" name = "justTotalPlusTnxsPrice"></div></th>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="2">Thank you for registering for TCFC-2023. We will send you a confirmation email once we receive your payment.</td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+                                <h3>You can pay using one of the following payment options</h3>
+                                <br>
+                                <dl>
+                                    <dt><img src="images/Zelle.png" width="10%" height="10%"></dt>
+                                    <dd>TCFC-2023 (Recipient) Phone Number: <b>210 668-5436</b></dd>
+                                    <dd>Recipient Type : <b>Business</b></dd>
+                                    <dt><h4>Send Cheque</h4></dt>
+                                    <dd><h3 class="icon solid alt fa-home"> Mail your cheque to following address</h3>
+                                        <span>SACFF </br>
+                                            11518 Camp Real Ln<br/>
+												San Antonio, TX<br/>
+												78253</span></dd>
+                                    <dt><h3>Paypal</h3></dt>
+                                    <dd>
+                                        <div id="paypal-button-container-second"></div>
+
+                                        <!-- Include the PayPal JavaScript SDK -->
+
+                                    </dd>
+                                    <dt><h3>Onsite</h3></dt>
+                                    <dd>You can pay registration fee at registration desk on conference days.</dd>
+                                </dl>
+                            </div>
+    </section>
             </div>
         </div>
     </section>
@@ -1156,6 +1169,10 @@
 
     let finalRegFee = 0;
     document.getElementById("cfcFromSuccessDiv").innerHTML = "";
+    let justRegistrationPrice =0.0
+    let justDonationPrice = 0.0;
+    let justTotalPrice = 0.0;
+    let justTotalPlusTnxsPrice =   0.0;
 
 
     async function postData(url = "", data = {}) {
@@ -1225,7 +1242,8 @@
             console.log(d2); // JSON data parsed by `data.json()` call
             document.getElementById("submitButton").innerHTML = "Registration successful!";
             document.getElementById("cfcFromSuccessDiv").focus();
-            document.getElementById("cfcFromSuccessDiv").innerHTML = " <div class=\"icon solid major fa-handshake\"></div><br><h2>Your Texas Christian Family Conference (TCFC) 2023 registration is successful. You will receive confirmation email.</h2>";
+            document.getElementById("cfcFromSuccessDiv").innerHTML = " <div style='text-align:center;' class=\"icon solid major fa-handshake fa-3x\"></div><br><h2>Your Texas Christian Family Conference (TCFC) 2023 registration is successful. You will receive confirmation email.</h2>" +
+                "<h3>We appreciate your online payaments. Please go to payment section by clicking button below</h3><a href='#payment' class='button primary'>Pay Now</a>";
             document.getElementById("cfcForm").reset();
             document.getElementById("cfcForm").style.display = "none";
             location.href = "#three";
@@ -1289,6 +1307,7 @@
         if (tAmt > 150) {
             tAmt = 150;
         }
+        justRegistrationPrice=tAmt;
 
         for (let i = 1; i <= totalAttendeeCount; i++) {
             document.getElementById("attenddee" + i).required = true;
@@ -1299,14 +1318,26 @@
         let donationAmt = parseFloat(document.getElementById("donation").value);
         if (isNaN(donationAmt)) {
             donationAmt = 0;
+            justDonationPrice=0;
         }
         if (parseInt(donationAmt) > 0) {
+            justDonationPrice=donationAmt;
             tAmt = tAmt + donationAmt;
+            justTotalPrice=tAmt;
+
         }
+        justTotalPlusTnxsPrice = tAmt + (tAmt * 0.02) + 0.5;
+        // two decimal places with zero padding
+        justTotalPlusTnxsPrice = justTotalPlusTnxsPrice.toFixed(2);
+
+        document.getElementById("justRegistrationPrice").innerHTML="$ "+justRegistrationPrice;
+        document.getElementById("justDonationPrice").innerHTML="$ "+justDonationPrice;
+        document.getElementById("justTotalPrice").innerHTML="$ "+justTotalPrice;
+        document.getElementById("justTotalPlusTnxsPrice").innerHTML="$ "+justTotalPlusTnxsPrice;
         finalRegFee = tAmt;
         document.getElementById("totalRegFeeDiv").innerHTML = "<h4> Your Total Registration Fee is $" + (tAmt) + "</h4> <p>Calculation : (" + adultsFee + " * 40) + (" + childrenFee + " * 40 ) + Donation= " + donationAmt + ") = " + (tAmt) + ". Family maximum registration fee is $150 (excluding donation amount if any)." + "</p>";
-        document.getElementById("paypal-button-container").innerHTML = "";
-        renderPayPal(tAmt);
+        document.getElementById("paypal-button-container-second").innerHTML = "";
+        renderPayPal(justTotalPlusTnxsPrice);
         return finalRegFee;
     }
 
@@ -1315,14 +1346,14 @@
     }
 
 
-    function renderPayPal(amount=150) {
+    function renderPayPal(amount=154) {
         paypal.Buttons({
             createOrder: function(data, actions) {
                 // Set up the transaction
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '1.00'
+                            value: amount
                         }
                     }]
                 });
@@ -1334,7 +1365,7 @@
                     alert('Transaction completed by ' + details.payer.name.given_name + '!');
                 });
             }
-        }).render('#paypal-button-container');
+        }).render('#paypal-button-container-second');
     }
 
     renderPayPal();
