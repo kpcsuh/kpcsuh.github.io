@@ -4007,3 +4007,8 @@ input[required] {
 input[type=number] {
     color: #f72585;
 }
+
+.errormsg {
+  color: red;
+  font-size: 13px;
+}
