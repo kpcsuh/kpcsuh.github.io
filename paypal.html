@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<!--
+	TCFC-2023 by  SACFF, San Antonio, TX
+	sacff.org 
+	SACFF
+-->
+<html>
+	<head>
+		<title>Generic - TCFC-2023 by  SACFF, San Antonio, TX</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">TCFC-2023</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="speaker-more.html" class="active">Speaker Bio</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+				<!-- paypal button integration -->
+				<div id="paypal-button-container"></div>
+
+				<!-- Include the PayPal JavaScript SDK -->
+				<script src="https://www.paypal.com/sdk/js?client-id=AbuNoLI_hfMSs4--9BQOUAnlo5CfqgsiwiKm1gxm-4eQE6kmGDr7euGcX0Q2KG6u6fEBWIRR42TrWqTL&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>
+
+				<!-- Set up the PayPal Button -->
+				<script>
+					paypal.Buttons({
+						createOrder: function(data, actions) {
+							// Set up the transaction
+							return actions.order.create({
+								purchase_units: [{
+									amount: {
+										value: '10.00'
+									}
+								}]
+							});
+						},
+						onApprove: function(data, actions) {
+							// Capture the funds from the transaction
+							return actions.order.capture().then(function(details) {
+								// Show a success message to the buyer
+								alert('Transaction completed by ' + details.payer.name.given_name + '!');
+							});
+						}
+					}).render('#paypal-button-container');
+				</script>
+
+
+
+
+
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="https://sacff.org">SACFF</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
