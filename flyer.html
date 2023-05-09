@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - TCFC-2023 by  SACFF, San Antonio, TX</title>
+		<title>TCFC-2023 Invitation Flyer</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -20,7 +20,8 @@
 				<nav>
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="speaker-more.html" class="active">Speaker Bio</a></li>
+						<li><a href="speaker-more.html">Speaker Bio</a></li>
+						<li><a href="flyer.html" class="active">Flyer</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -29,37 +30,20 @@
 			<div id="wrapper">
 
 				<!-- Main -->
-				<!-- paypal button integration -->
-				<div id="paypal-button-container"></div>
-
-				<!-- Include the PayPal JavaScript SDK -->
-				<script src="https://www.paypal.com/sdk/js?client-id=AbuNoLI_hfMSs4--9BQOUAnlo5CfqgsiwiKm1gxm-4eQE6kmGDr7euGcX0Q2KG6u6fEBWIRR42TrWqTL&currency=USD&components=buttons&disable-funding=venmo,paylater"></script>
-
-				<!-- Set up the PayPal Button -->
-				<script>
-					paypal.Buttons({
-						createOrder: function(data, actions) {
-							// Set up the transaction
-							return actions.order.create({
-								purchase_units: [{
-									amount: {
-										value: '10.00'
-									}
-								}]
-							});
-						},
-						onApprove: function(data, actions) {
-							// Capture the funds from the transaction
-							return actions.order.capture().then(function(details) {
-								// Show a success message to the buyer
-								alert('Transaction completed by ' + details.payer.name.given_name + '!');
-							});
-						}
-					}).render('#paypal-button-container');
-				</script>
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">TCFC-2023 Invitation Flyer</h1>
 
 
+							<div class="col-12"><span class="image fit"><img src="images/TCFC-2023_Invitation_Flyer_B1.jpg" alt="" /></span></div>
 
+							<ul class="actions stacked">
+								<li><a href="index.html" class="button primary">HOME</a></li>
+							</ul>
+						</div>
+
+
+					</section>
 
 
 
