@@ -4012,3 +4012,10 @@ input[type=number] {
   color: red;
   font-size: 13px;
 }
+
+.imgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
