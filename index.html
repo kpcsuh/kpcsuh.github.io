@@ -541,8 +541,8 @@
                                 <legend>I would like to donate towards TCFC-2023 conferences expenses (Optional)
                                 </legend>
                                 <div class="col-4 col-12-small">
-                                    </label><input type="number" id="donation" name="donation" min="0" max="1000000"
-                                                   value="0" onchange="calculateFee()">
+                                    <label>$<input type="number" id="donation" name="donation" min="0" max="1000000"
+                                                   value="0" onchange="calculateFee()"></label>
                                 </div>
                             </div>
 
@@ -1315,6 +1315,12 @@
             alert("You should attend at least one day to register. Please select 'Yes' to Friday or Saturday or Sunday or more days.");
             document.getElementById("attendanceOnFriday").focus();
             return;
+        }
+
+        try {
+            calculateFee()
+        } catch (e) {
+            console.log("Error in calculating fee: " + e);
         }
 
         document.getElementById("submitButton").innerHTML = "Processing ... ";
