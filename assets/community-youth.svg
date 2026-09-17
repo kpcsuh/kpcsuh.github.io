@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 320" width="420" height="320" role="img">
+<defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#e6f0fd"/>
+      <stop offset="100%" stop-color="#7b9ecd"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="38%" r="72%">
+      <stop offset="52%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#2a1a0c" stop-opacity="0.34"/>
+    </radialGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient></defs>
+
+  <rect width="420" height="320" fill="url(#bg)"/>
+  <circle cx="192.4" cy="11.3" r="15.5" fill="#ffffff" opacity="0.15"/><circle cx="345.4" cy="9.1" r="16.2" fill="#ffffff" opacity="0.24"/><circle cx="338.5" cy="118.0" r="10.9" fill="#ffffff" opacity="0.14"/><circle cx="412.8" cy="126.2" r="28.8" fill="#ffffff" opacity="0.10"/><circle cx="92.1" cy="12.1" r="30.0" fill="#ffffff" opacity="0.15"/><circle cx="87.9" cy="80.0" r="26.4" fill="#ffffff" opacity="0.11"/><circle cx="123.2" cy="61.5" r="25.7" fill="#ffffff" opacity="0.17"/><circle cx="375.3" cy="56.5" r="10.1" fill="#ffffff" opacity="0.24"/><circle cx="389.4" cy="4.7" r="27.9" fill="#ffffff" opacity="0.22"/><circle cx="48.1" cy="64.3" r="16.8" fill="#ffffff" opacity="0.12"/>
+  <rect width="420" height="176" fill="url(#fade)"/>
+  <g opacity="0.62"><path fill="#3a3ba0" d="M -23.4 262.0 C -23.4 201.1 19.1 194.1 47.4 194.1 C 75.7 194.1 118.2 201.1 118.2 262.0 Z"/><ellipse fill="#8c5a34" cx="47.4" cy="174.6" rx="23.0" ry="25.8"/><path fill="#3a3ba0" opacity="0.55" d="M 24.0 164.9 a 23.5 21.9 0 0 1 46.9 0 Z"/></g><g opacity="0.62"><path fill="#3a3ba0" d="M 88.3 262.0 C 88.3 198.3 133.0 190.8 162.8 190.8 C 192.6 190.8 237.2 198.3 237.2 262.0 Z"/><ellipse fill="#f0cba4" cx="162.8" cy="170.4" rx="24.2" ry="27.1"/><path fill="#3a3ba0" opacity="0.55" d="M 138.1 160.2 a 24.7 23.0 0 0 1 49.4 0 Z"/></g><g opacity="0.62"><path fill="#1f2b3d" d="M 200.0 262.0 C 200.0 203.6 240.6 196.9 267.6 196.9 C 294.6 196.9 335.1 203.6 335.1 262.0 Z"/><ellipse fill="#6f4526" cx="267.6" cy="178.3" rx="22.0" ry="24.6"/><path fill="#1f2b3d" opacity="0.55" d="M 245.2 169.1 a 22.4 20.9 0 0 1 44.8 0 Z"/></g><g opacity="0.62"><path fill="#7c3a1a" d="M 296.5 262.0 C 296.5 198.5 341.0 191.1 370.7 191.1 C 400.4 191.1 444.9 198.5 444.9 262.0 Z"/><ellipse fill="#d29b6b" cx="370.7" cy="170.7" rx="24.1" ry="27.0"/><path fill="#7c3a1a" opacity="0.55" d="M 346.1 160.6 a 24.6 22.9 0 0 1 49.2 0 Z"/></g>
+  <g opacity="1.00"><path fill="#15514c" d="M -36.7 358.0 C -36.7 275.1 22.8 265.2 62.5 265.2 C 102.2 265.2 161.7 275.1 161.7 358.0 Z"/><ellipse fill="#6f4526" cx="62.5" cy="237.9" rx="32.3" ry="36.1"/><path fill="#15514c" opacity="0.55" d="M 29.6 224.3 a 32.9 30.6 0 0 1 65.8 0 Z"/></g><g opacity="1.00"><path fill="#1f2b3d" d="M 116.3 358.0 C 116.3 278.8 173.0 269.3 210.8 269.3 C 248.6 269.3 305.3 278.8 305.3 358.0 Z"/><ellipse fill="#e8b98d" cx="210.8" cy="243.3" rx="30.7" ry="34.4"/><path fill="#1f2b3d" opacity="0.55" d="M 179.5 230.4 a 31.3 29.2 0 0 1 62.6 0 Z"/></g><g opacity="1.00"><path fill="#15514c" d="M 268.9 358.0 C 268.9 280.7 324.1 271.5 360.9 271.5 C 397.7 271.5 453.0 280.7 453.0 358.0 Z"/><ellipse fill="#d29b6b" cx="360.9" cy="246.2" rx="29.9" ry="33.5"/><path fill="#15514c" opacity="0.55" d="M 330.4 233.6 a 30.5 28.4 0 0 1 61.0 0 Z"/></g>
+  <rect width="420" height="320" fill="url(#vig)"/>
+</svg>
