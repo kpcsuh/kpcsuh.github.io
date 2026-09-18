@@ -277,10 +277,10 @@ icd = HEAD.format(
         <h3>Support the day by Zelle</h3>
         <dl class="give-detail">
           <div><dt>Recipient</dt><dd>SACFF</dd></div>
-          <div><dt>Recipient phone</dt><dd><a href="tel:+12103520159">(210) 352-0159</a></dd></div>
+          <div><dt>Recipient phone</dt><dd><a href="tel:+12103520159">(210) 352-0159</a><button class="copy-btn" type="button" data-copy="2103520159" aria-label="Copy the Zelle recipient number">Copy</button></dd></div>
           <div>
             <dt>Memo / reason for payment</dt>
-            <dd class="give-memo">Indian Christian Day 2026</dd>
+            <dd class="give-memo">Indian Christian Day 2026<button class="copy-btn" type="button" data-copy="Indian Christian Day 2026" aria-label="Copy the payment memo">Copy</button></dd>
           </div>
         </dl>
         <p class="give-note"><strong>Sponsor status</strong> is offered for contributions

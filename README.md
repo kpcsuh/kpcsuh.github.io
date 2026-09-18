@@ -470,6 +470,40 @@ Three methods, using SACFF's own payment accounts:
 | **PayPal / card** | PayPal JS SDK Buttons, client id in `script.js` |
 | **Cheque** | Payable to SACFF, posted to 11518 Camp Real Ln, San Antonio, TX 78253 |
 
+### Zelle: no clickable link, and no QR we can mint
+
+**Zelle has no public payment deep link.** There is no `zelle://pay?to=…`, and no
+URL a website can build that opens a bank app pre-filled. Payments happen inside
+the sender's *own* banking app.
+
+**Zelle QR codes can only be issued by the recipient's bank.** The payload in a
+real Zelle QR is a Zelle-minted token for an enrolled recipient — not something
+derivable from a phone number. I checked: `enroll.zellepay.com/qr-codes?data=…`
+with an arbitrary payload simply falls through to Zelle's "Find Your Bank" page.
+A fabricated code would strand donors there, which is worse than no code.
+
+**To publish a real Zelle QR:** open the Zelle app, or the bank app holding the
+SACFF account → *Request / My QR code* → share or screenshot it → drop the image
+in and I'll place it in the Zelle card with the right caption.
+
+#### What is there instead
+
+- **Copy buttons** beside the Zelle number and the memo, on both the home page
+  and the ICD page. They copy `2103520159` (digits only, ready to paste into a
+  bank app) and the memo text, then confirm with "Copied". Clipboard API with a
+  `execCommand` fallback for non-HTTPS. This is the closest thing to one-tap
+  Zelle that any site can offer.
+- **`assets/qr-give.svg` / `.png`** — a QR to `https://sacff.org/#give`, shown in
+  a "Share this page" panel and captioned plainly, *including* a line saying it is
+  **not** a Zelle payment code. Error correction level H (~30% damage tolerance),
+  so it survives printing. Decode-verified, not just generated.
+- Use the **SVG** for print (infinitely scalable); the PNG is for slides and
+  messaging apps.
+
+> ⚠️ **The QR points at `sacff.org`, which still serves the old "TCFC-2023"
+> page.** Until this site is deployed there, anyone scanning it lands on the old
+> site. Deploy first, then print.
+
 ### How the PayPal integration works
 
 The old page created a **fixed-amount** order for a conference fee. Giving needs

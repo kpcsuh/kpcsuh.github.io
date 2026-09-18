@@ -434,6 +434,51 @@
     }
   }
 
+  /* ========================= copy-to-clipboard =========================
+     Zelle has no public deep link, so a donor always types the recipient and
+     memo into their own banking app by hand. These buttons remove that typing
+     (and the mistyping) — the closest thing to a one-tap Zelle payment that
+     any website can actually offer.
+     ==================================================================== */
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    var original = btn.textContent;
+    var timer;
+
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy') || '';
+
+      done(copy(text));
+
+      function done(ok) {
+        clearTimeout(timer);
+        btn.textContent = ok ? 'Copied' : 'Press ⌘C';
+        btn.classList.toggle('is-copied', ok);
+        timer = setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('is-copied');
+        }, 2000);
+      }
+    });
+  });
+
+  /** Clipboard API where available, with a selection fallback for old/HTTP. */
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text);
+      return true;
+    }
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
   /* ------------------------------------------- newsletter (still a stub) */
   document.querySelectorAll('.subscribe').forEach(function (form) {
     var status = form.parentNode.querySelector('.form-status');

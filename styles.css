@@ -608,6 +608,22 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: var(--gold-050); border: 1px solid var(--gold-200);
   font-size: 1rem; line-height: 1.35;
 }
+/* Copy buttons — Zelle has no deep link, so the donor types these into their own
+   bank app. Copying removes the mistyping. */
+.copy-btn {
+  margin-left: 9px; padding: 3px 9px;
+  border: 1px solid var(--gold-200); border-radius: 100px;
+  background: var(--paper); color: var(--gold-600);
+  font: 600 .64rem/1.5 var(--sans); letter-spacing: .08em; text-transform: uppercase;
+  cursor: pointer; vertical-align: middle;
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+.copy-btn:hover { background: var(--gold-050); border-color: var(--gold); }
+.copy-btn.is-copied {
+  background: #e7f3ea; border-color: #86c39a; color: #14683a;
+}
+.give-memo .copy-btn { background: #fffdf7; }
+
 .give-detail a { text-decoration: none; color: inherit; }
 .give-detail a:hover { color: var(--gold-600); text-decoration: underline; }
 
@@ -666,6 +682,25 @@ ul { margin: 0; padding: 0; list-style: none; }
 .paypal-placeholder {
   padding: 15px; border: 1px dashed var(--line); border-radius: var(--r-sm);
   font-size: .84rem; color: var(--muted); text-align: center;
+}
+
+.giving-share {
+  display: flex; align-items: center; gap: 24px;
+  max-width: 76ch; margin: 34px auto 0; padding: 22px 24px;
+  background: var(--cream); border: 1px solid var(--line); border-radius: var(--r-lg);
+}
+.giving-qr {
+  width: 132px; height: 132px; flex: none;
+  background: #fff; padding: 8px; border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+}
+.giving-share-title {
+  font-family: var(--serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 6px;
+}
+.giving-share p { font-size: .86rem; line-height: 1.6; color: var(--muted); }
+/* Two classes, so it outranks `.giving-share p` without !important. */
+.giving-share .giving-share-note {
+  margin-top: 8px; font-size: .78rem; color: #8a6d2f;
 }
 
 .giving-footnote {
@@ -1143,6 +1178,7 @@ button[type="submit"]:disabled { opacity: .62; cursor: progress; transform: none
   .gather-grid { grid-template-columns: repeat(2, 1fr); }
   .about-grid, .contact-grid, .prayer-grid { grid-template-columns: 1fr; gap: 32px; }
   .giving-grid { grid-template-columns: 1fr; }
+  .giving-share { flex-direction: column; text-align: center; gap: 18px; }
   .give-card--wide { order: -1; }   /* card giving first once stacked */
   .hero-script { display: none; }
   .hero-inner { min-height: 470px; }
