@@ -423,15 +423,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .featured-meta .ico { font-size: .95rem; color: var(--navy-soft); opacity: .8; margin-top: .1em; }
 
+/* Both actions are buttons: "All the details" is the primary one — the whole
+   point of the card is to send people to the ICD page — with RSVP outlined
+   beside it as the secondary. Left-aligned and adjacent, so the pair reads as
+   primary-then-secondary rather than sitting at opposite ends of the card. */
 .featured-actions {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 14px; flex-wrap: wrap; margin-top: 15px;
+  display: flex; align-items: center;
+  gap: 12px; flex-wrap: wrap; margin-top: 17px;
 }
-.featured-cta {
-  font-size: .84rem; font-weight: 600; color: var(--navy-soft); text-decoration: none;
-}
-.featured-cta:hover { color: var(--gold-600); text-decoration: underline; }
-.featured-rsvp { padding: .6em 1.15em; font-size: .84rem; }
+.featured-cta,
+.featured-rsvp { padding: .62em 1.2em; font-size: .84rem; }
 
 .event-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .event-card {
@@ -508,6 +509,41 @@ ul { margin: 0; padding: 0; list-style: none; }
 .video-cap em { display: block; font-style: normal; font-size: .9rem; color: #dce4ef; margin-top: 2px; }
 .video-cap small { display: block; margin-top: 5px; font-size: .74rem; color: #b9c6d8; }
 .video-cap i { font-style: normal; padding: 0 .3em; }
+
+/* ------------------------------------------------------- play badge -----
+   These cards genuinely open a video now, so the play symbol is back. It was
+   removed when the same slots still held ordinary photographs, where it
+   promised something that wasn't there.
+
+   The triangle's bounding box is centred in the 24-unit viewBox (base x=7.5,
+   apex x=16.5) — the common `M8 5v14l11-7z` glyph sits visibly off-centre
+   inside a circle. Decorative, so it stays out of the accessibility tree:
+   an empty pseudo-element with no pointer target of its own. */
+.video::before,
+.clip-thumb::before {
+  content: ""; position: absolute; left: 50%; top: 50%; z-index: 3;
+  transform: translate(-50%, -50%);
+  width: 62px; height: 62px; border-radius: 50%;
+  background: rgba(255, 255, 255, .93)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230d2b56'%3E%3Cpath d='M7.5 5.5v13L16.5 12z'/%3E%3C/svg%3E")
+    no-repeat center / 42%;
+  box-shadow: 0 6px 20px rgba(4, 12, 26, .4);
+  transition: transform .25s ease, background-color .25s ease;
+  pointer-events: none;
+}
+.clip-thumb::before { width: 38px; height: 38px; box-shadow: 0 4px 12px rgba(4, 12, 26, .35); }
+
+.video:hover::before,
+.clip:hover .clip-thumb::before {
+  background-color: #fff;
+  transform: translate(-50%, -50%) scale(1.09);
+}
+/* Keyboard parity: the badge reacts to focus as well as hover. */
+.video:focus-visible::before,
+.clip:focus-visible .clip-thumb::before {
+  background-color: #fff;
+  transform: translate(-50%, -50%) scale(1.09);
+}
 
 /* Two-up: there are four clips under the lead, and the media column is the
    narrower half of the band. */
@@ -1296,6 +1332,9 @@ button[type="submit"]:disabled { opacity: .62; cursor: progress; transform: none
   .gather-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-actions .btn { flex: 1 1 100%; }
+  /* Two-up clips are ~160px wide here; 38px covered too much of the frame. */
+  .clip-thumb::before { width: 32px; height: 32px; }
+  .video::before { width: 54px; height: 54px; }
   .brand-text strong { font-size: 1.4rem; }
   .video-row { gap: 14px 12px; }
 }

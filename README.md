@@ -466,10 +466,15 @@ Deliberate choices:
 ### The featured card
 
 It is an `<article>`, **not** a wrapping `<a>`, because it holds two links of its
-own — "All the details →" (to this page) and a gold **RSVP** button (to the
-Google Form) — and an anchor may not contain another anchor. The flyer image is
-also a link to this page, kept out of the tab order with `tabindex="-1"` so
-keyboard users don't hit the same destination twice.
+own — and an anchor may not contain another anchor. The flyer image is also a link
+to this page, kept out of the tab order with `tabindex="-1"` so keyboard users
+don't hit the same destination twice.
+
+Both links are buttons, and the hierarchy is deliberate: **"All the details →" is
+the primary** (gold, `.btn-gold`) because sending people to this page is the point
+of the card, with **RSVP secondary** (outlined, `.btn-ghost`) beside it. They sit
+left-aligned and adjacent rather than at opposite ends of the card, so the pair
+reads as primary-then-secondary. Swap the two classes to reverse it.
 
 `assets/icd-card.*` is cut from the flyer to show only the title block, ribbon,
 chapter, date and strapline — **the programme icons underneath are cropped out**.
@@ -753,6 +758,31 @@ Each card is a plain link that opens YouTube in a new tab. The old site used fiv
 `<iframe>` embeds; this doesn't, for two reasons: five embedded players are a
 heavy page, and they set third-party cookies before a visitor has chosen to watch
 anything.
+
+### The play badge
+
+Every card carries a white circle with a navy triangle. It was removed once, back
+when these slots still held ordinary photographs — a play symbol over a still
+photo promises something that isn't there. Now that the cards really do open
+videos, it belongs, and it's the cue that tells a visitor these are not just
+pictures.
+
+It's drawn entirely in CSS: `.video::before` and `.clip-thumb::before`, with the
+triangle as an inline SVG data URI. No extra requests and no markup, so it can't
+fall out of sync with the cards.
+
+Two details worth keeping if you restyle it:
+
+- The triangle's **bounding box is centred** in the 24-unit viewBox (base at
+  x=7.5, apex at x=16.5). The widely copied `M8 5v14l11-7z` glyph spans x=8 to
+  x=19, which sits visibly right of centre inside a circle.
+- It's `pointer-events: none` and an empty pseudo-element, so it adds nothing to
+  the accessibility tree and never intercepts the click meant for the card.
+
+Sizes are 62px on the lead and 38px on a clip, dropping to 54 / 32 below 560px
+where a two-up clip is only ~160px wide and the larger badge covered too much of
+the frame. Hover and `:focus-visible` both scale it to 1.09 and turn it fully
+opaque, so keyboard users get the same feedback as mouse users.
 
 ### Titles are the real ones
 
