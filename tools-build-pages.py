@@ -13,17 +13,23 @@ header = re.search(r'<!-- =+ HEADER =+ -->\n(<header.*?</header>)', s, re.S).gro
 footer = re.search(r'<!-- =+ FOOTER =+ -->\n(<footer.*?</footer>)', s, re.S).group(1)
 
 
-def relink(block):
-    """#anchor -> index.html#anchor, and mark the ICD nav link as current."""
+def relink(block, current=None):
+    """#anchor -> index.html#anchor, and mark whichever nav link is this page."""
     block = re.sub(r'href="#(?!top")([a-z-]+)"', r'href="index.html#\1"', block)
     block = block.replace('href="#top"', 'href="index.html"')
     block = block.replace(' class="is-current"', '')
-    block = block.replace('<a class="nav-event" href="icd.html">',
-                          '<a class="nav-event is-current" href="icd.html" aria-current="page">')
+    if current == 'icd':
+        block = block.replace('<a class="nav-event" href="icd.html">',
+                              '<a class="nav-event is-current" href="icd.html" aria-current="page">')
+    elif current == 'gallery':
+        block = block.replace('<a href="gallery.html">',
+                              '<a class="is-current" href="gallery.html" aria-current="page">', 1)
     return block
 
 
-HEADER, FOOTER = relink(header), relink(footer)
+# ICD and its RSVP page both sit under the Indian Christian Day nav item.
+HEADER, FOOTER = relink(header, 'icd'), relink(footer, 'icd')
+GAL_HEADER, GAL_FOOTER = relink(header, 'gallery'), relink(footer, 'gallery')
 
 # --------------------------------------------------------------- shared facts
 VENUE_MAP = ('https://www.google.com/maps/search/?api=1&amp;query='
@@ -450,6 +456,101 @@ rsvp = HEAD.format(
 
 open('rsvp.html', 'w', encoding='utf-8').write(rsvp)
 print(f'wrote rsvp.html  ({len(rsvp)} bytes)')
+
+
+# =============================================================== gallery.html
+import json
+
+photos = json.loads(open('gallery-manifest.json', encoding='utf-8').read())
+
+tiles = '\n'.join(f"""      <li>
+        <button class="shot" type="button" data-i="{i}"
+                aria-label="Open photo {i + 1} of {len(photos)}: {p['alt']}">
+          <picture>
+            <source srcset="assets/gallery/{p['slug']}-t.webp" type="image/webp">
+            <img src="assets/gallery/{p['slug']}-t.jpg"
+                 width="{p['w']}" height="{p['h']}" alt="{p['alt']}"
+                 loading="lazy" decoding="async">
+          </picture>
+        </button>
+      </li>""" for i, p in enumerate(photos))
+
+gallery = HEAD.format(
+    title='Photo Gallery — SACFF, San Antonio',
+    desc=('Photographs of San Antonio Christian Family Fellowship — worship '
+          'services, Bible study, children’s programmes, Christmas, '
+          'picnics and celebrations together.'),
+) + GAL_HEADER + f"""
+
+<main id="main">
+
+<!-- =========================== GALLERY INTRO ========================== -->
+<section class="gal-hero" aria-labelledby="gal-title">
+  <div class="shell gal-hero-inner">
+    <p class="eyebrow">Prayer <i>•</i> Word <i>•</i> Worship <i>•</i> Fellowship</p>
+    <h1 id="gal-title">Photo Gallery</h1>
+    <p class="icd-lede">{len(photos)} photographs of our life together — Saturday
+      services and Bible study, the children's programmes, Christmas in one
+      another's homes, picnics by the river, and the whole fellowship gathered.</p>
+  </div>
+</section>
+
+<!-- ============================== GALLERY ============================= -->
+<section class="gal-band" aria-label="Photographs">
+  <div class="shell">
+    <ul class="gal-grid" id="gal-grid">
+{tiles}
+    </ul>
+    <p class="gal-note">Tap any photograph to see it larger. Use the arrow keys
+      to move between them.</p>
+  </div>
+</section>
+
+<!-- Lightbox. A native <dialog> so Escape, focus trapping and the backdrop all
+     come from the browser rather than hand-rolled JavaScript. -->
+<dialog class="lb" id="lightbox" aria-label="Photo viewer">
+  <button class="lb-close" type="button" data-lb="close" aria-label="Close viewer">&times;</button>
+  <button class="lb-nav lb-prev" type="button" data-lb="prev" aria-label="Previous photo">&#8249;</button>
+  <figure class="lb-figure">
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" type="button" data-lb="next" aria-label="Next photo">&#8250;</button>
+</dialog>
+
+<script id="gallery-data" type="application/json">{json.dumps(
+    [{'slug': p['slug'], 'alt': p['alt'], 'lw': p['lw'], 'lh': p['lh']}
+     for p in photos])}</script>
+""" + TAIL.format(footer=FOOTER)
+
+open('gallery.html', 'w', encoding='utf-8').write(gallery)
+print(f'wrote gallery.html ({len(gallery)} bytes, {len(photos)} photos)')
+
+
+# ===================================================== cache-bust the assets
+# A stale styles.css is the classic "works locally, broken on GitHub Pages"
+# failure: the HTML updates but a CDN or browser keeps serving yesterday's CSS,
+# so new rules silently do nothing. Stamping a content hash into the URL means
+# every change produces a new URL that nothing can have cached.
+import hashlib
+
+def digest(path):
+    return hashlib.sha1(open(path, 'rb').read()).hexdigest()[:10]
+
+stamps = {'styles.css': digest('styles.css'), 'script.js': digest('script.js')}
+print('\ncache-busting stamps:')
+for f, h in stamps.items():
+    print(f'  {f:<12} ?v={h}')
+
+for page in ('index.html', 'icd.html', 'rsvp.html', 'gallery.html'):
+    txt = open(page, encoding='utf-8').read()
+    n = 0
+    for f, h in stamps.items():
+        txt, k = re.subn(r'(?<=["\'])' + re.escape(f) + r'(?:\?v=[0-9a-f]+)?(?=["\'])',
+                         f'{f}?v={h}', txt)
+        n += k
+    open(page, 'w', encoding='utf-8').write(txt)
+    print(f'  stamped {page} ({n} references)')
 print('\nGoogle Form field ids used:')
 for label, fid in [('attend', F_ATTEND), ('details', F_DETAILS),
                    ('count', F_COUNT), ('donate', F_DONATE)]:

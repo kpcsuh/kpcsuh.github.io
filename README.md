@@ -22,6 +22,51 @@ recommended — it matches how it will behave when hosted.)
 Upload the whole folder to any static host — Netlify, Vercel, Cloudflare Pages,
 GitHub Pages, S3, or ordinary shared hosting. There is nothing to compile.
 
+### Run this before every deploy
+
+```bash
+python3 tools-build-pages.py
+```
+
+It regenerates `icd.html` / `rsvp.html` / `gallery.html` **and stamps a content
+hash onto `styles.css` and `script.js`** in all four pages:
+
+```html
+<link rel="stylesheet" href="styles.css?v=fe8d43c39b">
+```
+
+**Why that matters.** "Renders correctly locally, broken once pushed" is almost
+always a stale stylesheet: the HTML updates but the browser or CDN keeps serving
+yesterday's CSS, so the newest rules silently do nothing — the page looks
+half-styled, with the most recently added block unstyled. The hash changes
+whenever the file changes, so the URL changes too and nothing can serve a stale
+copy.
+
+### Deploy the whole folder, not a subset
+
+If you copy files by hand, `styles.css` and `script.js` are the two that matter
+most and the easiest to forget — the HTML will look updated while the styling
+lags behind. Copy everything.
+
+`.nojekyll` at the repo root turns off GitHub Pages' Jekyll processing, so every
+file is published verbatim. Keep it.
+
+`assets/gallery/` is the largest thing here (~14.5 MB, 129 files). It must be
+copied whole, or the gallery shows gaps.
+
+**Safe to omit:** `tools-build-pages.py`, `tools-process-gallery.py`,
+`gallery-manifest.json`, `README.md`, `google-apps-script/`,
+`assets/logo-source.png` (the 2 MB master artwork) and `.claude/`. Everything
+else is served.
+
+### Checking a deploy actually took
+
+```bash
+curl -s https://YOUR-SITE/styles.css | grep -c giving-share    # expect 6, not 0
+```
+
+Zero means the old stylesheet is still being served.
+
 ## Files
 
 | Path | What it is |
@@ -29,9 +74,14 @@ GitHub Pages, S3, or ordinary shared hosting. There is nothing to compile.
 | `index.html` | The home page — every section, in source order |
 | `icd.html` | Indian Christian Day 2026 — its own page (generated) |
 | `rsvp.html` | On-site RSVP form for ICD (generated) |
-| `tools-build-pages.py` | Regenerates `icd.html` and `rsvp.html` — run after changing the header/footer |
+| `gallery.html` | Photo gallery — 43 photos with a lightbox (generated) |
+| `gallery-manifest.json` | The gallery's photo list: slug, dimensions, alt text |
+| `tools-build-pages.py` | Regenerates `icd.html`, `rsvp.html` and `gallery.html` — run after changing the header/footer |
+| `tools-process-gallery.py` | Rebuilds `assets/gallery/` and the manifest from the source photos |
 | `styles.css` | All styling; design tokens live in `:root` at the top |
-| `script.js` | Mobile menu, scroll-spy nav highlight, form handling, footer year |
+| `script.js` | Mobile menu, scroll-spy nav highlight, form handling, gallery lightbox, footer year |
+| `assets/gallery/` | The gallery images — ~14.5 MB, 129 files (see below) |
+| `assets/media/` | YouTube thumbnails for Watch & Listen — 10 files, 367 KB |
 | `assets/*.svg` | Artwork (see below) |
 | `.claude/launch.json` | Dev-server config for the editor's preview pane |
 
@@ -40,10 +90,18 @@ GitHub Pages, S3, or ordinary shared hosting. There is nothing to compile.
 `#top` header · hero · `#gather` (the four monthly pillars) · `#about` · `#founders` ·
 `#events` · `#media` · `#give` (prayer + giving) · `#community` · `#contact` · footer.
 
+`#events` (Upcoming Events) and `#media` (Watch & Listen) share one `.feed`
+band, side by side at 1.52 : 1 with a hairline divider between them, as the
+design has it. They stack below 960 px, where the divider becomes a top border.
+
+Separate pages: `icd.html` (Indian Christian Day 2026), `rsvp.html` (its RSVP
+form) and `gallery.html` (photo gallery).
+
 `#founders` is not in the main navigation (that mirrors the supplied design) but is
 linked from the footer's Quick Links and is directly linkable.
 
-Every navigation link resolves to a section on this page. The design you supplied
+Every navigation link resolves to either a section on this page or one of the
+separate pages above. The design you supplied
 showed the home page only; **About** and **Contact** sections were added so that
 the full navigation works — remove them from the nav and the page if you'd rather
 they become separate pages later.
@@ -55,14 +113,17 @@ Everything is plain HTML — edit `index.html` directly.
 - **Gathering times** — the four `<article class="pillar">` blocks.
 - **Events** — the three `<article class="event-card">` blocks. Each has a
   `date-chip` (month + day), a `meta` list (date, time, location) and a button.
-- **Videos** — the `video--lead` link plus three `clip` links. Point each `href`
-  at the real YouTube/Vimeo URL.
+- **Videos** — the `video--lead` link plus four `clip` links in `#media`, all
+  pointing at real YouTube URLs. See *Watch & Listen videos* below before
+  swapping one, since each has a matching thumbnail in `assets/media/`.
 - **Community strip** — the `tile-row` list items.
 - **Footer credit** — the `<p class="credit">` line in the footer bottom bar
-  ("Designed & created by Prasad & Murali").
+  ("Designed & created by Murali Swamidass & Prasad Kakarlamudi"). It lives in
+  `index.html`; `icd.html` and `rsvp.html` inherit it when you run
+  `tools-build-pages.py`.
 - **Founders** — the two `<article class="founder">` blocks in `#founders`.
-- **Dates are placeholders** copied from the supplied design (Nov–Dec 2025) and are
-  now in the past. Update them before going live.
+- **Recurring event dates need no editing** — they recompute on load. See
+  *Upcoming Events dates update themselves* below.
 
 ## Where the content came from
 
@@ -111,7 +172,7 @@ Correct it before this goes public:
 | About card | Founded **2001** | ✅ confirmed (the old site's "20th Anniversary" corroborates) |
 | About card | **120+** families | ❓ invented — needs a real figure |
 | About card | **36** gatherings / yr | ❓ inferred: 3 services × 12 months |
-| Media section | Sermon titles and dates | ❓ invented — replace with real videos from the YouTube channel |
+| Media section | Five videos | ✅ real — copied from the old site's *SACFF Videos* block |
 | Community strip | 7 category tiles | ❓ invented categories |
 | Founder bios | See below | ⚠️ deliberately general |
 
@@ -189,25 +250,51 @@ Each is served as WebP with a JPEG fallback via `<picture>`.
 | Slot | File stem | Aspect | Photo |
 | --- | --- | --- | --- |
 | Hero | `photo-hero` | 14:9 | Fellowship on stage before the lit cross (from `IMG_7070.heic`, 24 MP) |
-| Event — Worship Service | `photo-worship-service` | 16:11 | Children worshipping, hands raised |
+| Event — Worship Service | `photo-worship-raised` | 16:11 | Children and members worshipping, hands raised (from `scaff-pics-7.jpeg`) |
 | Event — Intercessory Prayers | `photo-intercessory` | 16:11 | Men praying in a home |
 | Event — Bible Study | `photo-bible-study` | 16:11 | Study around the tables |
-| Media — lead sermon | `photo-sermon` | 16:9 | Fellowship on stage before the lit cross (from `IMG_7070.heic`) |
-| Clip — Praise & Worship | `photo-clip-praise` | 16:10 | Choir on stage |
-| Clip — Bible Study | `photo-clip-bible` | 16:10 | Scripture discussion |
-| Clip — Special Program | `photo-clip-special` | 16:10 | Children with awards |
+| Watch & Listen ×5 | `media/yt-*` | 16:9 | YouTube thumbnails — see *Watch & Listen videos* |
 | Community ×7 | `photo-community-*` | 4:3 | families, youth, children, young, outreach, fellowship, special |
 | Prayer / giving band | `photo-prayer-band` | ~4:3 | Prayer circle (fades off the left edge) |
 | Founders ×2 | `founder-*` | 1:1 | Shown 120px round |
 | Tab icon | `favicon.svg` | square | The gold cross |
 
-**Two notes for whoever swaps a photo later:**
+**Three notes for whoever swaps a photo later:**
 
 1. Keep the aspect ratio in the table, or re-crop — the layout reserves the box.
 2. If you change the pixel size, **update the `width`/`height` attributes on the
    `<img>` too**. Those attributes are what stop the page jumping as images load,
    but on the community tiles they also override `aspect-ratio`, which is why
    `.tile-row img` carries an explicit `height: auto`.
+3. **Give the new file a new name** rather than overwriting the old one. Image
+   URLs carry no content hash (only `styles.css` and `script.js` do), so a
+   replaced file at the same path can keep serving from cache.
+
+### ⚠️ Check a new photo isn't a near-duplicate
+
+Twice now a photo has turned out to be the same moment as another on the page —
+a different frame from the same burst, so byte-comparison and file size both say
+"different". **Byte-distinctness is the wrong test.** Compare perceptually:
+
+```bash
+python3 - <<'EOF'
+from PIL import Image
+import pathlib, re, itertools
+def ahash(p, n=16):
+    im = Image.open(p).convert('L').resize((n, n), Image.LANCZOS)
+    px = list(im.getdata()); avg = sum(px)/len(px)
+    return sum(1 << i for i, v in enumerate(px) if v > avg)
+h = pathlib.Path('index.html').read_text()
+refs = sorted({m for m in re.findall(r'src="(assets/[^"]+\.jpg)"', h)})
+hs = {r: ahash(r) for r in refs}
+for a, b in itertools.combinations(refs, 2):
+    d = bin(hs[a] ^ hs[b]).count('1')
+    if d < 60: print(d, a, b)
+EOF
+```
+
+Under ~60 of 256 is worth looking at by eye; the number alone both misses
+same-scene frames and flags unrelated photos, so always open the pair.
 
 ### The hero
 
@@ -235,7 +322,71 @@ wide hall group, and two further outdoor group shots). They're still in
 These images show identifiable adults and **children** on a public page that
 search engines will index. Most congregations handle this with a simple photo
 release, and a way for a family to ask for a picture to be removed. Worth having
-that in place if you don't already.
+that in place if you don't already. This matters more now that `gallery.html`
+publishes 43 photos rather than a handful.
+
+## Photo gallery (`gallery.html`)
+
+43 photos, linked from the main navigation (**Gallery**) and from a
+"See all 43 photos →" button under the Our Community strip on the home page.
+A masonry grid of thumbnails; clicking one opens a lightbox.
+
+### Adding or removing photos
+
+Don't edit `gallery.html` by hand — it's generated. Instead:
+
+1. Put the new photo in `~/Downloads` and add it to the source list in
+   `tools-process-gallery.py` (`unpack()`, `PREV` or `EXTRA`).
+2. Add a line to that file's `CAPTIONS` dict. **Write a real caption** — it
+   becomes the photo's alt text and the lightbox caption. Anything missing falls
+   back to a generic string, and the script prints which slugs need one.
+3. Run both scripts:
+
+```bash
+python3 tools-process-gallery.py && python3 tools-build-pages.py
+```
+
+To drop a photo, add its source stem to `SKIP` and re-run.
+
+### What the processing script produces
+
+For each photo, three files in `assets/gallery/`:
+
+| File | Purpose |
+| --- | --- |
+| `<slug>-t.webp` | Thumbnail for the grid (long edge 620) |
+| `<slug>-t.jpg` | JPEG fallback, so the grid is never blank |
+| `<slug>.jpg` | The larger image (long edge 1500) the lightbox loads on demand |
+
+Thumbnails are all that load with the page; the large JPEG is fetched only when
+a photo is opened, and the next one is pre-loaded so paging feels instant. Total
+on disk is about 14.5 MB across 129 files.
+
+### Five source photos are deliberately skipped
+
+Listed in `SKIP` in `tools-process-gallery.py`, with the reason beside each. Four
+were the same shot supplied twice or a burst of near-identical frames — found by
+perceptual hashing all 52 source images, not by eye. The fifth,
+`scaff-pics-9`, has a stage banner reading **TCFC-2023**, which you asked to keep
+off the site.
+
+### The lightbox
+
+A native `<dialog>`, so Escape, focus trapping and the backdrop are the
+browser's work rather than hand-rolled JavaScript. Arrow keys and the ‹ › buttons
+page through, wrapping at both ends.
+
+Two things in `script.js` are deliberate and worth not "tidying away":
+
+- **`close` is not used.** Some browser engines never fire `<dialog>`'s `close`
+  event — verified in testing here, where a fresh probe listener recorded zero
+  events. Cleanup therefore runs from an explicit `hide()`, with a `cancel`
+  listener covering the Escape key.
+- **`.lb-open` on `<html>`.** `showModal()` dims the page but does not stop it
+  scrolling underneath, which is most obvious swiping on a phone. The class
+  applies `overflow: hidden` while the viewer is open. (`overflow: hidden` blocks
+  user gestures but still allows scripted `scrollTo` — so test it with a real
+  scroll, not `window.scrollBy`.)
 
 ## Addresses on the page
 
@@ -558,9 +709,79 @@ Live and verified:
 Both open in a new tab with `rel="noopener noreferrer"`. The YouTube channel is
 also the target of "View All Videos" in the Watch & Listen section.
 
-**Still placeholders:** the WhatsApp and Instagram icons in the footer point at
-on-page anchors (`#contact`, `#community`). Either give them real URLs or delete
-those two `<li>` elements — dead social icons read worse than no icon at all.
+The footer shows **only these two**. WhatsApp and Instagram icons were removed —
+they had never pointed anywhere real, and their `.soc--wa` / `.soc--ig` colour
+rules went with them. To add a platform back, copy one of the two `<li>` blocks
+in the footer's `.social` list and add a matching background colour rule.
+
+### ⚠️ SACFF has two YouTube channels
+
+Found while copying the videos across:
+
+| Channel | Handle | Name | Where it appears |
+| --- | --- | --- | --- |
+| `UCxdEEFNj3PwbUZogp7BnUKg` | `@SACFF-Media` | San Antonio Christian Family Fellowship (SACFF) | This site (you supplied it) |
+| `UCvswR748YJ-wWTnKdMMoxZA` | `@SacffOrgTX` | SACFF | The old site's YouTube icon and "More SACFF Videos" |
+
+Both are live. This site points at `@SACFF-Media` throughout, as you asked. Worth
+deciding which is the channel going forward — and if it's `@SACFF-Media`, the
+older one's videos are worth moving or re-linking, because `@SacffOrgTX` is where
+the 2014 Christmas video still lives.
+
+## Watch & Listen videos
+
+The five videos in `#media` were copied from the old site's *SACFF Videos* block
+(`home.html` in `~/Documents/GitHub/sacff`), in that page's original order.
+
+| # | Title | Video ID | Channel |
+| --- | --- | --- | --- |
+| 1 (lead) | Yesayya Needhu Prema | `WP5xDrmBC6c` | Way To Life Radio |
+| 2 | Nee Prema Madhuram | `hG4_xAEX2iM` | Way To Life Radio |
+| 3 | CFC 2021 — Praise & Worship, Part 1 | `x5s26Ib4O_4` | Joseph Sundeep |
+| 4 | CFC 2021 — Praise & Worship, Part 3 | `pOrfAg5AGX8` | Joseph Sundeep |
+| 5 | SACFF Christmas 2014, Part 3 | `d5xeRny7seE` | SACFF (`@SacffOrgTX`) |
+
+All five were confirmed still playable. Note that only #5 is on an SACFF channel:
+1 and 2 are Way To Life Radio productions made *in association with SACFF* (and
+#2 credits Dr. Ravindranath Duggirala for the tune), and 3 and 4 are on a member's
+personal channel. That's how the old site had it — but it means SACFF doesn't
+control four of the five, so any of them could disappear without warning.
+
+### Links out, not embedded players
+
+Each card is a plain link that opens YouTube in a new tab. The old site used five
+`<iframe>` embeds; this doesn't, for two reasons: five embedded players are a
+heavy page, and they set third-party cookies before a visitor has chosen to watch
+anything.
+
+### Titles are the real ones
+
+The old page gave every iframe the same generic `title="YouTube video player"`,
+so there was no caption text to copy. The titles here were read from YouTube's
+public oEmbed endpoint, then shortened for the cards — not invented. To check one:
+
+```bash
+curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=VIDEO_ID&format=json"
+```
+
+### Changing the videos
+
+Thumbnails are served from `assets/media/` rather than hotlinked from YouTube, so
+swapping a video is two steps: change the `href` and the `<picture>` in
+`index.html`, and add the new thumbnail. To fetch and size one:
+
+```bash
+curl -s -o new.jpg "https://i.ytimg.com/vi/VIDEO_ID/maxresdefault.jpg"
+```
+
+Then resize to 1000×562 for the lead or 560×315 for a clip, and save as both
+`.webp` and `.jpg`. All five source thumbnails were available at full 1280×720.
+
+Five images are no longer referenced by any page: the four media placeholders
+(`assets/photo-sermon.*`, `assets/photo-clip-praise.*`, `assets/photo-clip-bible.*`,
+`assets/photo-clip-special.*`) and `assets/photo-worship-service.*`, which was the
+frame from the hero's burst. They're still on disk — delete them for ~300 KB back.
+`photo-worship-service` in particular is worth deleting rather than reusing.
 
 ## Wiring up the forms
 
@@ -609,3 +830,23 @@ calendar URLs.
   at 1100 / 960 / 720 / 560px. No horizontal scrolling at 390px.
 - Works without JavaScript — the menu is the only feature that needs it, and every
   nav target is reachable by scrolling.
+
+### Tapping the logo returns to the top
+
+`script.js` intercepts every `href="#top"` link (the logo, the nav's **Home**, and
+the footer's **Home**) and scrolls the window to 0 itself.
+
+**Why it can't just be an anchor.** `#top` is the `<header>`, which is
+`position: sticky` — it is pinned to the viewport and therefore never out of
+view, so the browser concludes a fragment jump barely needs to move. Measured
+from the foot of the page, tapping the logo scrolled 88px — exactly the
+`scroll-padding-top` — and stopped. This matters most on a phone, where the nav
+is behind the hamburger and the crest is the obvious way home.
+
+The handler also closes an open mobile menu and strips `#top` from the address
+bar. Scrolling honours `prefers-reduced-motion`.
+
+Related: the scroll-spy watches the **hero** on behalf of the Home link, not
+`#top`. The header sits at the very top of the document and can never cross the
+observer's mid-viewport band, so before this Home stayed unlit after a return to
+the top and the nav went on highlighting whichever section you had last passed.

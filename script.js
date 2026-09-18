@@ -43,6 +43,28 @@
     toggle.setAttribute('aria-label', 'Open menu');
   }
 
+  /* --------------------------------------------- back to top of the page
+     `#top` is the sticky header, which is pinned to the viewport and so is
+     never out of view. A plain fragment jump to it therefore barely moves:
+     from the foot of the page the logo scrolled 88px — the scroll-padding —
+     and stopped. These links scroll the window itself instead.
+
+     This is what the logo does on mobile, where the nav is behind the
+     hamburger and the crest is the obvious way home. */
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href="#top"]');
+    if (!a) return;
+    e.preventDefault();
+    closeNav();
+    window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    // Don't leave "#top" in the address bar for a position that is just 0.
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  });
+
   /* ------------------------------------- highlight the section in view */
   var links = Array.prototype.slice.call(
     document.querySelectorAll('.site-nav a[href^="#"]')
@@ -51,11 +73,17 @@
     .map(function (a) { return document.querySelector(a.getAttribute('href')); })
     .filter(Boolean);
 
+  /* The Home link points at #top — the sticky header — which sits at the very
+     top of the document and so can never cross the mid-viewport band below.
+     Watching the hero instead is what makes Home light up again when someone
+     returns to the top (by logo, by nav, or by scrolling). */
+  var hero = document.querySelector('.hero');
+
   if ('IntersectionObserver' in window && sections.length) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        var id = '#' + entry.target.id;
+        var id = entry.target === hero ? '#top' : '#' + entry.target.id;
         links.forEach(function (a) {
           a.classList.toggle('is-current', a.getAttribute('href') === id);
         });
@@ -63,6 +91,7 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
 
     sections.forEach(function (s) { observer.observe(s); });
+    if (hero) observer.observe(hero);
   }
 
   /* ===================== recurring event dates =========================
@@ -477,6 +506,89 @@
     try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
     document.body.removeChild(ta);
     return ok;
+  }
+
+  /* ============================== gallery ==============================
+     A native <dialog> does the heavy lifting — Escape to close, focus
+     trapping and the backdrop are the browser's job, not ours. Only the
+     large JPEG for the photo being viewed is ever fetched.
+     ==================================================================== */
+  var galData = document.getElementById('gallery-data');
+  var lb = document.getElementById('lightbox');
+
+  if (galData && lb && typeof lb.showModal === 'function') {
+    var shots = JSON.parse(galData.textContent);
+    var lbImg = document.getElementById('lb-img');
+    var lbCap = document.getElementById('lb-cap');
+    var at = 0;
+    var opener = null;
+
+    function show(i) {
+      at = (i + shots.length) % shots.length;      // wraps both ways
+      var p = shots[at];
+      lbImg.src = 'assets/gallery/' + p.slug + '.jpg';
+      lbImg.width = p.lw;
+      lbImg.height = p.lh;
+      lbImg.alt = p.alt;
+      lbCap.textContent = p.alt + '  (' + (at + 1) + ' of ' + shots.length + ')';
+      preload(at + 1);                             // next one feels instant
+    }
+
+    function preload(i) {
+      var p = shots[(i + shots.length) % shots.length];
+      var im = new Image();
+      im.src = 'assets/gallery/' + p.slug + '.jpg';
+    }
+
+    document.getElementById('gal-grid').addEventListener('click', function (e) {
+      var btn = e.target.closest('.shot');
+      if (!btn) return;
+      opener = btn;
+      show(parseInt(btn.getAttribute('data-i'), 10));
+      lb.showModal();
+      lock(true);
+    });
+
+    // showModal() dims the page but does not stop it scrolling underneath, so
+    // a swipe over the backdrop would otherwise move the grid behind the photo.
+    function lock(on) {
+      document.documentElement.classList.toggle('lb-open', on);
+    }
+
+    // Not every engine fires <dialog>'s `close` event (this was verified in
+    // testing), so cleanup runs from an explicit hide() rather than relying on
+    // it. `cancel` covers the Escape key, which the browser handles itself.
+    function hide() {
+      lb.close();
+      lbImg.removeAttribute('src');   // drop the large JPEG
+      lock(false);
+      if (opener) opener.focus();     // most engines restore focus anyway
+    }
+
+    lb.addEventListener('click', function (e) {
+      var act = e.target.closest('[data-lb]');
+      if (act) {
+        var a = act.getAttribute('data-lb');
+        if (a === 'close') hide();
+        if (a === 'prev') show(at - 1);
+        if (a === 'next') show(at + 1);
+        return;
+      }
+      // Clicking the dark surround closes; clicking the photo does not.
+      if (!e.target.closest('.lb-figure')) hide();
+    });
+
+    lb.addEventListener('cancel', function () {
+      lbImg.removeAttribute('src');
+      lock(false);
+      if (opener) opener.focus();
+    });
+
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+    });
+
   }
 
   /* ------------------------------------------- newsletter (still a stub) */
