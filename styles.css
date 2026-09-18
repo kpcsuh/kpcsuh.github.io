@@ -120,8 +120,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   min-height: 72px;
 }
 
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--gold); }
-.brand-mark { width: 42px; height: 40px; flex: none; }
+.brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--gold); }
+/* The crest carries its own wordmark, but it's unreadable at header scale —
+   it reads as an emblem, so the text beside it still does the naming. */
+.brand-mark-wrap { display: flex; flex: none; }
+.brand-mark { width: auto; height: 54px; }
 .brand-text { display: block; line-height: 1.12; }
 .brand-text strong {
   display: block; font-family: var(--serif); font-size: 1.62rem;
@@ -242,6 +245,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 .pillar h3 { font-size: 1.22rem; color: var(--navy); margin-bottom: 10px; }
 .pillar-when { font-size: .95rem; color: #3c4756; }
 .pillar-time { font-size: .95rem; font-weight: 600; color: #3c4756; margin-top: 2px; }
+.pillar-where {
+  margin-top: 5px; font-size: .74rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--gold-600);
+}
 .pillar-note {
   margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0ebe0;
   font-size: .875rem; line-height: 1.55; color: var(--muted);
@@ -269,6 +276,16 @@ ul { margin: 0; padding: 0; list-style: none; }
 .about { background: var(--paper); padding: 66px 0; border-block: 1px solid var(--line); }
 .about-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 48px; align-items: start; }
 .about-grid > div > p + p { margin-top: 14px; color: var(--muted); }
+.mission-label {
+  margin-top: 18px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+.mission {
+  margin-top: 10px; padding-left: 18px;
+  border-left: 3px solid var(--gold);
+  font-family: var(--serif); font-size: 1.16rem; line-height: 1.5; color: var(--navy);
+}
 .about-points { margin-top: 22px; display: grid; gap: 12px; }
 .about-points li {
   position: relative; padding-left: 30px; font-size: .95rem; color: #3c4756;
@@ -305,6 +322,52 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin: 4px 0 0; font-family: var(--serif); font-size: 1.5rem; color: #fff;
 }
 
+/* ---------------------------------------------------------------- founders */
+.founders {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 60px 0 64px;
+}
+.founders-head { max-width: 58ch; margin: 0 auto 38px; text-align: center; }
+.founders-head .lede { margin-top: 12px; }
+
+.founder-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  max-width: 940px; margin-inline: auto;
+}
+.founder {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 32px 30px 30px; text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.founder:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.founder-photo {
+  width: 120px; height: 120px; margin: 0 auto 18px;
+  border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--gold), 0 8px 20px rgba(11, 37, 71, .16);
+}
+.founder h3 { font-size: 1.16rem; color: var(--navy); }
+.founder-role {
+  margin-top: 6px;
+  font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+.founder-bio {
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0ebe0;
+  font-size: .92rem; line-height: 1.65; color: var(--muted); text-align: left;
+}
+
+.founders-verse { margin: 36px auto 0; padding: 0; text-align: center; }
+.founders-verse p {
+  font-family: var(--serif); font-style: italic; font-size: 1.12rem; color: var(--navy);
+}
+.founders-verse cite {
+  display: block; margin-top: 8px; font-style: normal;
+  font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+
 /* ------------------------------------------------------- events + media */
 .feed { padding: 56px 0 60px; }
 .feed-grid { display: grid; grid-template-columns: 1.52fr 1fr; gap: 44px; }
@@ -337,13 +400,30 @@ ul { margin: 0; padding: 0; list-style: none; }
 .date-chip span { display: block; font-size: .66rem; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
 .date-chip strong { display: block; margin-top: 3px; font-family: var(--serif); font-size: 1.32rem; }
 
+/* Recurrence badge — which Saturday of the month this service falls on. */
+.event-tag {
+  position: absolute; top: 10px; right: 10px;
+  padding: 4px 9px; border-radius: 100px;
+  background: rgba(7, 26, 54, .82); color: var(--gold-200);
+  font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  backdrop-filter: blur(3px);
+}
 .event-body { display: flex; flex-direction: column; flex: 1; padding: 16px 16px 18px; }
+.event-note {
+  margin: 12px 0 18px; padding-top: 12px; border-top: 1px solid #f0ebe0;
+  font-size: .8rem; line-height: 1.55; color: var(--muted);
+}
+.event-footnote {
+  margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: .86rem; line-height: 1.6; color: var(--muted); text-align: center;
+}
 .event-body h3 { font-size: 1.08rem; color: var(--navy); }
 .meta { margin: 11px 0 0; display: grid; gap: 7px; font-size: .8rem; color: var(--muted); }
 .meta li { display: flex; align-items: center; gap: 7px; }
 .meta .ico { font-size: .95rem; color: var(--navy-soft); opacity: .8; }
+/* `auto` bottom-aligns the button across cards of differing text length;
+   the note carries the gap so the two rules don't fight over margin-top. */
 .event-body .btn { margin-top: auto; }
-.event-body .btn-navy { margin-top: 18px; }
 
 /* --------------------------------------------------------------- videos */
 .video {
@@ -427,6 +507,170 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .band-verse cite { display: block; margin-top: 8px; font-style: normal; font-size: .82rem; color: var(--muted); }
 
+/* ------------------------------------------------------------------ giving */
+.giving { background: var(--paper); padding: 58px 0 62px; border-bottom: 1px solid var(--line); }
+.giving-head { max-width: 62ch; margin-bottom: 34px; }
+
+.giving-grid {
+  display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 20px; align-items: start;
+}
+.give-card {
+  position: relative;
+  background: var(--cream); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 26px 24px 24px; height: 100%;
+}
+.give-card--wide { background: var(--paper); box-shadow: var(--shadow); }
+.give-card h3 { font-size: 1.22rem; color: var(--navy); }
+.give-badge {
+  position: absolute; top: 18px; right: 18px;
+  padding: 3px 9px; border-radius: 100px;
+  background: var(--gold-050); border: 1px solid var(--gold-200);
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+.give-lead { margin-top: 10px; font-size: .92rem; line-height: 1.6; color: #3c4756; }
+
+.give-detail {
+  margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid #e2d9c6;
+  display: grid; gap: 10px;
+}
+.give-detail div { margin: 0; }
+.give-detail dt {
+  font-size: .66rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+.give-detail dd {
+  margin: 3px 0 0; font-family: var(--serif); font-size: 1.12rem; color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+/* The memo is text a donor copies into their banking app, so it's set apart. */
+.give-detail dd.give-memo {
+  display: inline-block; padding: 5px 11px; border-radius: var(--r-sm);
+  background: var(--gold-050); border: 1px solid var(--gold-200);
+  font-size: 1rem; line-height: 1.35;
+}
+.give-detail a { text-decoration: none; color: inherit; }
+.give-detail a:hover { color: var(--gold-600); text-decoration: underline; }
+
+.give-address {
+  margin: 18px 0 0; padding: 14px 16px;
+  background: var(--paper); border: 1px dashed #d8cdb4; border-radius: var(--r-sm);
+  font-family: var(--serif); font-style: normal; font-size: 1.02rem;
+  line-height: 1.55; color: var(--navy);
+}
+.give-note { margin-top: 14px; font-size: .8rem; line-height: 1.55; color: var(--muted); }
+.give-note strong { color: var(--navy); }
+
+/* amount chooser */
+.give-amount { border: 0; margin: 20px 0 0; padding: 0; }
+.give-amount legend {
+  padding: 0; margin-bottom: 10px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+.amount-presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.amount-presets button {
+  padding: 11px 4px; border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: #fcfaf6; color: var(--navy);
+  font: 600 .95rem var(--sans); cursor: pointer;
+  transition: border-color .16s ease, background-color .16s ease, color .16s ease;
+}
+.amount-presets button:hover { border-color: var(--gold); background: var(--gold-050); }
+.amount-presets button.is-active {
+  background: var(--navy); border-color: var(--navy); color: #fff;
+}
+.amount-custom { margin-top: 14px; }
+.amount-custom label {
+  display: block; font-size: .78rem; font-weight: 600; color: var(--navy); margin-bottom: 6px;
+}
+.amount-input { display: flex; align-items: stretch; }
+.amount-input span {
+  display: grid; place-items: center; padding: 0 13px;
+  background: var(--cream-deep); border: 1px solid var(--line); border-right: 0;
+  border-radius: var(--r-sm) 0 0 var(--r-sm);
+  font-weight: 600; color: var(--navy);
+}
+.amount-input input {
+  flex: 1; min-width: 0; padding: 11px 13px;
+  font: 600 1.02rem var(--sans); color: var(--ink);
+  background: #fcfaf6; border: 1px solid var(--line); border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-variant-numeric: tabular-nums;
+}
+.amount-input input:focus {
+  outline: none; border-color: var(--gold); background: #fff;
+  box-shadow: 0 0 0 3px rgba(191, 150, 70, .16);
+}
+.amount-hint { margin-top: 6px; font-size: .74rem; color: var(--muted); }
+
+.paypal-buttons { margin-top: 20px; min-height: 52px; }
+.paypal-placeholder {
+  padding: 15px; border: 1px dashed var(--line); border-radius: var(--r-sm);
+  font-size: .84rem; color: var(--muted); text-align: center;
+}
+
+.giving-footnote {
+  display: flex; gap: 11px; align-items: flex-start;
+  max-width: 76ch; margin: 30px auto 0; padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: .82rem; line-height: 1.6; color: var(--muted);
+}
+.giving-footnote .ico { font-size: 1.25rem; color: var(--gold-600); flex: none; }
+
+/* ----------------------------------------------------------- prayer request */
+.prayer {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+  border-bottom: 1px solid var(--line);
+  padding: 58px 0 62px;
+}
+.prayer-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: start; }
+
+.prayer-verse { margin: 24px 0 0; padding: 0 0 0 18px; border-left: 3px solid var(--gold); }
+.prayer-verse p {
+  font-family: var(--serif); font-style: italic; font-size: 1.06rem;
+  line-height: 1.55; color: var(--navy);
+}
+.prayer-verse cite {
+  display: block; margin-top: 8px; font-style: normal;
+  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.prayer-privacy {
+  display: flex; gap: 11px; margin-top: 26px; padding-top: 20px;
+  border-top: 1px solid #e2d9c6;
+  font-size: .85rem; line-height: 1.6; color: var(--muted);
+}
+.prayer-privacy .ico { font-size: 1.3rem; color: var(--gold-600); flex: none; margin-top: .05em; }
+
+.prayer-form {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: 28px; box-shadow: var(--shadow);
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field .opt { font-weight: 400; color: var(--muted); text-transform: none; letter-spacing: 0; }
+
+/* radio group */
+.choice { border: 0; margin: 0 0 14px; padding: 0; }
+.choice legend {
+  padding: 0; margin-bottom: 8px;
+  font-size: .8rem; font-weight: 600; color: var(--navy);
+}
+/* `.field.choice` outweighs the later `.field label { display: block }` rule,
+   which would otherwise break the radio onto its own line. */
+.field.choice label {
+  display: flex; align-items: flex-start; gap: 9px; margin-bottom: 8px;
+  font-size: .88rem; font-weight: 400; line-height: 1.45; color: #3c4756; cursor: pointer;
+}
+.field.choice input[type="radio"] {
+  width: auto; margin-top: .22em; accent-color: var(--gold-600); flex: none;
+}
+
+/* Honeypot: off-screen rather than display:none, which some bots skip. */
+.hp {
+  position: absolute; left: -9999px; width: 1px; height: 1px;
+  overflow: hidden; opacity: 0; pointer-events: none;
+}
+
+button[type="submit"]:disabled { opacity: .62; cursor: progress; transform: none; }
+
 /* --------------------------------------------------------------- community */
 .community { background: var(--paper); padding: 54px 0 62px; }
 .tile-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; margin-top: 8px; }
@@ -448,12 +692,59 @@ ul { margin: 0; padding: 0; list-style: none; }
 .contact-list li { display: flex; gap: 12px; font-size: .95rem; color: #3c4756; }
 .contact-list .ico { font-size: 1.2rem; color: var(--gold-600); margin-top: .15em; }
 .contact-list a { color: var(--navy-soft); }
+.contact-list strong { color: var(--navy); }
+.contact-map {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 7px;
+  font-size: .82rem; font-weight: 600; color: var(--navy-soft); text-decoration: none;
+}
+.contact-map:hover { color: var(--gold-600); text-decoration: underline; }
+.contact-map span { transition: transform .18s ease; }
+.contact-map:hover span { transform: translateX(3px); }
+
+/* Distinguishes "where we meet" from "where to send mail" — two different places. */
+.contact-label {
+  display: block; margin-bottom: 3px;
+  font-size: .66rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold-600);
+}
+
+.people { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); }
+.people-title {
+  font-family: var(--sans); font-size: .78rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold-600);
+  margin-bottom: 16px;
+}
+.people-list { display: grid; gap: 14px; }
+.person {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 15px 17px 13px; box-shadow: var(--shadow-sm);
+}
+.person-name { font-family: var(--serif); font-size: 1.04rem; color: var(--navy); }
+.person-role {
+  margin-top: 2px; font-size: .66rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold-600);
+}
+.person-link {
+  display: flex; align-items: center; gap: 8px; margin-top: 9px;
+  font-size: .88rem; color: var(--navy-soft); text-decoration: none;
+  /* long gmail addresses must be able to break rather than widen the card */
+  overflow-wrap: anywhere;
+}
+.person-link .ico { font-size: 1rem; color: var(--gold-600); flex: none; }
+.person-link span { font-variant-numeric: tabular-nums; }
+.person-link:hover { color: var(--gold-600); }
+.person-link:hover span { text-decoration: underline; }
 
 .contact-form {
   background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg);
   padding: 28px; box-shadow: var(--shadow);
 }
 .form-note { font-size: .78rem; color: var(--muted); margin-bottom: 16px; }
+.form-note--warn {
+  padding: 10px 12px; border-radius: var(--r-sm);
+  background: #fdf3e3; border: 1px solid #e7cfa0; color: #7a4f10; font-size: .84rem;
+}
+.form-note--warn a { color: #7a4f10; font-weight: 600; }
 .field { margin-bottom: 14px; }
 .field label {
   display: block; font-size: .8rem; font-weight: 600; color: var(--navy); margin-bottom: 6px;
@@ -486,13 +777,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid; grid-template-columns: 1fr 1fr 1.25fr 1.35fr; gap: 40px;
   padding-bottom: 42px;
 }
+/* At footer scale the crest's own lettering is legible, so it stands alone. */
 .footer-brand { color: var(--gold); }
-.brand-mark--lg { width: 72px; height: 68px; }
-.footer-wordmark {
-  margin-top: 12px; font-family: var(--serif); font-size: 2.1rem; font-weight: 700;
-  letter-spacing: .05em; color: #fff;
-}
-.footer-sub { margin-top: 4px; font-size: .84rem; color: #b6c4d8; }
+.footer-logo { width: 100%; max-width: 268px; height: auto; }
 
 .footer-col h3 {
   font-family: var(--sans); font-size: .95rem; font-weight: 600; color: #fff;
@@ -565,7 +852,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   .feed-grid { grid-template-columns: 1fr; gap: 46px; }
   .feed-col--media { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 34px; }
   .gather-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-grid, .contact-grid, .prayer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .giving-grid { grid-template-columns: 1fr; }
+  .give-card--wide { order: -1; }   /* card giving first once stacked */
   .hero-script { display: none; }
   .hero-inner { min-height: 470px; }
 
@@ -591,6 +880,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 720px) {
   .event-grid { grid-template-columns: 1fr; }
+  .founder-grid { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
   .event-media { aspect-ratio: 16 / 9; }
   .band-grid { grid-template-columns: 1fr; gap: 26px; }
   .band-cell { padding-left: 0; }

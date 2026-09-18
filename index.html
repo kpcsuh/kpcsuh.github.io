@@ -7,6 +7,7 @@
 <meta name="description" content="San Antonio Christian Family Fellowship: a community of families growing together in faith, love and service. Prayer, Word, Worship, Fellowship.">
 <meta name="theme-color" content="#0d2b56">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/logo-icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
@@ -20,15 +21,11 @@
 <header class="site-header" id="top">
   <div class="shell header-inner">
     <a class="brand" href="#top" aria-label="SACFF home">
-      <svg class="brand-mark" viewBox="0 0 64 60" aria-hidden="true">
-        <g fill="currentColor">
-          <rect x="29.6" y="2" width="4.8" height="42" rx="1.4"/>
-          <rect x="20" y="13" width="24" height="4.6" rx="1.4"/>
-          <path d="M14 44c0-6.2 2.6-10.6 6-13.4-2.2-1-3.6-3-3.6-5.4 0-3.2 2.6-5.8 5.8-5.8s5.8 2.6 5.8 5.8c0 2.4-1.4 4.4-3.6 5.4 3.4 2.8 6 7.2 6 13.4H14Z"/>
-          <path d="M33.6 44c0-6.2 2.6-10.6 6-13.4-2.2-1-3.6-3-3.6-5.4 0-3.2 2.6-5.8 5.8-5.8s5.8 2.6 5.8 5.8c0 2.4-1.4 4.4-3.6 5.4 3.4 2.8 6 7.2 6 13.4H33.6Z"/>
-          <rect x="6" y="47.5" width="52" height="3.4" rx="1.7"/>
-        </g>
-      </svg>
+      <picture class="brand-mark-wrap">
+        <source srcset="assets/logo-mark.webp" type="image/webp">
+        <img class="brand-mark" src="assets/logo-mark.png" width="160" height="141"
+             alt="" aria-hidden="true" decoding="async">
+      </picture>
       <span class="brand-text">
         <strong>SACFF</strong>
         <span>San Antonio Christian<br>Family Fellowship</span>
@@ -97,10 +94,12 @@
         <span class="pillar-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M11.4 2.3C9.2 4.3 6.2 7.9 5.2 11.1c-.9 2.9-.4 5.6 1.3 7.2 1 1 2.5 1.6 4.9 1.8V2.3Zm1.2 0v17.8c2.4-.2 3.9-.8 4.9-1.8 1.7-1.6 2.2-4.3 1.3-7.2-1-3.2-4-6.8-6.2-8.8Z"/><path d="M5.9 20.6h12.2c.6 0 1 .4 1 1s-.4 1-1 1H5.9c-.6 0-1-.4-1-1s.4-1 1-1Z" opacity=".6"/></svg>
         </span>
-        <h3>Intercessory Prayer</h3>
+        <h3>Home Prayer</h3>
         <p class="pillar-when">First Saturday</p>
         <p class="pillar-time">7:00 PM</p>
-        <p class="pillar-note">Come together to pray for our families, community and the world.</p>
+        <p class="pillar-where">At a host home</p>
+        <p class="pillar-note">Intercessory prayer — we pray on behalf of one another, our
+          families and friends, our city, and the world at large.</p>
       </article>
 
       <article class="pillar">
@@ -110,17 +109,21 @@
         <h3>Bible Study</h3>
         <p class="pillar-when">Second Saturday</p>
         <p class="pillar-time">7:00 PM</p>
-        <p class="pillar-note">Grow in God’s Word and build a stronger foundation in faith.</p>
+        <p class="pillar-where">FLC, OUMC</p>
+        <p class="pillar-note">Chapter by chapter, verse by verse, in group discussion —
+          unpacking the deep truths of Scripture and applying the Word in our lives.</p>
       </article>
 
       <article class="pillar">
         <span class="pillar-ico" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M20 3.2a1 1 0 0 0-1.2-1l-8 1.7a1 1 0 0 0-.8 1v10.4A3.8 3.8 0 0 0 8.4 15 3.7 3.7 0 0 0 4.6 18.6 3.7 3.7 0 0 0 8.4 22.2 3.7 3.7 0 0 0 12.2 18.6V7.7l6-1.3v6.5a3.8 3.8 0 0 0-1.6-.4 3.7 3.7 0 1 0 3.8 3.7V3.2Z"/></svg>
         </span>
-        <h3>Praise &amp; Worship</h3>
+        <h3>Worship Service</h3>
         <p class="pillar-when">Fourth Saturday</p>
         <p class="pillar-time">7:00 PM</p>
-        <p class="pillar-note">Worship together and experience God’s presence as a community.</p>
+        <p class="pillar-where">FLC, OUMC</p>
+        <p class="pillar-note">A spirit-filled, non-denominational service, with pastors from
+          San Antonio and guest preachers from India sharing the Word.</p>
       </article>
 
       <article class="pillar">
@@ -130,7 +133,9 @@
         <h3>All Are Welcome</h3>
         <p class="pillar-when">Families <i>•</i> Youth <i>•</i> Children</p>
         <p class="pillar-when">Young Adults <i>•</i> Seniors</p>
-        <p class="pillar-note">A place to belong, connect and serve.</p>
+        <p class="pillar-where">No invitation needed</p>
+        <p class="pillar-note">You are welcome to attend SACFF services. Come and worship
+          Him in spirit and in truth.</p>
       </article>
 
     </div>
@@ -142,16 +147,18 @@
   <div class="shell about-grid">
     <div>
       <h2 class="section-title" id="about-title">About SACFF</h2>
-      <p class="lede">We are families from across San Antonio who gather each month to pray,
-        open the Scriptures, worship and simply be together — because faith grows best
-        in the company of others.</p>
-      <p>What began as a handful of families praying in a living room is now a fellowship
-        spanning generations. There is no audition to belong here. Come as you are, bring
-        the children, bring your questions, and find people who will walk with you.</p>
+      <p class="mission-label">Our mission</p>
+      <p class="mission">To have a God’s family of believers experiencing a life-changing,
+        personal, and intimate relationship with Jesus through exaltation, edification
+        and evangelism.</p>
+      <p>We are families from across San Antonio who gather three Saturdays a month — to
+        pray in one another’s homes, to open the Scriptures together, and to worship.
+        You are welcome to attend SACFF services; come and worship Him in spirit and
+        in truth.</p>
       <ul class="about-points">
-        <li><strong>Rooted in Scripture</strong> — every gathering opens the Word together.</li>
-        <li><strong>Family first</strong> — children and youth are part of the room, not parked outside it.</li>
-        <li><strong>Hands to serve</strong> — outreach across our city, all year round.</li>
+        <li><strong>Exaltation</strong> — a spirit-filled, non-denominational worship service.</li>
+        <li><strong>Edification</strong> — the Word studied chapter by chapter, verse by verse.</li>
+        <li><strong>Evangelism</strong> — guest preachers and evangelists from India and across San Antonio.</li>
       </ul>
     </div>
     <aside class="about-card">
@@ -160,11 +167,65 @@
         love and good deeds.”</p>
       <p class="about-card-cite">Hebrews 10:24</p>
       <dl class="about-stats">
-        <div><dt>Founded</dt><dd>2016</dd></div>
+        <div><dt>Founded</dt><dd>2001</dd></div>
         <div><dt>Families</dt><dd>120+</dd></div>
         <div><dt>Gatherings / yr</dt><dd>36</dd></div>
       </dl>
     </aside>
+  </div>
+</section>
+
+<!-- ============================ FOUNDERS ============================== -->
+<section class="founders" id="founders" aria-labelledby="founders-title">
+  <div class="shell">
+    <div class="founders-head">
+      <h2 class="section-title" id="founders-title">Our Founders</h2>
+      <p class="lede">San Antonio Christian Family Fellowship was founded in 2001 by two
+        families who began meeting simply to pray together. Twenty-five years on, the
+        fellowship still gathers around the same four things — prayer, the Word,
+        worship and fellowship.</p>
+    </div>
+
+    <div class="founder-grid">
+
+      <article class="founder">
+        <picture>
+          <source srcset="assets/founder-duggirala.webp" type="image/webp">
+          <img class="founder-photo" src="assets/founder-duggirala.jpg"
+               width="240" height="240" loading="lazy" decoding="async"
+               alt="Dr. Ravindranath Duggirala, founding member of SACFF">
+        </picture>
+        <h3>Dr. Ravindranath Duggirala</h3>
+        <p class="founder-role">Founding Member</p>
+        <p class="founder-bio">One of the two founding members of San Antonio Christian
+          Family Fellowship, Dr. Ravindranath Duggirala helped bring the first families
+          together for prayer in 2001. What began as a small circle in a living room has
+          grown into a fellowship spanning generations, still resting on the foundation
+          it started with — prayer, and the Word at the centre of every gathering.</p>
+      </article>
+
+      <article class="founder">
+        <picture>
+          <source srcset="assets/founder-arya.webp" type="image/webp">
+          <img class="founder-photo" src="assets/founder-arya.jpg"
+               width="240" height="240" loading="lazy" decoding="async"
+               alt="Dr. Rector Arya, founding member of SACFF">
+        </picture>
+        <h3>Dr. Rector Arya</h3>
+        <p class="founder-role">Founding Member</p>
+        <p class="founder-bio">A founding member alongside Dr. Duggirala, Dr. Rector Arya
+          has shared in the life of the fellowship since its very first gatherings in
+          2001 — in prayer, in the study of Scripture, and in the conviction that
+          families grow strongest in faith when they grow together. Across more than two
+          decades that welcome has extended to every generation who has joined us.</p>
+      </article>
+
+    </div>
+
+    <blockquote class="founders-verse">
+      <p>“Unless the Lord builds the house, the builders labor in vain.”</p>
+      <cite>Psalm 127:1</cite>
+    </blockquote>
   </div>
 </section>
 
@@ -176,68 +237,78 @@
     <div class="feed-col" id="events">
       <div class="section-head">
         <h2 class="section-title">Upcoming Events</h2>
-        <a class="link-more" href="#events">View All Events <span aria-hidden="true">→</span></a>
+        <a class="link-more" href="#gather">Our Monthly Rhythm <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="event-grid">
 
         <article class="event-card">
           <div class="event-media">
-            <img src="assets/event-worship-night.svg" alt="Stage lights over a worship gathering">
-            <p class="date-chip"><span>NOV</span><strong>22</strong></p>
+            <img src="assets/event-worship-night.svg" alt="A worship gathering lit from the stage">
+            <p class="event-tag">4th Saturday</p>
+            <p class="date-chip"><span>SEP</span><strong>26</strong></p>
           </div>
           <div class="event-body">
-            <h3>Worship Musical Night</h3>
+            <h3>Worship Service</h3>
             <ul class="meta">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> Sat, Nov 22, 2025</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 6:00 PM – 9:00 PM</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> San Antonio, TX</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> <time datetime="2026-09-26T19:00">Sat, Sep 26, 2026</time></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 7:00 PM</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> Family Life Center, OUMC</li>
             </ul>
-            <a class="btn btn-navy btn-block" href="#contact">Register Now</a>
+            <p class="event-note">Spirit-filled and non-denominational. Guest preachers and
+              evangelists from India join pastors from across San Antonio.</p>
+            <a class="btn btn-navy btn-block" href="#contact">Plan Your Visit</a>
           </div>
         </article>
 
         <article class="event-card">
           <div class="event-media">
-            <img src="assets/event-thanksgiving.svg" alt="Autumn leaves for the Thanksgiving service">
-            <p class="media-script" aria-hidden="true">Give <em>Thanks</em> To The Lord</p>
-            <p class="date-chip"><span>NOV</span><strong>23</strong></p>
+            <img src="assets/event-prayer.svg" alt="Hands joined in prayer in a home">
+            <p class="event-tag">1st Saturday</p>
+            <p class="date-chip"><span>OCT</span><strong>03</strong></p>
           </div>
           <div class="event-body">
-            <h3>Thanksgiving Service</h3>
+            <h3>Home Prayer</h3>
             <ul class="meta">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> Sun, Nov 23, 2025</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 6:00 PM – 8:00 PM</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> San Antonio, TX</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> <time datetime="2026-10-03T19:00">Sat, Oct 3, 2026</time></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 7:00 PM</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> At a host home</li>
             </ul>
-            <a class="btn btn-navy btn-block" href="#contact">Add to Calendar</a>
+            <p class="event-note">Intercessory prayer for one another, our families, our city
+              and the world. Contact us for this month’s host home.</p>
+            <a class="btn btn-navy btn-block" href="#contact">Ask for the Address</a>
           </div>
         </article>
 
         <article class="event-card">
           <div class="event-media">
-            <img src="assets/event-picnic.svg" alt="Families gathered on the grass under trees at a park picnic">
-            <p class="date-chip"><span>DEC</span><strong>06</strong></p>
+            <img src="assets/video-bible.svg" alt="An open Bible lit from above">
+            <p class="event-tag">2nd Saturday</p>
+            <p class="date-chip"><span>OCT</span><strong>10</strong></p>
           </div>
           <div class="event-body">
-            <h3>Family Picnic</h3>
+            <h3>Bible Study</h3>
             <ul class="meta">
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> Sat, Dec 6, 2025</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 10:00 AM – 4:00 PM</li>
-              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> San Antonio, TX</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7Zm12 8v9H5v-9h14Z"/></svg> <time datetime="2026-10-10T19:00">Sat, Oct 10, 2026</time></li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg> 7:00 PM</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg> Family Life Center, OUMC</li>
             </ul>
-            <a class="btn btn-navy btn-block" href="#contact">Learn More</a>
+            <p class="event-note">Chapter by chapter, verse by verse, in open group
+              discussion. Bring your Bible and your questions.</p>
+            <a class="btn btn-navy btn-block" href="#contact">Join the Study</a>
           </div>
         </article>
 
       </div>
+      <p class="event-footnote">SACFF meets three Saturdays a month — the first for prayer,
+        the second for the Word, the fourth for worship. Everyone is welcome.</p>
     </div>
 
     <!-- ---------- Watch & Listen ---------- -->
     <div class="feed-col feed-col--media" id="media">
       <div class="section-head">
         <h2 class="section-title">Watch &amp; Listen</h2>
-        <a class="link-more" href="#media">View All Videos <span aria-hidden="true">→</span></a>
+        <a class="link-more" href="https://www.youtube.com/@SACFF-Media" target="_blank" rel="noopener noreferrer">View All Videos <span aria-hidden="true">→</span></a>
       </div>
 
       <a class="video video--lead" href="#media">
@@ -288,12 +359,12 @@
     <div class="band-cell">
       <h2>How can we pray for you?</h2>
       <p>We would be honored to pray with you.</p>
-      <a class="btn btn-gold" href="#contact">Submit a Prayer Request</a>
+      <a class="btn btn-gold" href="#prayer">Submit a Prayer Request</a>
     </div>
     <div class="band-cell band-cell--divided">
       <h2>Give / Support SACFF</h2>
       <p>Your generosity helps us serve, worship and build our community.</p>
-      <a class="btn btn-gold" href="#contact">
+      <a class="btn btn-gold" href="#giving">
         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-4.9-8-10.4A5.1 5.1 0 0 1 12 6.6a5.1 5.1 0 0 1 8 4c0 5.5-8 10.4-8 10.4Z"/></svg>
         Give Now
       </a>
@@ -302,6 +373,171 @@
       <p>“Each of you should give what you have decided in your heart to give…”</p>
       <cite>2 Corinthians 9:7</cite>
     </blockquote>
+  </div>
+</section>
+
+<!-- ============================= GIVING =============================== -->
+<section class="giving" id="giving" aria-labelledby="giving-title">
+  <div class="shell">
+    <div class="giving-head">
+      <h2 class="section-title" id="giving-title">Ways to Give</h2>
+      <p class="lede">Your generosity helps us serve, worship and build our community.
+        Give by Zelle, by card through PayPal, or by cheque — whichever suits you.</p>
+    </div>
+
+    <div class="giving-grid">
+
+      <!-- ---------- Zelle ---------- -->
+      <article class="give-card">
+        <p class="give-badge">No fees</p>
+        <h3>Zelle</h3>
+        <p class="give-lead">Send directly from your own bank’s app. Most banks charge
+          nothing, so the full amount reaches the fellowship.</p>
+        <dl class="give-detail">
+          <div><dt>Recipient phone</dt><dd><a href="tel:+12106685436">(210) 668-5436</a></dd></div>
+          <div><dt>Recipient type</dt><dd>Business</dd></div>
+          <div>
+            <dt>Memo / reason for payment</dt>
+            <dd class="give-memo">SACFF Donation / Offering</dd>
+          </div>
+        </dl>
+        <p class="give-note">Look for <strong>Zelle</strong> inside your banking app, add
+          the number above as a recipient, and put <strong>SACFF Donation /
+          Offering</strong> in the memo so your gift is recorded correctly.</p>
+      </article>
+
+      <!-- ---------- PayPal / card ---------- -->
+      <article class="give-card give-card--wide">
+        <h3>PayPal or card</h3>
+        <p class="give-lead">Give with a PayPal balance, or with any debit or credit card —
+          no PayPal account needed.</p>
+
+        <fieldset class="give-amount">
+          <legend>Choose an amount</legend>
+          <div class="amount-presets" role="group" aria-label="Preset amounts">
+            <button type="button" data-amount="25">$25</button>
+            <button type="button" data-amount="50">$50</button>
+            <button type="button" data-amount="100">$100</button>
+            <button type="button" data-amount="250">$250</button>
+          </div>
+          <div class="amount-custom">
+            <label for="give-amount">Or enter an amount</label>
+            <div class="amount-input">
+              <span aria-hidden="true">$</span>
+              <input id="give-amount" type="number" min="1" max="25000" step="1"
+                     value="50" inputmode="decimal" aria-describedby="give-amount-hint">
+            </div>
+            <p class="amount-hint" id="give-amount-hint">USD, between $1 and $25,000.</p>
+          </div>
+        </fieldset>
+
+        <div id="paypal-buttons" class="paypal-buttons">
+          <p class="paypal-placeholder">Loading secure payment options…</p>
+        </div>
+        <p class="form-status" id="give-status" role="status" aria-live="polite"></p>
+        <noscript>
+          <p class="form-note form-note--warn">Card giving needs JavaScript. Please use
+            Zelle or a cheque, or email
+            <a href="mailto:sacff7@gmail.com">sacff7@gmail.com</a>.</p>
+        </noscript>
+      </article>
+
+      <!-- ---------- Cheque ---------- -->
+      <article class="give-card">
+        <h3>By cheque</h3>
+        <p class="give-lead">Make your cheque payable to <strong>SACFF</strong> and post
+          it, or bring it to any Saturday gathering.</p>
+        <address class="give-address">
+          SACFF<br>11518 Camp Real Ln<br>San Antonio, TX 78253
+        </address>
+        <p class="give-note">Please don’t post cash. If you would like a receipt for your
+          records, add a note with your address or email.</p>
+      </article>
+
+    </div>
+
+    <p class="giving-footnote">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 4.5 5v6.2c0 4.7 3.2 9.1 7.5 10.2 4.3-1.1 7.5-5.5 7.5-10.2V5L12 1.8Zm0 2.2 5.5 2.3v5c0 3.7-2.4 7.2-5.5 8.1-3.1-.9-5.5-4.4-5.5-8.1v-5L12 4Zm-1.1 9.6 4.3-4.3 1.4 1.4-5.7 5.7-3-3 1.4-1.4 1.6 1.6Z"/></svg>
+      <span>San Antonio Christian Family Fellowship is a registered 501(c)(3) nonprofit
+        (EIN 82-4274125). Contributions are tax-deductible to the extent allowed by law.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ========================= PRAYER REQUEST =========================== -->
+<section class="prayer" id="prayer" aria-labelledby="prayer-title">
+  <div class="shell prayer-grid">
+    <div class="prayer-intro">
+      <h2 class="section-title" id="prayer-title">Submit a Prayer Request</h2>
+      <p class="lede">We would be honored to pray with you. Requests are brought before
+        the fellowship on the first Saturday of each month, and held in prayer by our
+        team in between.</p>
+      <blockquote class="prayer-verse">
+        <p>“Therefore confess your sins to each other and pray for each other so that
+          you may be healed.”</p>
+        <cite>James 5:16</cite>
+      </blockquote>
+      <p class="prayer-privacy">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 4.5 5v6.2c0 4.7 3.2 9.1 7.5 10.2 4.3-1.1 7.5-5.5 7.5-10.2V5L12 1.8Zm0 2.2 5.5 2.3v5c0 3.7-2.4 7.2-5.5 8.1-3.1-.9-5.5-4.4-5.5-8.1v-5L12 4Zm-1 4v5h2v-5h-2Zm0 6v2h2v-2h-2Z"/></svg>
+        <span>Your request is sent over a secure connection to the fellowship’s prayer
+          team only. Tell us below if you would rather it not be read aloud.</span>
+      </p>
+    </div>
+
+    <!-- method="post" matters: without JS a form would otherwise GET-submit and
+         put the request text into the URL and the visitor's history. -->
+    <form class="prayer-form" id="prayer-form" data-endpoint-form="prayer"
+          method="post" novalidate>
+      <noscript>
+        <p class="form-note form-note--warn">This form needs JavaScript. Please email
+          your request to <a href="mailto:sacff7@gmail.com">sacff7@gmail.com</a>.</p>
+      </noscript>
+      <div class="field-row">
+        <div class="field">
+          <label for="pr-name">Your name <span class="opt">(optional)</span></label>
+          <input id="pr-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="pr-contact">Email or phone <span class="opt">(optional)</span></label>
+          <input id="pr-contact" name="contact" type="text" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="pr-category">This request is about</label>
+        <select id="pr-category" name="category">
+          <option>Healing &amp; health</option>
+          <option>Family</option>
+          <option>Work or provision</option>
+          <option>Guidance &amp; a decision</option>
+          <option>Thanksgiving / praise report</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="pr-request">Your prayer request</label>
+        <textarea id="pr-request" name="request" rows="5" required
+                  placeholder="Share as much or as little as you wish."></textarea>
+      </div>
+
+      <fieldset class="field choice">
+        <legend>How may we share this?</legend>
+        <label><input type="radio" name="sharing" value="Fellowship may pray by name" checked>
+          The fellowship may pray for this by name</label>
+        <label><input type="radio" name="sharing" value="Prayer team only - confidential">
+          Please keep this confidential to the prayer team</label>
+      </fieldset>
+
+      <!-- Spam trap: a real person never fills this in. Hidden from AT as well. -->
+      <div class="hp" aria-hidden="true">
+        <label for="pr-website">Website</label>
+        <input id="pr-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="btn btn-navy btn-block" type="submit">Send Prayer Request</button>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -334,21 +570,71 @@
       <ul class="contact-list">
         <li>
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg>
-          <span>San Antonio Christian Family Fellowship<br>San Antonio, TX</span>
+          <span><span class="contact-label">Where we meet</span>
+            <strong>Family Life Center</strong><br>Oxford United Methodist Church<br>9739
+            Huebner Rd, San Antonio, TX 78240
+            <a class="contact-map"
+               href="https://www.google.com/maps/search/?api=1&amp;query=9739+Huebner+Rd%2C+San+Antonio%2C+TX+78240"
+               target="_blank" rel="noopener noreferrer">Get directions
+              <span aria-hidden="true">→</span></a></span>
         </li>
         <li>
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.1 8-5.1H4Zm0 2.3L4 10v7h16v-7Z"/></svg>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5h-2v6l5 3 1-1.7-4-2.3Z"/></svg>
+          <span>Saturdays at 7:00 PM — first (prayer), second (Bible study)
+            and fourth (worship) of each month</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.5l-8 5-8-5V6h16Zm0 12H4V8.9l8 5 8-5V18Z"/></svg>
+          <span><span class="contact-label">Mailing address</span>
+            San Antonio Christian Family Fellowship<br>11518 Camp Real Ln<br>San
+            Antonio, TX 78253</span>
+        </li>
+        <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 4.6 18.9l-.9-1.8A8 8 0 1 1 20 12v1.2c0 .8-.5 1.3-1.2 1.3s-1.3-.5-1.3-1.3V7.6h-1.9v.8a4.5 4.5 0 0 0-3-1.2A4.8 4.8 0 0 0 7.8 12a4.8 4.8 0 0 0 4.8 4.8 4.6 4.6 0 0 0 3.1-1.2 3.1 3.1 0 0 0 2.6 1.2 3.2 3.2 0 0 0 3.2-3.6V12A10 10 0 0 0 12 2Zm.6 12.8A2.8 2.8 0 1 1 15.4 12a2.8 2.8 0 0 1-2.8 2.8Z"/></svg>
           <span><a href="mailto:info@sacff.org">info@sacff.org</a></span>
         </li>
-        <li>
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a12.6 12.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1Z"/></svg>
-          <span>Saturdays, 7:00 PM — first, second and fourth of each month</span>
-        </li>
       </ul>
+
+      <div class="people">
+        <h3 class="people-title">Or speak with us directly</h3>
+        <ul class="people-list">
+
+          <li class="person">
+            <p class="person-name">Dr. Ravindranath Duggirala</p>
+            <p class="person-role">Founding Member</p>
+            <a class="person-link" href="tel:+12103260806">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a12.6 12.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1Z"/></svg>
+              <span>(210) 326-0806</span>
+            </a>
+            <a class="person-link" href="mailto:ravindranathduggirala@gmail.com">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.1 8-5.1H4Zm0 2.3L4 10v7h16v-7Z"/></svg>
+              <span>ravindranathduggirala@gmail.com</span>
+            </a>
+          </li>
+
+          <li class="person">
+            <p class="person-name">Dr. Rector Arya</p>
+            <p class="person-role">Founding Member</p>
+            <a class="person-link" href="tel:+12106685436">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a12.6 12.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.25 1Z"/></svg>
+              <span>(210) 668-5436</span>
+            </a>
+            <a class="person-link" href="mailto:rectorarya@gmail.com">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.1 8-5.1H4Zm0 2.3L4 10v7h16v-7Z"/></svg>
+              <span>rectorarya@gmail.com</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
     </div>
 
-    <form class="contact-form" novalidate>
+    <form class="contact-form" data-endpoint-form="contact" method="post" novalidate>
       <p class="form-note">All fields are required.</p>
+      <noscript>
+        <p class="form-note form-note--warn">This form needs JavaScript. Please email
+          <a href="mailto:sacff7@gmail.com">sacff7@gmail.com</a> directly.</p>
+      </noscript>
       <div class="field">
         <label for="cf-name">Name</label>
         <input id="cf-name" name="name" type="text" autocomplete="name" required>
@@ -371,6 +657,11 @@
         <label for="cf-msg">Message</label>
         <textarea id="cf-msg" name="message" rows="4" required></textarea>
       </div>
+      <!-- Spam trap: a real person never fills this in. -->
+      <div class="hp" aria-hidden="true">
+        <label for="cf-website">Website</label>
+        <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
       <button class="btn btn-navy btn-block" type="submit">Send Message</button>
       <p class="form-status" role="status" aria-live="polite"></p>
     </form>
@@ -384,17 +675,12 @@
   <div class="shell footer-grid">
 
     <div class="footer-brand">
-      <svg class="brand-mark brand-mark--lg" viewBox="0 0 64 60" aria-hidden="true">
-        <g fill="currentColor">
-          <rect x="29.6" y="2" width="4.8" height="42" rx="1.4"/>
-          <rect x="20" y="13" width="24" height="4.6" rx="1.4"/>
-          <path d="M14 44c0-6.2 2.6-10.6 6-13.4-2.2-1-3.6-3-3.6-5.4 0-3.2 2.6-5.8 5.8-5.8s5.8 2.6 5.8 5.8c0 2.4-1.4 4.4-3.6 5.4 3.4 2.8 6 7.2 6 13.4H14Z"/>
-          <path d="M33.6 44c0-6.2 2.6-10.6 6-13.4-2.2-1-3.6-3-3.6-5.4 0-3.2 2.6-5.8 5.8-5.8s5.8 2.6 5.8 5.8c0 2.4-1.4 4.4-3.6 5.4 3.4 2.8 6 7.2 6 13.4H33.6Z"/>
-          <rect x="6" y="47.5" width="52" height="3.4" rx="1.7"/>
-        </g>
-      </svg>
-      <p class="footer-wordmark">SACFF</p>
-      <p class="footer-sub">San Antonio Christian<br>Family Fellowship</p>
+      <picture>
+        <source srcset="assets/logo-full.webp" type="image/webp">
+        <img class="footer-logo" src="assets/logo-full.png" width="640" height="565"
+             alt="SACFF — San Antonio Christian Family Fellowship. Faith, Family, Community."
+             loading="lazy" decoding="async">
+      </picture>
     </div>
 
     <nav class="footer-col" aria-label="Quick links">
@@ -402,6 +688,7 @@
       <ul>
         <li><a href="#top">Home</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#founders">Our Founders</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#give">Give</a></li>
         <li><a href="#media">Media</a></li>
@@ -414,8 +701,14 @@
       <h3>Contact Us</h3>
       <ul class="footer-contact">
         <li>
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.5l-8 5-8-5V6h16Zm0 12H4V8.9l8 5 8-5V18Z"/></svg>
+          <span>San Antonio Christian Family Fellowship<br>11518 Camp Real Ln<br>San
+            Antonio, TX 78253</span>
+        </li>
+        <li>
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg>
-          <span>San Antonio Christian Family Fellowship<br>San Antonio, TX</span>
+          <span>We meet at Family Life Center,<br>Oxford United Methodist Church<br>9739
+            Huebner Rd, San Antonio, TX 78240</span>
         </li>
         <li>
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.1 8-5.1H4Zm0 2.3L4 10v7h16v-7Z"/></svg>
@@ -427,8 +720,8 @@
         </li>
       </ul>
       <ul class="social" aria-label="Social links">
-        <li><a class="soc soc--yt" href="#media" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12s0-3.2-.4-4.8ZM10 15.2V8.8l5.2 3.2Z"/></svg></a></li>
-        <li><a class="soc soc--fb" href="#top" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-2.9h-2.8V9.2c0-.8.2-1.4 1.4-1.4h1.5V5.1A19 19 0 0 0 14.6 5c-2.2 0-3.7 1.3-3.7 3.8v2.3H8.5V14h2.4v7Z"/></svg></a></li>
+        <li><a class="soc soc--yt" href="https://www.youtube.com/@SACFF-Media" target="_blank" rel="noopener noreferrer" aria-label="SACFF on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8C22 15.2 22 12 22 12s0-3.2-.4-4.8ZM10 15.2V8.8l5.2 3.2Z"/></svg></a></li>
+        <li><a class="soc soc--fb" href="https://www.facebook.com/sacffellowship/" target="_blank" rel="noopener noreferrer" aria-label="SACFF on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-2.9h-2.8V9.2c0-.8.2-1.4 1.4-1.4h1.5V5.1A19 19 0 0 0 14.6 5c-2.2 0-3.7 1.3-3.7 3.8v2.3H8.5V14h2.4v7Z"/></svg></a></li>
         <li><a class="soc soc--wa" href="#contact" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Zm4.6 12.3c-.2.6-1.2 1.1-1.7 1.2-.5 0-1.1 0-3.2-1a10.6 10.6 0 0 1-4-4c-.9-1.7-.7-2.5-.4-3 .2-.4.6-.7.9-.8h.7c.2 0 .4 0 .6.5l.7 1.6c.1.2 0 .4-.1.6l-.4.5c-.1.2-.2.3 0 .6a8 8 0 0 0 3.2 2.7c.3.1.5.1.6 0l.8-.9c.2-.2.4-.2.6-.1l1.6.8c.3.2.4.3.4.5s0 .8-.1 1.1Z"/></svg></a></li>
         <li><a class="soc soc--ig" href="#community" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 3h-9A4.5 4.5 0 0 0 3 7.5v9A4.5 4.5 0 0 0 7.5 21h9a4.5 4.5 0 0 0 4.5-4.5v-9A4.5 4.5 0 0 0 16.5 3ZM12 16.2a4.2 4.2 0 1 1 4.2-4.2 4.2 4.2 0 0 1-4.2 4.2Zm5-7.7a1.2 1.2 0 1 1 1.2-1.2 1.2 1.2 0 0 1-1.2 1.2ZM12 9.6A2.4 2.4 0 1 0 14.4 12 2.4 2.4 0 0 0 12 9.6Z"/></svg></a></li>
       </ul>
