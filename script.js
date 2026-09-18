@@ -65,6 +65,83 @@
     sections.forEach(function (s) { observer.observe(s); });
   }
 
+  /* ===================== recurring event dates =========================
+     The three services fall on fixed Saturdays of every month (1st, 2nd and
+     4th), so each card works out its own next date on load and the page can
+     never advertise a service that has already happened.
+
+     Only cards carrying data-recurs are touched. One-off events — Indian
+     Christian Day — have no such attribute and are left exactly as authored.
+     The dates written into the HTML stay truthful on their own, so if this
+     script never runs a visitor still sees a sensible date.
+     ===================================================================== */
+  var SATURDAY = 6;
+  var MONTH_ABBR = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+                    'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+  /** The nth Saturday of a given month. Month may be 12+ to roll into next year. */
+  function nthSaturday(year, month, n) {
+    var first = new Date(year, month, 1);
+    var lead = (SATURDAY - first.getDay() + 7) % 7;
+    return new Date(year, month, 1 + lead + (n - 1) * 7);
+  }
+
+  /** Next nth Saturday that hasn't passed — the day itself still counts. */
+  function nextNthSaturday(n, from) {
+    var today = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+    var d = nthSaturday(today.getFullYear(), today.getMonth(), n);
+    if (d < today) d = nthSaturday(today.getFullYear(), today.getMonth() + 1, n);
+    return d;
+  }
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function isoDay(d) {
+    return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate());
+  }
+
+  var recurring = Array.prototype.slice
+    .call(document.querySelectorAll('.event-card[data-recurs]'))
+    .map(function (card) {
+      return { card: card, n: parseInt(card.getAttribute('data-recurs'), 10) };
+    })
+    .filter(function (x) { return x.n >= 1 && x.n <= 4; });
+
+  if (recurring.length) {
+    var today = new Date();
+
+    recurring.forEach(function (x) {
+      x.date = nextNthSaturday(x.n, today);
+
+      var time = x.card.querySelector('time');
+      if (time) {
+        var at = x.card.getAttribute('data-at');
+        time.setAttribute('datetime', isoDay(x.date) + (at ? 'T' + at : ''));
+        // en-US explicitly, so the format matches the design whatever the
+        // visitor's own locale happens to be.
+        time.textContent = x.date.toLocaleDateString('en-US', {
+          weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+        });
+      }
+
+      var chip = x.card.querySelector('.date-chip');
+      if (chip) {
+        var mon = chip.querySelector('span');
+        var day = chip.querySelector('strong');
+        if (mon) mon.textContent = MONTH_ABBR[x.date.getMonth()];
+        if (day) day.textContent = pad2(x.date.getDate());
+      }
+    });
+
+    // Recomputed dates fall out of the authored order every month, so re-sort
+    // the cards — "Upcoming Events" should read soonest first.
+    var grid = recurring[0].card.parentNode;
+    recurring
+      .slice()
+      .sort(function (a, b) { return a.date - b.date; })
+      .forEach(function (x) { grid.appendChild(x.card); });
+  }
+
   /* ========================== form submission ========================== */
   var loadedAt = Date.now();
 
@@ -269,6 +346,92 @@
     if (!giveStatus) return;
     if (state) giveStatus.dataset.state = state; else delete giveStatus.dataset.state;
     giveStatus.textContent = msg;
+  }
+
+  /* =============================== RSVP ===============================
+     The RSVP page posts straight to the Google Form's formResponse endpoint,
+     aimed at a hidden iframe — Google allows the post but not a cross-origin
+     read, so the iframe's load event is the only completion signal available.
+
+     The form asks for names, phone, email and city as one paragraph answer;
+     this collects them as four fields and joins them before sending.
+     ==================================================================== */
+  var rsvpForm = document.getElementById('rsvp-form');
+
+  if (rsvpForm) {
+    var rsvpDone = document.getElementById('rsvp-done');
+    var rsvpSink = document.getElementById('gform-sink');
+    var rsvpDetails = document.getElementById('rsvp-details');
+    var rsvpStatus = rsvpForm.querySelector('.form-status');
+    var rsvpButton = rsvpForm.querySelector('button[type="submit"]');
+    var rsvpSent = false;
+
+    var val = function (id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    };
+
+    rsvpForm.addEventListener('submit', function (e) {
+      if (!rsvpForm.checkValidity()) {
+        e.preventDefault();
+        rsvpStatus.dataset.state = 'error';
+        rsvpStatus.textContent = 'Please complete the highlighted fields.';
+        var bad = rsvpForm.querySelector(':invalid');
+        if (bad) bad.focus();
+        return;
+      }
+
+      // Google's single paragraph question, assembled from the four inputs.
+      rsvpDetails.value =
+        'Name(s): ' + val('rsvp-name') +
+        ' | Phone: ' + val('rsvp-phone') +
+        ' | Email: ' + val('rsvp-email') +
+        ' | City: ' + val('rsvp-city');
+
+      rsvpSent = true;
+      delete rsvpStatus.dataset.state;
+      rsvpStatus.textContent = 'Sending your RSVP…';
+      if (rsvpButton) {
+        rsvpButton.disabled = true;
+        rsvpButton.textContent = 'Sending…';
+      }
+      // Not prevented: the browser posts the form into the hidden iframe.
+    });
+
+    // Fires once the post to Google has completed. The initial about:blank load
+    // is ignored via the rsvpSent flag.
+    rsvpSink.addEventListener('load', function () {
+      if (!rsvpSent) return;
+      showRsvpThanks();
+    });
+
+    // If the iframe never loads (blocked frame, offline), don't leave the
+    // visitor staring at "Sending…" forever.
+    rsvpForm.addEventListener('submit', function () {
+      setTimeout(function () {
+        if (rsvpSent && !rsvpDone.hidden) return;
+        if (rsvpSent) showRsvpThanks();
+      }, 6000);
+    });
+
+    function showRsvpThanks() {
+      rsvpSent = false;
+      var count = val('rsvp-count');
+      var attend = rsvpForm.querySelector('input[name^="entry."]:checked');
+      var summary = document.getElementById('rsvp-done-summary');
+      if (summary) {
+        summary.textContent =
+          (attend && attend.value === 'Yes'
+            ? 'We have you down for ' + count + (count === '1' ? ' person' : ' people')
+            : 'Thank you for letting us know') +
+          ', under ' + val('rsvp-name') + '.';
+      }
+      rsvpForm.hidden = true;
+      rsvpDone.hidden = false;
+      rsvpDone.scrollIntoView({ block: 'center' });
+      rsvpDone.setAttribute('tabindex', '-1');
+      rsvpDone.focus();
+    }
   }
 
   /* ------------------------------------------- newsletter (still a stub) */
