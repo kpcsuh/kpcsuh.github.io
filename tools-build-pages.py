@@ -290,7 +290,8 @@ icd = HEAD.format(
           </div>
         </dl>
         <p class="give-note"><strong>Sponsor status</strong> is offered for contributions
-          of <strong>$250 or more</strong>. Card, PayPal and cheque are available too.</p>
+          of <strong>$250 or more</strong>. A cheque is just as welcome — card and PayPal
+          giving is coming soon.</p>
         <a class="btn btn-gold btn-give btn-block give-card-cta" href="index.html#give">
           <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="{ICON_HEART}"/></svg>
           Give / Free-will offering towards ICD Event

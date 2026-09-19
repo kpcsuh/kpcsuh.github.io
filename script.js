@@ -277,7 +277,13 @@
   var payContainer = document.getElementById('paypal-buttons');
   var giveStatus = document.getElementById('give-status');
 
-  if (giveSection && amountInput && payContainer) {
+  /* The same `data-paypal` attribute the CSS reads. While it is anything other
+     than "on", the SDK is never requested at all — no third-party script, no
+     cookies, and no way to start a payment against an account that can't
+     settle it. The "Coming soon" panel is already in the markup. */
+  var paypalOn = !!giveSection && giveSection.dataset.paypal === 'on';
+
+  if (paypalOn && amountInput && payContainer) {
     // Preset buttons just fill the amount field, which stays the single source
     // of truth — createOrder reads it at click time, so no button re-render.
     document.querySelectorAll('.amount-presets button').forEach(function (b) {
@@ -366,7 +372,7 @@
 
       onError: function () {
         tell('Something went wrong with the payment. Please try Zelle or a cheque, ' +
-             'or email sacff7@gmail.com.', 'error');
+             'or email rectorarya@gmail.com.', 'error');
       },
     }).render('#paypal-buttons');
   }

@@ -620,11 +620,60 @@ fails to scan, and a tappable button is better on a web page regardless.
 
 Three methods, using SACFF's own payment accounts:
 
-| Method | Detail |
-| --- | --- |
-| **Zelle** | Recipient phone **(210) 352-0159**, recipient type **Business**, memo **SACFF Donation / Offering** |
-| **PayPal / card** | PayPal JS SDK Buttons, client id in `script.js` |
-| **Cheque** | Payable to SACFF, posted to 11518 Camp Real Ln, San Antonio, TX 78253 |
+| Method | Status | Detail |
+| --- | --- | --- |
+| **Zelle** | Live | Recipient phone **(210) 352-0159**, recipient type **Business**, memo **SACFF Donation / Offering** |
+| **PayPal / card** | ⏸ **Off** | Shows "Coming soon" — see below |
+| **Cheque** | Live | Payable to SACFF, posted to 11518 Camp Real Ln, San Antonio, TX 78253 |
+
+## ⏸ Card & PayPal giving is switched off
+
+The PayPal account needs a bank account reconnected, so card and PayPal giving is
+disabled and the card shows a **Coming soon** panel pointing at Zelle and cheque.
+
+### The switch
+
+One attribute, on the `#giving` section in `index.html`:
+
+```html
+<section class="giving" id="giving" ... data-paypal="off">
+```
+
+Set it to `"on"` to bring card giving back. Nothing else needs touching. It drives
+three things:
+
+1. **Which panel shows.** Both live in the markup — `.give-soon` and `.give-live`
+   — and CSS displays exactly one.
+2. **Whether the SDK loads.** `script.js` reads the same attribute and, while it
+   isn't `"on"`, never requests `paypal.com/sdk/js` at all.
+3. **How the card looks.** While off it drops to an equal third of the grid with a
+   dashed outline instead of the widest column with a white panel and shadow, and
+   it stops being pulled first when the cards stack on a phone.
+
+### Why the toggle is CSS, not JavaScript
+
+An off switch that depends on JavaScript running is not much of an off switch when
+money is involved. Doing it in CSS means the right panel shows even with scripting
+blocked, and `display: none` also takes the hidden half out of the tab order, so
+the amount field can't be reached while it's off.
+
+Verified with it off: `window.paypal` undefined, zero `paypal` script tags, zero
+network requests to paypal.com, and the amount input not focusable. So nobody can
+start a payment against an account that can't settle it.
+
+### What changed in the copy
+
+Three places promised card giving and no longer do — the section lede, the QR
+"Share this page" text, and the Zelle note on `icd.html` (which lives in
+`tools-build-pages.py`). **Reword these back when you switch it on**, since the
+attribute won't touch them.
+
+### The email in this section
+
+The giving section's contact address is **`rectorarya@gmail.com`** — both the
+Coming-soon panel and the card-giving `<noscript>` fallback. This is deliberately
+*only* the payment section. The contact form, the prayer form, `CONTACT_EMAIL` in
+`script.js` and `NOTIFY_EMAIL` in `Code.gs` all still use `sacff7@gmail.com`.
 
 ### Zelle: no clickable link, and no QR we can mint
 

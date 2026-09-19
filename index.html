@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2f669a244b">
+<link rel="stylesheet" href="styles.css?v=e15950986c">
 </head>
 <body>
 
@@ -463,12 +463,14 @@
 </section>
 
 <!-- ============================= GIVING =============================== -->
-<section class="giving" id="giving" aria-labelledby="giving-title">
+<!-- data-paypal: "off" while the PayPal account is being reconnected to a bank,
+     "on" to restore card giving. Nothing else needs changing. -->
+<section class="giving" id="giving" aria-labelledby="giving-title" data-paypal="off">
   <div class="shell">
     <div class="giving-head">
       <h2 class="section-title" id="giving-title">Ways to Give</h2>
       <p class="lede">Your generosity helps us serve, worship and build our community.
-        Give by Zelle, by card through PayPal, or by cheque — whichever suits you.</p>
+        Give by Zelle or by cheque today — card and PayPal giving is coming soon.</p>
     </div>
 
     <div class="giving-grid">
@@ -492,40 +494,66 @@
           Offering</strong> in the memo so your gift is recorded correctly.</p>
       </article>
 
-      <!-- ---------- PayPal / card ---------- -->
+      <!-- ---------- PayPal / card ----------
+           Both states live here. `data-paypal` on the #giving section above
+           picks which one shows, in CSS — so it works with JavaScript off, and
+           turning card giving back on is one word in one place. See the README.
+           -->
       <article class="give-card give-card--wide">
         <h3>PayPal or card</h3>
-        <p class="give-lead">Give with a PayPal balance, or with any debit or credit card —
-          no PayPal account needed.</p>
 
-        <fieldset class="give-amount">
-          <legend>Choose an amount</legend>
-          <div class="amount-presets" role="group" aria-label="Preset amounts">
-            <button type="button" data-amount="25">$25</button>
-            <button type="button" data-amount="50">$50</button>
-            <button type="button" data-amount="100">$100</button>
-            <button type="button" data-amount="250">$250</button>
-          </div>
-          <div class="amount-custom">
-            <label for="give-amount">Or enter an amount</label>
-            <div class="amount-input">
-              <span aria-hidden="true">$</span>
-              <input id="give-amount" type="number" min="1" max="25000" step="1"
-                     value="50" inputmode="decimal" aria-describedby="give-amount-hint">
-            </div>
-            <p class="amount-hint" id="give-amount-hint">USD, between $1 and $25,000.</p>
-          </div>
-        </fieldset>
-
-        <div id="paypal-buttons" class="paypal-buttons">
-          <p class="paypal-placeholder">Loading secure payment options…</p>
+        <!-- shown while data-paypal="off" -->
+        <div class="give-soon">
+          <p class="give-badge give-badge--soon">Coming soon</p>
+          <p class="give-lead">Giving by card and PayPal is being set up, and will
+            appear here as soon as it’s ready.</p>
+          <p class="give-soon-alt">Until then, the other two ways on this page are
+            open and working:</p>
+          <ul class="give-soon-list">
+            <li><strong>Zelle</strong> — straight from your bank’s own app, with no
+              fees taken out of your gift.</li>
+            <li><strong>A cheque</strong> — by post, or handed in at any Saturday
+              gathering.</li>
+          </ul>
+          <p class="give-note">If card is the only way that works for you, email
+            <a href="mailto:rectorarya@gmail.com">rectorarya@gmail.com</a> and we’ll sort
+            something out.</p>
         </div>
-        <p class="form-status" id="give-status" role="status" aria-live="polite"></p>
-        <noscript>
-          <p class="form-note form-note--warn">Card giving needs JavaScript. Please use
-            Zelle or a cheque, or email
-            <a href="mailto:sacff7@gmail.com">sacff7@gmail.com</a>.</p>
-        </noscript>
+
+        <!-- shown while data-paypal="on" -->
+        <div class="give-live">
+          <p class="give-lead">Give with a PayPal balance, or with any debit or credit card —
+            no PayPal account needed.</p>
+
+          <fieldset class="give-amount">
+            <legend>Choose an amount</legend>
+            <div class="amount-presets" role="group" aria-label="Preset amounts">
+              <button type="button" data-amount="25">$25</button>
+              <button type="button" data-amount="50">$50</button>
+              <button type="button" data-amount="100">$100</button>
+              <button type="button" data-amount="250">$250</button>
+            </div>
+            <div class="amount-custom">
+              <label for="give-amount">Or enter an amount</label>
+              <div class="amount-input">
+                <span aria-hidden="true">$</span>
+                <input id="give-amount" type="number" min="1" max="25000" step="1"
+                       value="50" inputmode="decimal" aria-describedby="give-amount-hint">
+              </div>
+              <p class="amount-hint" id="give-amount-hint">USD, between $1 and $25,000.</p>
+            </div>
+          </fieldset>
+
+          <div id="paypal-buttons" class="paypal-buttons">
+            <p class="paypal-placeholder">Loading secure payment options…</p>
+          </div>
+          <p class="form-status" id="give-status" role="status" aria-live="polite"></p>
+          <noscript>
+            <p class="form-note form-note--warn">Card giving needs JavaScript. Please use
+              Zelle or a cheque, or email
+              <a href="mailto:rectorarya@gmail.com">rectorarya@gmail.com</a>.</p>
+          </noscript>
+        </div>
       </article>
 
       <!-- ---------- Cheque ---------- -->
@@ -548,7 +576,7 @@
       <div>
         <p class="giving-share-title">Share this page</p>
         <p>Scanning this code opens <strong>this giving page</strong> — the Zelle
-          number, memo, card giving and the postal address, all in one place. Print
+          number, memo and the postal address, all in one place. Print
           it in the bulletin or put it on the screen at a gathering.</p>
         <p class="giving-share-note">It is not a Zelle payment code. Zelle only
           issues those inside your own banking app.</p>
@@ -849,6 +877,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=6a1c33cd0e"></script>
+<script src="script.js?v=02d6edd894"></script>
 </body>
 </html>
